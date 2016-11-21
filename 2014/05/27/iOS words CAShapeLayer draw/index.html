@@ -1,0 +1,708 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="1.CAShapeLayer1234567891011121314151617181920212223242526272829303132333435363738394041CAShapeLayer *loadShape = [CAShapeLayer layer];loadShape.path = [self loadPath];CAShapeLayer *ingShape  = [CAShap">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS words CAShapeLayer draw">
+<meta property="og:url" content="http://74lee.com/2014/05/27/iOS words CAShapeLayer draw/index.html">
+<meta property="og:site_name" content="74Lee">
+<meta property="og:description" content="1.CAShapeLayer1234567891011121314151617181920212223242526272829303132333435363738394041CAShapeLayer *loadShape = [CAShapeLayer layer];loadShape.path = [self loadPath];CAShapeLayer *ingShape  = [CAShap">
+<meta property="og:updated_time" content="2014-09-24T02:44:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS words CAShapeLayer draw">
+<meta name="twitter:description" content="1.CAShapeLayer1234567891011121314151617181920212223242526272829303132333435363738394041CAShapeLayer *loadShape = [CAShapeLayer layer];loadShape.path = [self loadPath];CAShapeLayer *ingShape  = [CAShap">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://74lee.com/2014/05/27/iOS words CAShapeLayer draw/"/>
+
+
+
+
+
+  <title> iOS words CAShapeLayer draw | 74Lee </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">74Lee</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Insist on yourself,believe yourself,forever...</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/05/27/iOS words CAShapeLayer draw/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="74Lee">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="74Lee">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS words CAShapeLayer draw
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-05-27T12:22:00+08:00">
+                2014-05-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2014/05/27/iOS words CAShapeLayer draw/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/05/27/iOS words CAShapeLayer draw/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>1.CAShapeLayer<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">CAShapeLayer *loadShape = [CAShapeLayer layer];</div><div class="line"></div><div class="line">loadShape.path = [self loadPath];</div><div class="line"></div><div class="line">CAShapeLayer *ingShape  = [CAShapeLayer layer];</div><div class="line"></div><div class="line">ingShape.path  = [self ingPath];</div><div class="line"></div><div class="line">self.loadingIndicator = self.animationView;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">self.loadingIndicator.backgroundColor = [UIColor clearColor];</div><div class="line"></div><div class="line"><span class="keyword">for</span> (CAShapeLayer *shape <span class="keyword">in</span> @[loadShape, ingShape]) &#123;</div><div class="line"></div><div class="line">shape.strokeColor = [UIColor blackColor].CGColor;</div><div class="line"></div><div class="line">shape.fillColor   = [UIColor clearColor].CGColor;</div><div class="line"></div><div class="line">shape.lineCap   = kCALineCapRound;</div><div class="line"></div><div class="line">shape.lineJoin  = kCALineJoinRound;</div><div class="line"></div><div class="line">shape.lineWidth = 2.0;</div><div class="line"></div><div class="line">shape.position = CGPointMake(75, 0);</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">shape.strokeEnd = .0;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">[self.loadingIndicator.layer addSublayer:shape];</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">loadShape.speed = 0; // pull to refresh layer is paused here</div></pre></td></tr></table></figure></p>
+<p>2.loadPath</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div></pre></td><td class="code"><pre><div class="line">- (CGPathRef)loadPath</div><div class="line"></div><div class="line">&#123;</div><div class="line"></div><div class="line">CGMutablePathRef path = CGPathCreateMutable();</div><div class="line"></div><div class="line">// load</div><div class="line"></div><div class="line">CGPathMoveToPoint(path,     NULL, 7.50878897, 25.2871097);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 7.50878897, 25.2871097,  21.7333976, 26.7812495, 29.6894527, 20.225586);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 37.6455074, 13.6699219,  39.367189,  3.85742195, 31.9697262, 1.25976564);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 24.5722639, -1.33789083, 21.99707,   10.9072268, 21.99707,   22.2255862);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 21.9970685, 33.5439456,  15.9355469, 45.8212894, 8.99707031, 47.7294922);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 2.05859375, 49.637695,   3.67187498, 44.0332034, 7.50878897, 44.0332034);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 11.3457029, 44.0332034,  16.9277345, 44.234375,  25.5234372, 47.7294925);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 30.55635,   49.7759358,  37.9023439, 49.5410159, 44.1259762, 35.9140628);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 50.349609,  22.2871097,  55.3105465, 25.2871099, 60.7128903, 25.2871097);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 66.481445,  25.2871097,  56.192383,  22.6435549, 50.8017578, 26.6455078);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 45.4111325, 30.6474606,  43.4619148, 37.8193362, 46.0097656, 43.7333984);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 48.5576169, 49.6474606,  57.0488304, 50.0810555, 61.8876968, 43.0097659);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 66.7265637, 35.9384765,  65.6816424, 31.5634772, 64.4834,    27.8232425);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 63.2851574, 24.0830078,  59.8876972, 27.8076178, 59.8876968, 31.4882815);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 59.8876965, 35.1689453,  69.1025406, 37.2509768, 74.9531265, 32.7333987);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 80.8037132, 28.2158207,  80.1298793, 27.0527347, 84.4970703, 25.3574219);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 88.8642613, 23.6621091,  93.7460906, 25.37793,   96.1650391, 28.8349609);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 96.1650391, 28.8349609,  91.6679688, 24.28711,   88.085941,  24.2871097);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 84.5039132, 24.2871093,  74.9824181, 33.0332029, 78.5166016, 43.3417969);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 82.0507847, 53.6503909,  92.167965,  42.5078128, 95.0117188, 38.9140625);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 97.8554722, 35.3203122,  100.327144, 27.9042972, 100.327148, 23.3740234);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 100.327152, 18.8437497,  96.499996,  26.5527347, 96.5,       32.7333984);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 96.5000035, 38.9140622,  92.6337871, 53.1660163, 101.700195, 46.0400391);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 110.766605, 38.9140622,  112.455075, 29.5751958, 118.345703, 26.9746094);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 124.236332, 24.3740231,  129.221685, 27.5800787, 131.216798, 30.1386722);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 131.216798, 30.1386722,  125.394529, 25.9746094, 121.82422,  25.9746097);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 118.253911, 25.9746099,  110.588871, 32.4130862, 112.661136, 41.7500003);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 114.733402, 51.0869143,  119.810543, 48.9121097, 125.347656, 43.0097656);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 130.884769, 37.1074216,  137.702153, 21.0126953, 139.335938, 12.4980469);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 140.969722, 3.98339847,  140.637699,-2.27636688, 136.845703, 7.984375);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 134.586089, 14.0986513,  131.676762, 31.5527347, 129.884769, 38.9140628);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 128.092777, 46.2753909,  130.551236, 50.2217745, 135.211914, 46.2753906);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 146.745113, 36.5097659,  142.116211, 40.75,      142.116211, 40.75);</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">CGAffineTransform t = CGAffineTransformMakeScale(0.7, 0.7); // It was slighly to big and I didn<span class="string">'t feel like redoing it :D</span></div><div class="line"></div><div class="line">return CGPathCreateCopyByTransformingPath(path, &amp;t);</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>ingPath</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line">- (CGPathRef)ingPath</div><div class="line"></div><div class="line">&#123;</div><div class="line"></div><div class="line">CGMutablePathRef path = CGPathCreateMutable();</div><div class="line"></div><div class="line">// ing (minus dot)</div><div class="line"></div><div class="line">CGPathMoveToPoint(path,     NULL, 139.569336, 42.9423837);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 139.569336, 42.9423837, 149.977539, 32.9609375, 151.100586, 27.9072266);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 152.223633, 22.8535156, 149.907226, 21.5703124, 148.701172, 26.5419921);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 147.495117, 31.5136718, 142.760742, 50.8046884, 149.701172, 48.2763681);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 156.641602, 45.7480478, 166.053711, 33.5791017, 167.838867, 29.5136719);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 169.624023, 25.4482421, 169.426758, 20.716797,  167.455078, 26.1152344);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 165.483398, 31.5136718, 165.618164, 42.9423835, 163.97168,  48.2763678);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 163.97168,  48.2763678, 163.897461, 41.4570313, 168.141602, 35.9375);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 172.385742, 30.4179687, 179.773438, 21.9091796, 183.285645, 26.6875);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 186.797851, 31.4658204, 177.178223, 48.2763684, 184.285645, 48.2763678);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 191.393066, 48.2763678, 196.006836, 38.8701172, 198.850586, 34.0449218);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 201.694336, 29.2197264, 207.908203, 19.020508,  216.71875,  28.4179687);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 216.71875,  28.4179687, 211.086914, 23.5478516, 206.945312, 24.6738281);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 202.803711, 25.7998046, 194.8125,   40.1455079, 201.611328, 47.2763672);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 208.410156, 54.4072265, 220.274414, 30.9111327, 221.274414, 26.6874999);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 222.274414, 22.4638672, 220.005859, 20.3759766, 218.523438, 28.5419922);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 217.041016, 36.7080077, 216.630859, 64.7705084, 209.121094, 71.012696);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 201.611328, 77.2548835, 197.109375, 65.0654303, 202.780273, 60.9287116);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 208.451172, 56.7919928, 224.84668,  51.0244147, 228.638672, 38.6855466);</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">// dot</div><div class="line"></div><div class="line">CGPathMoveToPoint(path,     NULL, 153.736328, 14.953125);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 153.736328, 14.953125,  157.674805, 12.8178626, 155.736328, 10.2929688);</div><div class="line"></div><div class="line">CGPathAddCurveToPoint(path, NULL, 153.797852, 7.76807493, 151.408203, 12.2865614, 152.606445, 14.9531252);</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">CGAffineTransform t = CGAffineTransformMakeScale(0.7, 0.7); // It was slighly to big and I didn<span class="string">'t feel like redoing it :D</span></div><div class="line"></div><div class="line">return CGPathCreateCopyByTransformingPath(path, &amp;t);</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>4.animation </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// Text is drawn by stroking the path from 0% to 100%</div><div class="line"></div><div class="line">CABasicAnimation *writeText = [CABasicAnimation animationWithKeyPath:@<span class="string">"strokeEnd"</span>];</div><div class="line"></div><div class="line">writeText.fromValue = @0;</div><div class="line"></div><div class="line">writeText.toValue = @1;</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/04/11/iOS Blend效果/" rel="next" title="iOS Blend效果">
+                <i class="fa fa-chevron-left"></i> iOS Blend效果
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/05/27/iOS UIEffectDesignerView/" rel="prev" title="iOS UIEffectDesignerView">
+                iOS UIEffectDesignerView <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2014/05/27/iOS words CAShapeLayer draw/"
+     data-title="iOS words CAShapeLayer draw"
+     data-content=""
+     data-url="http://74lee.com/2014/05/27/iOS words CAShapeLayer draw/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2014/05/27/iOS words CAShapeLayer draw/"
+           data-title="iOS words CAShapeLayer draw" data-url="http://74lee.com/2014/05/27/iOS words CAShapeLayer draw/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="74Lee" />
+          <p class="site-author-name" itemprop="name">74Lee</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">124</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="//github.com/zxcv740/" title="github" target="_blank">github</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://stackoverflow.com/users/4065296/zxcv740" title="stackoverflow" target="_blank">stackoverflow</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://weibo.com/u/1894668544" title="sina" target="_blank">sina</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://twitter.com/zxcv740" title="twitter" target="_blank">twitter</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://zasper.net/" title="jasper blog" target="_blank">jasper blog</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">74Lee</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"74Lee"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
