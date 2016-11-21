@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS," />
+  <meta name="keywords" content="Swift," />
 
 
 
@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="###1.AppDelegate 入口12345self.window = UIWindow(frame: UIScreen.mainScreen().bounds)self.window!.backgroundColor = UIColor.whiteColor()var viewController:ViewController = ViewController();self.window!.">
+<meta name="description" content="1.AppDelegate 入口12345self.window = UIWindow(frame: UIScreen.mainScreen().bounds)self.window!.backgroundColor = UIColor.whiteColor()var viewController:ViewController = ViewController();self.window!.roo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS Swift 初级">
-<meta property="og:url" content="http://74lee.com/2014/09/25/iOS Swift 初级/index.html">
+<meta property="og:url" content="http://74lee.com/2014/09/25/Swift 初级/index.html">
 <meta property="og:site_name" content="74Lee">
-<meta property="og:description" content="###1.AppDelegate 入口12345self.window = UIWindow(frame: UIScreen.mainScreen().bounds)self.window!.backgroundColor = UIColor.whiteColor()var viewController:ViewController = ViewController();self.window!.">
-<meta property="og:updated_time" content="2014-09-25T10:03:32.000Z">
+<meta property="og:description" content="1.AppDelegate 入口12345self.window = UIWindow(frame: UIScreen.mainScreen().bounds)self.window!.backgroundColor = UIColor.whiteColor()var viewController:ViewController = ViewController();self.window!.roo">
+<meta property="og:updated_time" content="2016-11-21T13:29:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS Swift 初级">
-<meta name="twitter:description" content="###1.AppDelegate 入口12345self.window = UIWindow(frame: UIScreen.mainScreen().bounds)self.window!.backgroundColor = UIColor.whiteColor()var viewController:ViewController = ViewController();self.window!.">
+<meta name="twitter:description" content="1.AppDelegate 入口12345self.window = UIWindow(frame: UIScreen.mainScreen().bounds)self.window!.backgroundColor = UIColor.whiteColor()var viewController:ViewController = ViewController();self.window!.roo">
 
 
 
@@ -121,7 +121,7 @@
 
 
 
-  <link rel="canonical" href="http://74lee.com/2014/09/25/iOS Swift 初级/"/>
+  <link rel="canonical" href="http://74lee.com/2014/09/25/Swift 初级/"/>
 
 
 
@@ -238,7 +238,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/09/25/iOS Swift 初级/">
+  <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/09/25/Swift 初级/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="74Lee">
@@ -309,8 +309,8 @@
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
-                <a href="/2014/09/25/iOS Swift 初级/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/09/25/iOS Swift 初级/" itemprop="commentCount"></span>
+                <a href="/2014/09/25/Swift 初级/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/09/25/Swift 初级/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -336,8 +336,8 @@
       
 
       
-        <p>###1.AppDelegate 入口<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">self.window = UIWindow(frame: UIScreen.mainScreen().bounds)</div><div class="line">self.window!.backgroundColor = UIColor.whiteColor()</div><div class="line">var viewController:ViewController = ViewController();</div><div class="line">self.window!.rootViewController = viewController</div><div class="line">self.window!.makeKeyAndVisible()</div></pre></td></tr></table></figure></p>
-<p>###2.按钮<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">//创建</div><div class="line">var recordBtn: UIButton = UIButton.buttonWithType(.System) as UIButton</div><div class="line">recordBtn.setTitle(<span class="string">"record"</span>, <span class="keyword">for</span>State:.Normal)</div><div class="line">recordBtn.frame = CGRectMake(110, 20, 100, 50)</div><div class="line">recordBtn.addTarget(self, action:Selector(<span class="string">"onRecord"</span>), <span class="keyword">for</span>ControlEvents:.TouchUpInside)</div><div class="line">self.view.addSubview(recordBtn)</div><div class="line">//点击按钮方法</div><div class="line">func <span class="function"><span class="title">onRecord</span></span>()&#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+        <h3 id="1-AppDelegate-入口"><a href="#1-AppDelegate-入口" class="headerlink" title="1.AppDelegate 入口"></a>1.AppDelegate 入口</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">self</span>.window = <span class="type">UIWindow</span>(frame: <span class="type">UIScreen</span>.mainScreen().bounds)</div><div class="line"><span class="keyword">self</span>.window!.backgroundColor = <span class="type">UIColor</span>.whiteColor()</div><div class="line"><span class="keyword">var</span> viewController:<span class="type">ViewController</span> = <span class="type">ViewController</span>();</div><div class="line"><span class="keyword">self</span>.window!.rootViewController = viewController</div><div class="line"><span class="keyword">self</span>.window!.makeKeyAndVisible()</div></pre></td></tr></table></figure>
+<h3 id="2-按钮"><a href="#2-按钮" class="headerlink" title="2.按钮"></a>2.按钮</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//创建</span></div><div class="line"><span class="keyword">var</span> recordBtn: <span class="type">UIButton</span> = <span class="type">UIButton</span>.buttonWithType(.<span class="type">System</span>) <span class="keyword">as</span> <span class="type">UIButton</span></div><div class="line">recordBtn.setTitle(<span class="string">"record"</span>, forState:.<span class="type">Normal</span>)</div><div class="line">recordBtn.frame = <span class="type">CGRectMake</span>(<span class="number">110</span>, <span class="number">20</span>, <span class="number">100</span>, <span class="number">50</span>)</div><div class="line">recordBtn.addTarget(<span class="keyword">self</span>, action:<span class="type">Selector</span>(<span class="string">"onRecord"</span>), forControlEvents:.<span class="type">TouchUpInside</span>)</div><div class="line"><span class="keyword">self</span>.view.addSubview(recordBtn)</div><div class="line"><span class="comment">//点击按钮方法</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">onRecord</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -361,7 +361,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/iOS/" rel="tag"># iOS</a>
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
           
         </div>
       
@@ -370,8 +370,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2014/09/22/iOS CVImageBufferRef/" rel="next" title="iOS CVImageBufferRef">
-                <i class="fa fa-chevron-left"></i> iOS CVImageBufferRef
+              <a href="/2014/09/22/iOS Date Compare/" rel="next" title="iOS Date Compare">
+                <i class="fa fa-chevron-left"></i> iOS Date Compare
               </a>
             
           </div>
@@ -397,10 +397,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2014/09/25/iOS Swift 初级/"
+        <div class="ds-share flat" data-thread-key="2014/09/25/Swift 初级/"
      data-title="iOS Swift 初级"
      data-content=""
-     data-url="http://74lee.com/2014/09/25/iOS Swift 初级/">
+     data-url="http://74lee.com/2014/09/25/Swift 初级/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -427,8 +427,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2014/09/25/iOS Swift 初级/"
-           data-title="iOS Swift 初级" data-url="http://74lee.com/2014/09/25/iOS Swift 初级/">
+      <div class="ds-thread" data-thread-key="2014/09/25/Swift 初级/"
+           data-title="iOS Swift 初级" data-url="http://74lee.com/2014/09/25/Swift 初级/">
       </div>
     
   </div>
@@ -452,8 +452,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -464,7 +473,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">124</span>
+              <span class="site-state-item-count">126</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -472,7 +481,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">categories</span>
               
             </div>
@@ -481,7 +490,7 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>
@@ -536,6 +545,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-AppDelegate-入口"><span class="nav-number">1.</span> <span class="nav-text">1.AppDelegate 入口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-按钮"><span class="nav-number">2.</span> <span class="nav-text">2.按钮</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>

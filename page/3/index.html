@@ -236,6 +236,323 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://74lee.com/2015/03/05/iOS RGB 黑白滤镜/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="74Lee">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="74Lee">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/03/05/iOS RGB 黑白滤镜/" itemprop="url">
+                  iOS RGB 黑白滤镜
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-03-05T09:52:36+08:00">
+                2015-03-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2015/03/05/iOS RGB 黑白滤镜/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/03/05/iOS RGB 黑白滤镜/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>  图片每一个像素的颜色值是由R G B 三种混合的。灰度照片只有256种颜色，要想把彩色照片变成灰度照片，就需要把彩色照片的颜色值RGB<br>设置为一样的，这样原来的256<em>256</em>256就变成256种了，图片丢失彩色信息，只剩下亮度值，视觉上的效果就是灰色图片。</p>
+<p>一般灰度处理方法。</p>
+<p>1.取RGB中最大值:R=G=B=Max(R,G,B)；(ps:这样处理后的图片看起来亮度值偏高)</p>
+<p>2.取RGB中平均值:R=G=B=(R+G+B)/3;  (ps:这样处理后的图片比较柔和)</p>
+<p>3.取RGB的加权平均值:R=G=B=(R×r+G×g+B×b),一般权重 G 最高，R其次，B最低.只需要RGB转YUV Y数据就行了，<br> Y   =   0.299R   +   0.587G   +   0.114B  </p>
+<pre><code>补充：在YUV中，“Y”代表明亮度（Luminance或Luma），也就是灰阶值；
+而“U”和“V”表示的则是色度（Chrominance或Chroma），作用是描述影像色彩及饱和度，
+用于指定像素的颜色。
+“亮度”是通过RGB输入信号来创建的，方法是将RGB信号的特定部分叠加到一起。
+“色度”则定义了颜色的两个方面——色调与饱和度，分别用Cr和Cb来表示。
+其中，Cr反映了RGB输入信号红色部分与RGB信号亮度值之间的差异，
+而Cb反映的是RGB输入信号蓝色部分与RGB信号亮度值之间的差异，
+此即所谓的色差信号，也就是我们常说的分量信号（Y、R-Y、B-Y）。
+在专业领域了，“Y CB CR”表示数字色差信号而不是模拟色差信号。
+色差信号Y,R-Y,B-Y信号一般通称为Y, Cr,Cb; 习惯上Y,Cr,Cb为数字(PCM)的色差信号，
+模拟的色差信号则称Y,Pr,Pb，所以我们常在DVD Player的内部看到Y,Cr,Cb
+而在DVD Player的外部看到色差输出标示为Y,Pr,Pb或YUV；
+YUV则是在欧洲电视系统PAL中的色差信号的通称，包含数字及模拟的色差信号都称YUV，
+所以当您看到YUV时您就要联想到它是PAL系统中的Y,R-Y,B-Y信号，
+它可能是数字（PCM）的YUV，也可能是模拟的YUV。
+</code></pre><p>下面是一段openGL中实现黑白效果的shader脚本代码:<br>vsh代码片段<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">attribute vec4 position;</div><div class="line">attribute vec4 inputTextureCoordinate;</div><div class="line"></div><div class="line">varying vec2 textureCoordinate;</div><div class="line"></div><div class="line">void <span class="function"><span class="title">main</span></span>()</div><div class="line">&#123;</div><div class="line">    gl_Position = position;</div><div class="line">    textureCoordinate = inputTextureCoordinate.xy;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>fsh代码片段<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">precision highp <span class="built_in">float</span>;</div><div class="line"></div><div class="line">varying vec2 textureCoordinate;</div><div class="line"></div><div class="line">uniform sampler2D inputImageTexture;</div><div class="line"></div><div class="line">const highp vec3 W = vec3(0.2125, 0.7154, 0.0721);</div><div class="line"></div><div class="line">void <span class="function"><span class="title">main</span></span>()</div><div class="line">&#123;</div><div class="line">    lowp vec4 textureColor = texture2D(inputImageTexture, textureCoordinate);</div><div class="line">    //dot 加权平均luminance=r*0.2125+g*0.7154+b*0.0721</div><div class="line">    <span class="built_in">float</span> luminance = dot(textureColor.rgb, W);</div><div class="line">    gl_FragColor = vec4(vec3(luminance), textureColor.a);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://74lee.com/2015/02/14/iOS IP Camera配置 RTSP音视频流 iOS播放  Wowza服务器配置 RTSP转换成RTMP/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="74Lee">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="74Lee">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/02/14/iOS IP Camera配置 RTSP音视频流 iOS播放  Wowza服务器配置 RTSP转换成RTMP/" itemprop="url">
+                  iOS IP Camera配置 RTSP音视频流 iOS播放  Wowza服务器配置 RTSP转换成RTMP
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-02-14T18:24:36+08:00">
+                2015-02-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2015/02/14/iOS IP Camera配置 RTSP音视频流 iOS播放  Wowza服务器配置 RTSP转换成RTMP/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/02/14/iOS IP Camera配置 RTSP音视频流 iOS播放  Wowza服务器配置 RTSP转换成RTMP/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="IP-Camera配置"><a href="#IP-Camera配置" class="headerlink" title="IP Camera配置"></a>IP Camera配置</h2><p>一.首先IP Camera必须支持rtsp,摄像头连接路由器，进入路由器里面查看IP Camera的IP地址,操作步骤如下：浏览器中输出路由器（192.168.1.1）中查看IP Camera的ip地址。</p>
+<p><img src="http://hexo-zxcv740.qiniudn.com/ipcamera1.gif" alt="查看IP Camera的IP地址"></p>
+<p>二.在浏览器中输入摄像头的IP地址+http端口进行配置 192.168.1.70:81(ps:这里可能不同的摄像头不一样)，然后设置无线wifi.操作步骤如下:</p>
+<p><img src="http://hexo-zxcv740.qiniudn.com/ipcamera2.png" alt="设置IP Camera"><br><img src="http://hexo-zxcv740.qiniudn.com/ipcamera3.png" alt="设置IP Camera的无线wifi"></p>
+<h2 id="iOS-播放-IP-Camera-RTSP-流"><a href="#iOS-播放-IP-Camera-RTSP-流" class="headerlink" title="iOS 播放 IP Camera RTSP 流"></a>iOS 播放 IP Camera RTSP 流</h2><p>一.首先是RTSP流地址,这个IP Camera RTSP地址 rtsp://admin:admin@192.168.1.70:554/1/1<br>    注：第一个参数”1“代表分辨率为1280x720;“2“代表分辨率为640x352<br>    （ps:rtsp://admin:admin@192.168.1.70:554/1/1这个地址每个摄像头不一样，具体要问摄像头厂商提供了。IP摄像机厂商使用专有的URL语法为他们的相机。 请咨询您的相机文档流的URL语法和进入流URI这个值）</p>
+<p>二.播放rtsp流<br>      准备工作，需要用到ffmpeg,iOS编译ffmpeg<a href="http://zxcv740.github.io/2015/01/29/iOS%20FFMpeg%20%E7%BC%96%E8%AF%91%20%E9%80%9A%E7%94%A8%20%E9%9D%99%E6%80%81%E5%BA%93/" target="_blank" rel="external">ios如何编译ffmpeg详细见</a>,可以参照kxmovie<a href="https://github.com/kolyvan/kxmovie" target="_blank" rel="external">下载kxmovie</a>,当然这个kxmovie有问题,播放延迟超过3秒,音视频不同步等问题。想更好的体验,自己还需要更输入的研究。。。</p>
+<p>三.在kxmovie里面贴上自己IP Camera的rtsp推流地址，编译就可以看见了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">_remoteMovies = @[</div><div class="line">@<span class="string">"rtsp://admin:admin@192.168.1.70:554/1/1"</span>,</div><div class="line">];</div></pre></td></tr></table></figure>
+<p><img src="http://hexo-zxcv740.qiniudn.com/ipcamera4.png" alt="播放rtsp"></p>
+<p>(ps:如果想深入了解，ffmpeg解码流程这些，自己百度）</p>
+<h2 id="Wowza服务器配置"><a href="#Wowza服务器配置" class="headerlink" title="Wowza服务器配置"></a>Wowza服务器配置</h2><p>关于rtmp服务器,在Mac上我使用的就是Wowza服务器，Mac下载地址（<a href="http://www.wowza.com/pricing/installer）" target="_blank" rel="external">http://www.wowza.com/pricing/installer）</a><br>下载完成后，安装完成后回让你设置密码，设置好以后进入浏览器设置吧，地址:<a href="http://localhost:8088/" target="_blank" rel="external">http://localhost:8088/</a><br><img src="http://hexo-zxcv740.qiniudn.com/ipcamera5.png" alt="Wowza服务器"></p>
+<h2 id="IP-Camera-RTSP推送到服务器-服务器转换成RTMP"><a href="#IP-Camera-RTSP推送到服务器-服务器转换成RTMP" class="headerlink" title="IP Camera RTSP推送到服务器,服务器转换成RTMP"></a>IP Camera RTSP推送到服务器,服务器转换成RTMP</h2><p>操作如下:<br>ip Camera rtsp推流到wowza服务器，然后wowza服务器转成rtmp地址为:rtmp://192.168.1.67/live/rtsp.stream</p>
+<p><img src="http://hexo-zxcv740.qiniudn.com/ipcamera6.gif" alt="rtsp转rtmp"></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://74lee.com/2015/02/04/Unity3D 常用代码/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1102,322 +1419,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/11/05/iOS injection plugin Xcode 插件 无需再次编译/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="74Lee">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="74Lee">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/11/05/iOS injection plugin Xcode 插件 无需再次编译/" itemprop="url">
-                  iOS injection plugin Xcode 插件 无需再次编译
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-11-05T08:38:00+08:00">
-                2014-11-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <a href="/2014/11/05/iOS injection plugin Xcode 插件 无需再次编译/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/11/05/iOS injection plugin Xcode 插件 无需再次编译/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Xcode 每次改变代码都需要重新编辑才能调试，看看界面逻辑等等。每次编译又很慢，让我非常头疼，非常的浪费时间，一直想找一款能够无需再次编译就可以直接预览效果，今天终于发现一个Xcode，哈哈 ，相当不错。</p>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Injection Plugin For Xcode(<a href="http://injectionforxcode.com/" target="_blank" rel="external">http://injectionforxcode.com/</a>) 是 Xcode 上的一个插件。现在我们可以用它可以随时修改代码以及逻辑，不需要重新再次编译就能直接看效果。是不是很棒！</p>
-<h2 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h2><p>首先下载Injection插件,也可以用第三方插件管理工具搜索Injection直接搜索下载安装，下载安装完成后重启Xcode，这样就添加大功告成了。<a href="http://injectionforxcode.johnholdsworth.com/InjectionPluginV6.1.pkg" target="_blank" rel="external">点击下载</a></p>
-<h2 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h2><p>下载安装完成后，随便打开一个工程会发现工具栏Product菜单下多了一个2个选项,第一个是用于配置的，第二个是用于调试的。点击Patch Project for Injection 选项，它会自动在Prefix.pch和main.m中插入代码。不会影响程序原来的代码。如果不想要,可以点击Revert Injection’s Changes 还原设置。<br><img src="http://hexo-zxcv740.qiniudn.com/injection1.png" alt="图片"><br>main.m多了下面的配置代码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">// From here to end of file added by Injection Plugin //</div><div class="line"></div><div class="line"><span class="comment">#ifdef DEBUG</span></div><div class="line">static char _inMainFilePath[] = __FILE__;</div><div class="line">static const char *_inIPAddresses[] = &#123;<span class="string">"127.0.0.1"</span>, <span class="string">"192.168.1.21"</span>, NULL&#125;;</div><div class="line"></div><div class="line"><span class="comment">#define INJECTION_ENABLED</span></div><div class="line"><span class="comment">#import "/Applications/Injection Plugin.app/Contents/Resources/BundleInjection.h"</span></div><div class="line"><span class="comment">#endif</span></div></pre></td></tr></table></figure></p>
-<p>##开始测试<br>我做了一个简单的测试.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">- (IBAction)injectionTouch:(id)sender &#123;</div><div class="line">    NSLog(@<span class="string">"开始测试Injection插件"</span>);</div><div class="line">    self.view.backgroundColor = [UIColor whiteColor];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>开始状态,点击button,效果如下<br><img src="http://hexo-zxcv740.qiniudn.com/injection2.png" alt="图片"></p>
-<p>然后我修改代码,并且点击Product–&gt;Injection Source<br><img src="http://hexo-zxcv740.qiniudn.com/injection3.png" alt="图片"></p>
-<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><p>1.在真机调试过程中，可能会遇见证书问题，需要设置bundle project .需要在工程文件中提添加RunScript:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$CODESIGNING_FOLDER_PATH</span>"</span> &gt;/tmp/<span class="string">"<span class="variable">$USER</span>.ident"</span> &amp;&amp; <span class="built_in">echo</span> <span class="string">"<span class="variable">$CODE_SIGN_IDENTITY</span>"</span> &gt;&gt;/tmp/<span class="string">"<span class="variable">$USER</span>.ident"</span> &amp;&amp; <span class="built_in">exit</span>;</div></pre></td></tr></table></figure></p>
-<p><img src="http://hexo-zxcv740.qiniudn.com/injection4.png" alt="图片"></p>
-<p>2.在调试过程中,遇见Bundle build or injection has failed. 错误。<br>经过一次又一次的重复试验，再次试验，最后终于得出结论，遇见找不到framework和头文件，不是因为没有在run script 运行脚本这里设置了echo “$CODESIGNING_FOLDER_PATH” &gt;/tmp/“$USER.ident” &amp;&amp; echo “$CODE_SIGN_IDENTITY” &gt;&gt;/tmp/“$USER.ident” &amp;&amp; exit;就能行的，也不用打开工程在工程里面添加framework和libPath等等,大多数都是因为头文件有时候路径指的不对。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/30/iOS 常用Xcode插件/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="74Lee">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="74Lee">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/10/30/iOS 常用Xcode插件/" itemprop="url">
-                  iOS 常用Xcode插件
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-30T13:48:36+08:00">
-                2014-10-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <a href="/2014/10/30/iOS 常用Xcode插件/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/30/iOS 常用Xcode插件/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>今天有兴趣看看Xcode插件，以前都是不用插件的，觉得麻烦。虽然工具有点麻烦 有时候也会出错，但是使用好工具能够节约你不少时间</p>
-<p>一、插件管理工具<br>安装<a href="http://alcatraz.io/" target="_blank" rel="external">Alcatraz</a>,这是一个好东西,各种插件都可以在里面下载安装，非常好用.<br>在终端输入一下即可自动安装:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -fsSL https://raw.github.com/supermarin/Alcatraz/master/Scripts/install.sh | sh</div></pre></td></tr></table></figure>
-<p>二、我比较喜欢的插件</p>
-<p>1.BBUDebuggerTuckAway</p>
-<p>在你编写代码的时候,它可以自动收缩底部的调试栏</p>
-<p>2.CocoaPods</p>
-<p>第三方库 管理工具CocoaPods的插件，以前都是输入命令行，现在可以用鼠标点点就可以了</p>
-<p>3.KSImageNamed</p>
-<p>在输入UIImage的时候会自动识别app下得图片资源文件，很方便</p>
-<p>4.OMColorSense</p>
-<p>输入颜色代码的时候可以预览颜色，同时也可以调用出颜色选择面板进行颜色选择</p>
-<p>5.VVDocumenter<br>很多的注释插件，方便又好看<br>ps:Some users reported the setting panel can not be opened if installing from Alcatraz, so I suggest to build the plugin yourself until this issue get fixed<br>如果遇见用Alcatraz安装不能打开VVDocumenter设置，可以删除~/Library/Application Support/Developer/Shared/Xcode/Plug-ins目录下的VVDocumenter，然后到<a href="https://github.com/onevcat/VVDocumenter-Xcode下载" target="_blank" rel="external">https://github.com/onevcat/VVDocumenter-Xcode下载</a> 用Xcode build 安装一次，OK!</p>
-<p>6.XCFixin_CustomizeWorningErrorHighlights<br>以前Xcode双击 都是下划线，这个插件可以高亮提示，看起来很方面，下滑虚线太难找了</p>
-<p>7.SCXcodeMiniMap<br>一个Xcode插件，可以在当前的窗口内创建一个代码迷你地图，并在屏幕上高亮提示。</p>
-<p>8.XAlign<br>一个用来对齐常规代码的Xcode插件，十分强大的自定义对齐模式。这里是一个对齐模式示例，模式文件在main/main/patterns.plist.</p>
-<ol>
-<li>Backlight<br>某些插件从表面上看似乎无足轻重或者有些简陋，但只要大家加以合理运用、它们都将迸发出惊人的能量。Backlight就是这样一款插件。它惟一的能力就是对当前正在进行编辑的代码行加以高亮显示——没错，虽然看起来简单，但却极具价值</li>
-</ol>
-<p>10.Injection for Xcode<br>一个神奇的Xcode 插件，能让应用在运行的时候做出的小的改变立马体现效果，而不需要重新编译。。。</p>
-<p>11.RMConnecter<br>在上传AppStore时需要填写app的描述信息，此软件能很方便的填写这些信息。</p>
-<p>12.XcodeBoost<br>一个辅助代码编辑插件。支持高亮选中、批量选中方法和方法名、根据选中的方法批量生成方法声明、高亮正则搜索等功能。</p>
-<p>13.Code Pilot<br>一个能够快捷模糊查询代码，快速进入你想编辑的代码</p>
-<p>14.XToDo<br>一个快捷记录你想将要做什么，以及解决了什么的标签，方便以后回看。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1463,7 +1464,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">124</span>
+              <span class="site-state-item-count">126</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -1471,7 +1472,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">categories</span>
               
             </div>
@@ -1480,7 +1481,7 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>

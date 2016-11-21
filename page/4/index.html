@@ -236,6 +236,322 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/11/05/iOS injection plugin Xcode 插件 无需再次编译/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="74Lee">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="74Lee">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/11/05/iOS injection plugin Xcode 插件 无需再次编译/" itemprop="url">
+                  iOS injection plugin Xcode 插件 无需再次编译
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-11-05T08:38:00+08:00">
+                2014-11-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2014/11/05/iOS injection plugin Xcode 插件 无需再次编译/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/11/05/iOS injection plugin Xcode 插件 无需再次编译/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Xcode 每次改变代码都需要重新编辑才能调试，看看界面逻辑等等。每次编译又很慢，让我非常头疼，非常的浪费时间，一直想找一款能够无需再次编译就可以直接预览效果，今天终于发现一个Xcode，哈哈 ，相当不错。</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Injection Plugin For Xcode(<a href="http://injectionforxcode.com/" target="_blank" rel="external">http://injectionforxcode.com/</a>) 是 Xcode 上的一个插件。现在我们可以用它可以随时修改代码以及逻辑，不需要重新再次编译就能直接看效果。是不是很棒！</p>
+<h2 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h2><p>首先下载Injection插件,也可以用第三方插件管理工具搜索Injection直接搜索下载安装，下载安装完成后重启Xcode，这样就添加大功告成了。<a href="http://injectionforxcode.johnholdsworth.com/InjectionPluginV6.1.pkg" target="_blank" rel="external">点击下载</a></p>
+<h2 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h2><p>下载安装完成后，随便打开一个工程会发现工具栏Product菜单下多了一个2个选项,第一个是用于配置的，第二个是用于调试的。点击Patch Project for Injection 选项，它会自动在Prefix.pch和main.m中插入代码。不会影响程序原来的代码。如果不想要,可以点击Revert Injection’s Changes 还原设置。<br><img src="http://hexo-zxcv740.qiniudn.com/injection1.png" alt="图片"><br>main.m多了下面的配置代码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">// From here to end of file added by Injection Plugin //</div><div class="line"></div><div class="line"><span class="comment">#ifdef DEBUG</span></div><div class="line">static char _inMainFilePath[] = __FILE__;</div><div class="line">static const char *_inIPAddresses[] = &#123;<span class="string">"127.0.0.1"</span>, <span class="string">"192.168.1.21"</span>, NULL&#125;;</div><div class="line"></div><div class="line"><span class="comment">#define INJECTION_ENABLED</span></div><div class="line"><span class="comment">#import "/Applications/Injection Plugin.app/Contents/Resources/BundleInjection.h"</span></div><div class="line"><span class="comment">#endif</span></div></pre></td></tr></table></figure></p>
+<p>##开始测试<br>我做了一个简单的测试.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">- (IBAction)injectionTouch:(id)sender &#123;</div><div class="line">    NSLog(@<span class="string">"开始测试Injection插件"</span>);</div><div class="line">    self.view.backgroundColor = [UIColor whiteColor];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>开始状态,点击button,效果如下<br><img src="http://hexo-zxcv740.qiniudn.com/injection2.png" alt="图片"></p>
+<p>然后我修改代码,并且点击Product–&gt;Injection Source<br><img src="http://hexo-zxcv740.qiniudn.com/injection3.png" alt="图片"></p>
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><p>1.在真机调试过程中，可能会遇见证书问题，需要设置bundle project .需要在工程文件中提添加RunScript:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$CODESIGNING_FOLDER_PATH</span>"</span> &gt;/tmp/<span class="string">"<span class="variable">$USER</span>.ident"</span> &amp;&amp; <span class="built_in">echo</span> <span class="string">"<span class="variable">$CODE_SIGN_IDENTITY</span>"</span> &gt;&gt;/tmp/<span class="string">"<span class="variable">$USER</span>.ident"</span> &amp;&amp; <span class="built_in">exit</span>;</div></pre></td></tr></table></figure></p>
+<p><img src="http://hexo-zxcv740.qiniudn.com/injection4.png" alt="图片"></p>
+<p>2.在调试过程中,遇见Bundle build or injection has failed. 错误。<br>经过一次又一次的重复试验，再次试验，最后终于得出结论，遇见找不到framework和头文件，不是因为没有在run script 运行脚本这里设置了echo “$CODESIGNING_FOLDER_PATH” &gt;/tmp/“$USER.ident” &amp;&amp; echo “$CODE_SIGN_IDENTITY” &gt;&gt;/tmp/“$USER.ident” &amp;&amp; exit;就能行的，也不用打开工程在工程里面添加framework和libPath等等,大多数都是因为头文件有时候路径指的不对。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/30/iOS 常用Xcode插件/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="74Lee">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="74Lee">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/10/30/iOS 常用Xcode插件/" itemprop="url">
+                  iOS 常用Xcode插件
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-30T13:48:36+08:00">
+                2014-10-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2014/10/30/iOS 常用Xcode插件/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/30/iOS 常用Xcode插件/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天有兴趣看看Xcode插件，以前都是不用插件的，觉得麻烦。虽然工具有点麻烦 有时候也会出错，但是使用好工具能够节约你不少时间</p>
+<p>一、插件管理工具<br>安装<a href="http://alcatraz.io/" target="_blank" rel="external">Alcatraz</a>,这是一个好东西,各种插件都可以在里面下载安装，非常好用.<br>在终端输入一下即可自动安装:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -fsSL https://raw.github.com/supermarin/Alcatraz/master/Scripts/install.sh | sh</div></pre></td></tr></table></figure>
+<p>二、我比较喜欢的插件</p>
+<p>1.BBUDebuggerTuckAway</p>
+<p>在你编写代码的时候,它可以自动收缩底部的调试栏</p>
+<p>2.CocoaPods</p>
+<p>第三方库 管理工具CocoaPods的插件，以前都是输入命令行，现在可以用鼠标点点就可以了</p>
+<p>3.KSImageNamed</p>
+<p>在输入UIImage的时候会自动识别app下得图片资源文件，很方便</p>
+<p>4.OMColorSense</p>
+<p>输入颜色代码的时候可以预览颜色，同时也可以调用出颜色选择面板进行颜色选择</p>
+<p>5.VVDocumenter<br>很多的注释插件，方便又好看<br>ps:Some users reported the setting panel can not be opened if installing from Alcatraz, so I suggest to build the plugin yourself until this issue get fixed<br>如果遇见用Alcatraz安装不能打开VVDocumenter设置，可以删除~/Library/Application Support/Developer/Shared/Xcode/Plug-ins目录下的VVDocumenter，然后到<a href="https://github.com/onevcat/VVDocumenter-Xcode下载" target="_blank" rel="external">https://github.com/onevcat/VVDocumenter-Xcode下载</a> 用Xcode build 安装一次，OK!</p>
+<p>6.XCFixin_CustomizeWorningErrorHighlights<br>以前Xcode双击 都是下划线，这个插件可以高亮提示，看起来很方面，下滑虚线太难找了</p>
+<p>7.SCXcodeMiniMap<br>一个Xcode插件，可以在当前的窗口内创建一个代码迷你地图，并在屏幕上高亮提示。</p>
+<p>8.XAlign<br>一个用来对齐常规代码的Xcode插件，十分强大的自定义对齐模式。这里是一个对齐模式示例，模式文件在main/main/patterns.plist.</p>
+<ol>
+<li>Backlight<br>某些插件从表面上看似乎无足轻重或者有些简陋，但只要大家加以合理运用、它们都将迸发出惊人的能量。Backlight就是这样一款插件。它惟一的能力就是对当前正在进行编辑的代码行加以高亮显示——没错，虽然看起来简单，但却极具价值</li>
+</ol>
+<p>10.Injection for Xcode<br>一个神奇的Xcode 插件，能让应用在运行的时候做出的小的改变立马体现效果，而不需要重新编译。。。</p>
+<p>11.RMConnecter<br>在上传AppStore时需要填写app的描述信息，此软件能很方便的填写这些信息。</p>
+<p>12.XcodeBoost<br>一个辅助代码编辑插件。支持高亮选中、批量选中方法和方法名、根据选中的方法批量生成方法声明、高亮正则搜索等功能。</p>
+<p>13.Code Pilot<br>一个能够快捷模糊查询代码，快速进入你想编辑的代码</p>
+<p>14.XToDo<br>一个快捷记录你想将要做什么，以及解决了什么的标签，方便以后回看。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/30/iOS 编译lame m4a转mp3/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -975,298 +1291,6 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/22/iOS Copy 和mutableCopy/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="74Lee">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="74Lee">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/10/22/iOS Copy 和mutableCopy/" itemprop="url">
-                  iOS Copy 和mutableCopy
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-22T08:38:00+08:00">
-                2014-10-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <a href="/2014/10/22/iOS Copy 和mutableCopy/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/22/iOS Copy 和mutableCopy/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>今天在使用copy和mutableCopy出现了错误。<br>    在ios中并不是所有的对象都支持copy，mutableCopy，遵守NSCopying协议的类可以发送copy消息，遵守NSMutableCopying 协议的类才<br>可以发送mutableCopy消息。<br>    假如发送了一个没有遵守上诉两协议而发送copy或者 mutableCopy,那么就会发生异常。但是默认的ios类并没有遵<br>守这两个协议。<br>    如果想自定义一下copy 那么就必须遵守NSCopying,并且实现 copyWithZone: 方法，如果想自定义一下mutableCopy 那么就必须遵守NSMutableCopying,并且实现 mutableCopyWithZone: 方法。</p>
-<p>一、在需要的地放遵守NSCopying和NSMutableCopying协议,才能调用copy</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">//首先在类里面遵守&lt;NSCopying,NSMutableCopying&gt; 协议</div><div class="line"></div><div class="line">@interface ColorPlane : NSObject&lt;NSCopying,NSMutableCopying&gt;</div><div class="line"></div><div class="line">///Frame<span class="string">'s color data size</span></div><div class="line">@property (nonatomic, assign) int size;</div><div class="line"></div><div class="line">///Frame's color data</div><div class="line">@property (nonatomic, assign) UInt8 *data;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
-<p>二、在ColorPlane.m文件里面实现协议<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">@implementation ColorPlane</div><div class="line"></div><div class="line">- (id)init &#123;</div><div class="line">    self = [super init];</div><div class="line">    <span class="built_in">return</span> self;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (id)copyWithZone:(NSZone *)zone</div><div class="line">&#123;</div><div class="line">    ColorPlane *copy = [[[self class] allocWithZone:zone] init];</div><div class="line"></div><div class="line">    copy.size=self.size;</div><div class="line">    copy.data =self.data;</div><div class="line">    <span class="built_in">return</span> copy;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (id)mutableCopyWithZone:(NSZone *)zone</div><div class="line">&#123;</div><div class="line">    ColorPlane *copy = [[[self class] allocWithZone:zone] init];</div><div class="line">    copy.size=self.size;</div><div class="line">    copy.data =self.data;</div><div class="line">    <span class="built_in">return</span> copy;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">- (void)dealloc &#123;</div><div class="line">    <span class="keyword">if</span> (_data &amp;&amp; _size) &#123;</div><div class="line">        free(_data);</div><div class="line">        _data = NULL;</div><div class="line">    &#125;</div><div class="line">    [super dealloc];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/22/OpenGL glTexImage2D/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="74Lee">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="74Lee">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/10/22/OpenGL glTexImage2D/" itemprop="url">
-                  OpenGL glTexImage2D
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-22T08:38:00+08:00">
-                2014-10-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/OpenGL/" itemprop="url" rel="index">
-                    <span itemprop="name">OpenGL</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <a href="/2014/10/22/OpenGL glTexImage2D/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/22/OpenGL glTexImage2D/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>glTexImage2D,一个二维的纹理图片</p>
-<p>纹理映射一个指定的纹理图像的每一部分到相应的图元中。调用带GL_TEXTURE_2D参数的glEnable和glDisable函数来启用和禁止二维材质贴图。默认，二维材质贴图是禁用的。</p>
-<p>调用glTexImage2D来定义材质图片。</p>
-<p>函数<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">GL_API void GL_APIENTRY glTexImage2D (</div><div class="line">                                        GLenum target, </div><div class="line">                                        GLint level,</div><div class="line">                                        GLint internalformat, </div><div class="line">                                        GLsizei width, </div><div class="line">                                        GLsizei height,</div><div class="line">                                        GLint border, </div><div class="line">                                        GLenum format,</div><div class="line">                                        GLenum <span class="built_in">type</span>, </div><div class="line">                                        const GLvoid* pixels);</div><div class="line">//target     指定目标纹理，这个值必须是GL_TEXTURE_2D。</div><div class="line"></div><div class="line">//level       执行细节级别。0是最基本的图像级别，你表示第N级贴图细化级别。</div><div class="line"></div><div class="line">//internalformat     指定纹理中的颜色组件，这个取值和后面的format取值必须相同。可选的值有</div><div class="line">//            GL_ALPHA,</div><div class="line">//            GL_RGB,</div><div class="line">//            GL_RGBA,</div><div class="line">//            GL_LUMINANCE, </div><div class="line">//            GL_LUMINANCE_ALPHA 等几种。</div><div class="line"></div><div class="line">//width     指定纹理图像的宽度，必须是2的n次方。纹理图片至少要支持64个材质元素的宽度</div><div class="line"></div><div class="line">//height     指定纹理图像的高度，必须是2的m次方。纹理图片至少要支持64个材质元素的高度</div><div class="line"></div><div class="line">//border    指定边框的宽度。必须为0。</div><div class="line"></div><div class="line">//format    像素数据的颜色格式，必须和internalformatt取值必须相同。可选的值有</div><div class="line">//            GL_ALPHA,</div><div class="line">//            GL_RGB,</div><div class="line">//            GL_RGBA,</div><div class="line">//            GL_LUMINANCE, </div><div class="line">//            GL_LUMINANCE_ALPHA 等几种。</div><div class="line"></div><div class="line"></div><div class="line">//<span class="built_in">type</span>        指定像素数据的数据类型。可以使用的值有                    </div><div class="line">//            GL_UNSIGNED_BYTE,</div><div class="line">//            GL_UNSIGNED_SHORT_5_6_5,</div><div class="line">//            GL_UNSIGNED_SHORT_4_4_4_4, </div><div class="line">//            GL_UNSIGNED_SHORT_5_5_5_1</div><div class="line"></div><div class="line">//pixels      指定内存中指向图像数据的指针</div></pre></td></tr></table></figure></p>
-<p>2.//添加图片纹理<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">//声明:</div><div class="line">GLuint imageTextures[1];</div><div class="line"></div><div class="line">//添加纹理</div><div class="line">CGImageRef textureImage=[UIImage imageNamed:@<span class="string">"screen@2x.png"</span>].CGImage;</div><div class="line"><span class="keyword">if</span> (textureImage==nil) &#123;</div><div class="line">    NSLog(@<span class="string">"Faild to load texture image"</span>);</div><div class="line">    <span class="built_in">return</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">NSInteger textWidth=CGImageGetWidth(textureImage);</div><div class="line">NSInteger textHeight=CGImageGetHeight(textureImage);</div><div class="line">GLubyte *textureData=(GLubyte *)malloc(textWidth*textHeight*4);</div><div class="line"></div><div class="line">CGContextRef textureContext=CGBitmapContextCreate(textureData, textWidth, textHeight, 8, textWidth*4, CGImageGetColorSpace(textureImage), kCGImageAlphaPremultipliedLast);</div><div class="line">CGContextDrawImage(textureContext,CGRectMake(0.0,0.0, (<span class="built_in">float</span>)textWidth, (<span class="built_in">float</span>)textHeight),textureImage);</div><div class="line">CGContextRelease(textureContext);</div><div class="line"></div><div class="line"><span class="keyword">if</span> (0 == imageTextures[currentBuffer])</div><div class="line">    glGenTextures(1, &amp;imageTextures[currentBuffer]);</div><div class="line">glBindTexture(GL_TEXTURE_2D,imageTextures[0]);</div><div class="line">glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA,textWidth,textHeight,0,GL_RGBA,GL_UNSIGNED_BYTE,textureData);</div><div class="line">free(textureData);</div><div class="line"></div><div class="line">glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);</div><div class="line">glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);</div><div class="line">glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);</div><div class="line">glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);</div><div class="line">glEnable(GL_TEXTURE_2D);</div><div class="line">glActiveTexture(GL_TEXTURE0);</div></pre></td></tr></table></figure></p>
-<p>3.绘制使用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">glBindTexture(GL_TEXTURE_2D, imageTextures[0]);</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/22/OpenGL 常用函数手册/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1447,7 +1471,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">124</span>
+              <span class="site-state-item-count">126</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -1455,7 +1479,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">categories</span>
               
             </div>
@@ -1464,7 +1488,7 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>

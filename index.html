@@ -236,7 +236,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://74lee.com/2016/10/18/Swift RxSwift/">
+  <link itemprop="mainEntityOfPage" href="http://74lee.com/2016/11/21/Swift RxSwift学习--入门新手篇/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="74Lee">
@@ -261,8 +261,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/18/Swift RxSwift/" itemprop="url">
-                  Swift RxSwift基础学习篇
+                <a class="post-title-link" href="/2016/11/21/Swift RxSwift学习--入门新手篇/" itemprop="url">
+                  RxSwift学习--入门新手篇
                 </a>
               
             
@@ -276,8 +276,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-18T13:48:36+08:00">
-                2016-10-18
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-21T00:00:00+08:00">
+                2016-11-21
               </time>
             
 
@@ -295,8 +295,8 @@
               <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/" itemprop="url" rel="index">
-                    <span itemprop="name">Swift</span>
+                  <a href="/categories/RxSwift/" itemprop="url" rel="index">
+                    <span itemprop="name">RxSwift</span>
                   </a>
                 </span>
 
@@ -310,8 +310,8 @@
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
-                <a href="/2016/10/18/Swift RxSwift/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/18/Swift RxSwift/" itemprop="commentCount"></span>
+                <a href="/2016/11/21/Swift RxSwift学习--入门新手篇/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/21/Swift RxSwift学习--入门新手篇/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -339,10 +339,360 @@
       
         
           
-            <p>RxSwift,一个非常火的框架，基本上国内很少有企业或者公司用，一方面是因为Swift国内很少有公司用，毕竟大部分公司还是Objc,而且还要支持iOS7,一下子转Swift不现实，另一方便就是RxSwift对于实际项目来说前期可能有点慢，团队协作不可能都能理解，前期投入大，产品只看重产品。</p>
+            <h1 id="RxSwift学习–入门新手篇"><a href="#RxSwift学习–入门新手篇" class="headerlink" title="RxSwift学习–入门新手篇"></a>RxSwift学习–入门新手篇</h1><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>主要介绍了 Rx 的基础： Observable 。 Observable<element> 是观察者模式中被观察的对象，相当于一个事件序列 (GeneratorType) ，会向订阅者发送新产生的事件信息。事件信息分为三种：</element></p>
+<ul>
+<li>.Next(value) 表示新的事件数据。</li>
+<li>.Completed 表示事件序列的完结。</li>
+<li>.Error 同样表示完结，但是代表异常导致的完结。</li>
+</ul>
+<h3 id="empty"><a href="#empty" class="headerlink" title="empty"></a>empty</h3><p>empty 是一个空的序列，它只发送 .Completed 消息。</p>
+<h3 id="never"><a href="#never" class="headerlink" title="never"></a>never</h3><p>never 是没有任何元素、也不会发送任何事件的空序列。</p>
+<h3 id="just"><a href="#just" class="headerlink" title="just"></a>just</h3><p>just 是只包含一个元素的序列，它会先发送 .Next(value) ，然后发送 .Completed 。</p>
+<h3 id="sequenceOf"><a href="#sequenceOf" class="headerlink" title="sequenceOf"></a>sequenceOf</h3><p>sequenceOf 可以把一系列元素转换成事件序列。</p>
+<h3 id="form"><a href="#form" class="headerlink" title="form"></a>form</h3><p>form 是通过 asObservable() 方法把 Swift 中的序列 (SequenceType) 转换成事件序列。</p>
+<h3 id="create"><a href="#create" class="headerlink" title="create"></a>create</h3><p>create 可以通过闭包创建序列，通过 .on(e: Event) 添加事件。</p>
+<h3 id="failWith"><a href="#failWith" class="headerlink" title="failWith"></a>failWith</h3><p>failWith 创建一个没有元素的序列，只会发送失败 (.Error) 事件。</p>
+<h3 id="deferred"><a href="#deferred" class="headerlink" title="deferred"></a>deferred</h3><p>deferred 会等到有订阅者的时候再通过工厂方法创建 Observable 对象，每个订阅者订阅的对象都是内容相同而完全独立的序列。</p>
+<h2 id="Subjects"><a href="#Subjects" class="headerlink" title="Subjects"></a>Subjects</h2><p>接下来是关于 Subject 的内容。 Subject 可以看做是一种代理和桥梁。它既是订阅者又是订阅源，这意味着它既可以订阅其他 Observable 对象，同时又可以对它的订阅者们发送事件。<br>如果把 Observable 理解成不断输出事件的水管，那 Subject 就是套在上面的水龙头。它既怼着一根不断出水的水管，同时也向外面输送着新鲜水源。如果你直接用水杯接着水管的水，那可能导出来什么王水胶水完全把持不住；如果你在水龙头下面接着水，那你可以随心所欲的调成你想要的水速和水温。</p>
+<h3 id="PublishSubject"><a href="#PublishSubject" class="headerlink" title="PublishSubject"></a>PublishSubject</h3><p>PublishSubject 会发送订阅者从订阅之后的事件序列。</p>
+<h3 id="ReplaySubject"><a href="#ReplaySubject" class="headerlink" title="ReplaySubject"></a>ReplaySubject</h3><p>ReplaySubject 在新的订阅对象订阅的时候会补发所有已经发送过的数据队列， bufferSize 是缓冲区的大小，决定了补发队列的最大值。如果 bufferSize 是1，那么新的订阅者出现的时候就会补发上一个事件，如果是2，则补两个，以此类推。</p>
+<h3 id="BehaviorSubject"><a href="#BehaviorSubject" class="headerlink" title="BehaviorSubject"></a>BehaviorSubject</h3><p>BehaviorSubject 在新的订阅对象订阅的时候会发送最近发送的事件，如果没有则发送一个默认值。</p>
+<h3 id="Variable"><a href="#Variable" class="headerlink" title="Variable"></a>Variable</h3><p>Variable 是基于 BehaviorSubject 的一层封装，它的优势是：不会被显式终结。即：不会收到 .Completed 和 .Error 这类的终结事件，它会主动在析构的时候发送 .Complete 。</p>
+<h2 id="Transform"><a href="#Transform" class="headerlink" title="Transform"></a>Transform</h2><p>我们可以对序列做一些转换，类似于 Swift 中 CollectionType 的各种转换。在以前的坑中曾经提到过，可以参考：函数式的函数。</p>
+<h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><p>map 就是对每个元素都用函数做一次转换，挨个映射一遍。</p>
+<h3 id="flatMap"><a href="#flatMap" class="headerlink" title="flatMap"></a>flatMap</h3><p>map 在做转换的时候很容易出现『升维』的情况，即：转变之后，从一个序列变成了一个序列的序列。</p>
+<h3 id="scan"><a href="#scan" class="headerlink" title="scan"></a>scan</h3><p>scan 有点像 reduce ，它会把每次的运算结果累积起来，作为下一次运算的输入值。</p>
+<h2 id="Filtering"><a href="#Filtering" class="headerlink" title="Filtering"></a>Filtering</h2><p>除了上面的各种转换，我们还可以对序列进行过滤。</p>
+<h3 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h3><p>filter 只会让符合条件的元素通过。</p>
+<h3 id="distinctUntilChanged"><a href="#distinctUntilChanged" class="headerlink" title="distinctUntilChanged"></a>distinctUntilChanged</h3><p>distinctUntilChanged 会废弃掉重复的事件。 </p>
+<h3 id="take"><a href="#take" class="headerlink" title="take"></a>take</h3><p>take 只获取序列中的前 n 个事件，在满足数量之后会自动 .Completed 。</p>
+<h2 id="Combining"><a href="#Combining" class="headerlink" title="Combining"></a>Combining</h2><p>这部分是关于序列的运算，可以将多个序列源进行组合拼装成一个新的事件序列。</p>
+<h3 id="startWith"><a href="#startWith" class="headerlink" title="startWith"></a>startWith</h3><p>startWith 会在队列开始之前插入一个事件元素。 </p>
+<h3 id="combineLatest"><a href="#combineLatest" class="headerlink" title="combineLatest"></a>combineLatest</h3><p>如果存在两条事件队列，需要同时监听，那么每当有新的事件发生的时候，combineLatest 会将每个队列的最新的一个元素进行合并。</p>
+<h3 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h3><p>zip 人如其名，就是压缩两条队列用的，不过它会等到两个队列的元素一一对应地凑齐了之后再合并。 </p>
+<h3 id="marge"><a href="#marge" class="headerlink" title="marge"></a>marge</h3><p>merge 就是 merge 啦，把两个队列按照顺序组合在一起。</p>
+<h3 id="switch"><a href="#switch" class="headerlink" title="switch"></a>switch</h3><p>当你的事件序列是一个事件序列的序列 (Observable<observable<t>&gt;) 的时候，（可以理解成二维序列？），可以使用 switch 将序列的序列平铺成一维，并且在出现新的序列的时候，自动切换到最新的那个序列上。和 merge 相似的是，它也是起到了将多个序列『拍平』成一条序列的作用。</observable<t></p>
+<h2 id="Error-Handling"><a href="#Error-Handling" class="headerlink" title="Error Handling"></a>Error Handling</h2><p>在事件序列中，遇到异常也是很正常的事情，有以下几种处理异常的手段。</p>
+<h3 id="catchError"><a href="#catchError" class="headerlink" title="catchError"></a>catchError</h3><p>catchError 可以捕获异常事件，并且在后面无缝接上另一段事件序列，丝毫没有异常的痕迹。</p>
+<h3 id="retry"><a href="#retry" class="headerlink" title="retry"></a>retry</h3><p>retry 顾名思义，就是在出现异常的时候会再去从头订阅事件序列，妄图通过『从头再来』解决异常。</p>
+<h2 id="Utility"><a href="#Utility" class="headerlink" title="Utility"></a>Utility</h2><p>这里列举了针对事件序列的一些方法。</p>
+<h3 id="subscribe"><a href="#subscribe" class="headerlink" title="subscribe"></a>subscribe</h3><p>subscribe 在前面已经接触过了，有新的事件就会触发。</p>
+<h3 id="subscribeCompleted"><a href="#subscribeCompleted" class="headerlink" title="subscribeCompleted"></a>subscribeCompleted</h3><p>subscribeCompleted 是只订阅 .Completed 完成事件。 </p>
+<h3 id="subscribeError"><a href="#subscribeError" class="headerlink" title="subscribeError"></a>subscribeError</h3><p>subscribeError 只订阅 .Error 失败事件。 </p>
+<h3 id="doOn"><a href="#doOn" class="headerlink" title="doOn"></a>doOn</h3><p>doOn 可以监听事件，并且在事件发生之前调用。 </p>
+<h2 id="Conditional"><a href="#Conditional" class="headerlink" title="Conditional"></a>Conditional</h2><p>我们可以对多个事件序列做一些复杂的逻辑判断。</p>
+<h3 id="takeUntil"><a href="#takeUntil" class="headerlink" title="takeUntil"></a>takeUntil</h3><p>takeUntil 其实就是 take ，它会在终于等到那个事件之后触发 .Completed 事件。</p>
+<h3 id="takeWhile"><a href="#takeWhile" class="headerlink" title="takeWhile"></a>takeWhile</h3><p>takeWhile 则是可以通过状态语句判断是否继续 take 。</p>
+<h2 id="Aggregate"><a href="#Aggregate" class="headerlink" title="Aggregate"></a>Aggregate</h2><p>我们可以对事件序列做一些集合运算。</p>
+<h3 id="concat"><a href="#concat" class="headerlink" title="concat"></a>concat</h3><p>concat 可以把多个事件序列合并起来。</p>
+<h3 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</h3><p>这里的 reduce 和 CollectionType 中的 reduce 是一个意思，都是指通过对一系列数据的运算最后生成一个结果。</p>
+<h2 id="Next"><a href="#Next" class="headerlink" title="Next"></a>Next</h2>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://74lee.com/2016/11/20/Swift RxSwift学习--Subject/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="74Lee">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="74Lee">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/20/Swift RxSwift学习--Subject/" itemprop="url">
+                  RxSwift学习--Subject
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-20T00:00:00+08:00">
+                2016-11-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RxSwift/" itemprop="url" rel="index">
+                    <span itemprop="name">RxSwift</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2016/11/20/Swift RxSwift学习--Subject/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/20/Swift RxSwift学习--Subject/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="RxSwift学习–Subject"><a href="#RxSwift学习–Subject" class="headerlink" title="RxSwift学习–Subject"></a>RxSwift学习–Subject</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="type">A</span> <span class="type">Subject</span> <span class="keyword">is</span> a <span class="built_in">sort</span> of bridge or proxy that <span class="keyword">is</span> available <span class="keyword">in</span> some implementations of <span class="type">ReactiveX</span> that </div><div class="line">acts both <span class="keyword">as</span> an observer and <span class="keyword">as</span> an <span class="type">Observable</span>. <span class="type">Because</span> it <span class="keyword">is</span> an observer, it can subscribe to one</div><div class="line">or more <span class="type">Observables</span>, and because it <span class="keyword">is</span> an <span class="type">Observable</span>, it can pass through the items it observes</div><div class="line">by reemitting them, and it can also emit new items.</div></pre></td></tr></table></figure>
+<p>Subject,可以这样理解，Observable是一个水管，源源不断的有谁冒出来。Subject就是水龙头，可以接到水管上，接受Observable的事件，但作为水龙头，水管也可以被其他的observer接上水龙头</p>
+<h2 id="三类Subject"><a href="#三类Subject" class="headerlink" title="三类Subject"></a>三类Subject</h2><h3 id="ReplaySubject"><a href="#ReplaySubject" class="headerlink" title="ReplaySubject"></a>ReplaySubject</h3><p>它仅仅会发送observer订阅之后的事件，也就是说如果sequence上有.Next 的到来，但是这个时候某个observer还没有subscribe它，这个observer就收不到这条信息，它只会收到它订阅之后发生的事件。</p>
+<h3 id="PublishSubject"><a href="#PublishSubject" class="headerlink" title="PublishSubject"></a>PublishSubject</h3><p>它和ReplaySubject不同之处在于它不会漏消息。即使observer在subscribe的时候已经有事件发生过了，它也会收到之前的事件序列。</p>
+<h3 id="BehaviorSubject"><a href="#BehaviorSubject" class="headerlink" title="BehaviorSubject"></a>BehaviorSubject</h3><p>当有observer在订阅一个BehaviorSubject的时候，它首先将会收到Observable上最近发送一个信号（或者是默认值），接着才会收到Observable上会发送的序列。</p>
+<h3 id="Variable"><a href="#Variable" class="headerlink" title="Variable"></a>Variable</h3><p>Variable是BehaviorSubject的封装，它和BehaviorSubject不同之处在于，不能向Variable发送.Complete和.Error，它会在生命周期结束被释放的时候自动发送.Complete。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://74lee.com/2016/11/19/Swift RxSwift学习--初步认识/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="74Lee">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="74Lee">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/19/Swift RxSwift学习--初步认识/" itemprop="url">
+                  RxSwift学习--Observable
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-19T00:00:00+08:00">
+                2016-11-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RxSwift/" itemprop="url" rel="index">
+                    <span itemprop="name">RxSwift</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2016/11/19/Swift RxSwift学习--初步认识/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/19/Swift RxSwift学习--初步认识/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="RxSwift学习–Observable"><a href="#RxSwift学习–Observable" class="headerlink" title="RxSwift学习–Observable"></a>RxSwift学习–Observable</h1><p>RxSwift,一个非常火的框架，基本上国内很少有企业或者公司用，一方面是因为Swift国内很少有公司用，毕竟大部分公司还是Objc,而且还要支持iOS7,一下子转Swift不现实，另一方便就是RxSwift对于实际项目来说前期可能有点慢，团队协作不可能都能理解，前期投入大，产品只看重产品。</p>
 <ul>
 <li>要求：Xcode8.0以上，Swift 3.0</li>
 </ul>
+<h2 id="为什么我要使用RxSwift"><a href="#为什么我要使用RxSwift" class="headerlink" title="为什么我要使用RxSwift"></a>为什么我要使用RxSwift</h2><p>因为RxSwift可以使你的整个项目的代码量减少了很多，逻辑和功能也变得更加易读和清晰。</p>
+<h2 id="什么是RxSwift"><a href="#什么是RxSwift" class="headerlink" title="什么是RxSwift"></a>什么是RxSwift</h2><p>RxSwift是一个响应式函数式编程(Functional Reactive Programming:FRP)的框架,FRP是一种和事件流有关的编程方式，其角度类似于EventSoucing,关注导致状态值改变的行为事件，一系列事件组成的事件流。举例：a + b = c；之前iOS比较火的RAC（ReactiveCocoa），目前已经3.0，支持swift和ObjC,他们2个概念上都基本相同，看个人喜好。</p>
+<h2 id="RxSwift核心（Observable）"><a href="#RxSwift核心（Observable）" class="headerlink" title="RxSwift核心（Observable）"></a>RxSwift核心（Observable）</h2><p>Observable也就是一个被观察的对象，是一个事件序列，可以订阅它，监测事件的发生(Next\Complete\Error)。KVO?</p>
+<h2 id="热信号和冷信号"><a href="#热信号和冷信号" class="headerlink" title="热信号和冷信号"></a>热信号和冷信号</h2><p>最本质的区别是一个是有订阅者来订阅的时候，热信号已经触发了一些事件，那么此订阅者可能会错过一些事，冷信号则不会，冷信号是被订阅了才会发生事件，因此不会错过事件。</p>
+<h2 id="获取或创建Observable"><a href="#获取或创建Observable" class="headerlink" title="获取或创建Observable"></a>获取或创建Observable</h2><h3 id="Observable有2种方式"><a href="#Observable有2种方式" class="headerlink" title="Observable有2种方式"></a>Observable有2种方式</h3><ol>
+<li>第一种是框架自带提供的，比如UITextfield，如果你要订阅text的变化，可以通过textfield.rx_text来获取Observable<string>的对象</string></li>
+<li>第二种是自己创建（Create），比如你要用到Alamofire,你想把response作为一个Observable，你可以这样写：</li>
+</ol>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">fetchClubList</span><span class="params">(fromPage page:Int)</span></span> -&gt; <span class="type">Observable</span>&lt;[<span class="type">ClubTableCellViewModel</span>]&gt;&#123;</div><div class="line">    <span class="keyword">return</span> create&#123; (observer ) -&gt; <span class="type">Disposable</span> <span class="keyword">in</span></div><div class="line">        <span class="type">Alamofire</span>.request(<span class="type">Method</span>.<span class="type">GET</span>, <span class="string">"http://www.mocky.io/v2/560a046995e00cc208981280"</span>).responseArray&#123;[<span class="keyword">unowned</span> <span class="keyword">self</span>]</div><div class="line">             (results:[<span class="type">ClubModel</span>]?, err:<span class="type">ErrorType</span>?) -&gt; <span class="type">Void</span> <span class="keyword">in</span></div><div class="line">                <span class="keyword">if</span> <span class="keyword">let</span> <span class="number">_</span> = err&#123;</div><div class="line">                    observer.on(<span class="type">Event</span>.<span class="type">Error</span>(err!))</div><div class="line">                &#125;<span class="keyword">else</span>&#123;</div><div class="line">                    <span class="keyword">if</span> <span class="keyword">let</span> cellVMs = (results?.<span class="built_in">map</span>&#123;<span class="type">ClubTableCellViewModel</span>(club: $<span class="number">0</span>)&#125;)&#123;</div><div class="line">                        <span class="keyword">if</span> page == <span class="number">0</span>&#123;</div><div class="line">                            <span class="keyword">self</span>.cellViewModels.removeAll()</div><div class="line">                        &#125;</div><div class="line">                        <span class="keyword">self</span>.cellViewModels.appendContentsOf(cellVMs)</div><div class="line"></div><div class="line">                        observer.on(<span class="type">Event</span>.<span class="type">Next</span>(<span class="keyword">self</span>.cellViewModels))</div><div class="line">                        observer.on(<span class="type">Event</span>.<span class="type">Completed</span>)</div><div class="line">                    &#125;<span class="keyword">else</span>&#123;</div><div class="line">                        <span class="comment">//<span class="doctag">TODO:</span> error handle</span></div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> <span class="type">NopDisposable</span>.instance</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>ps: 除了create，还可以通过never()创建一个什么都不发送的空序列，用empty()创建一个空序列但会发送.Complete等等。</p>
+<h2 id="信号操作"><a href="#信号操作" class="headerlink" title="信号操作"></a>信号操作</h2><p>常用的操作符有map，flatMap，subscribe，doOn，retry等等，具体的用法在它的文档中有具体说明。比如你在做分页刷新数据的是偶，我们需要这样做，在UIViewController里先创建一个属性： </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">var</span> page : <span class="type">Variable</span>&lt;<span class="type">Int</span>&gt; = <span class="type">Variable</span>(<span class="number">0</span>)</div></pre></td></tr></table></figure>
+<p>那么接下来我们要如何做呢，接下来我们需要订阅page这个参数</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">self</span>.page</div><div class="line">    .throttle(<span class="number">0.5</span>, <span class="type">MainScheduler</span>.sharedInstance)</div><div class="line">    .doOn&#123; [<span class="keyword">unowned</span> <span class="keyword">self</span>] value <span class="keyword">in</span></div><div class="line">        <span class="keyword">self</span>.refreshCtrl.enabled = <span class="literal">false</span></div><div class="line">    &#125;</div><div class="line">    .flatMap &#123;[<span class="keyword">unowned</span> <span class="keyword">self</span>] <span class="keyword">in</span></div><div class="line">        <span class="keyword">self</span>.viewModel.fetchClubList(fromPage: $<span class="number">0</span>)</div><div class="line">            .doOn&#123; [<span class="keyword">unowned</span> <span class="keyword">self</span>] <span class="keyword">in</span></div><div class="line">                <span class="keyword">self</span>.refreshCtrl.endRefreshing()</div><div class="line">                <span class="keyword">self</span>.refreshCtrl.enabled = <span class="literal">true</span></div><div class="line">            &#125;</div><div class="line">            .retry()</div><div class="line">            .catchErrorJustReturn([])</div><div class="line">    &#125;</div><div class="line">    .bindTo(<span class="keyword">self</span>.clubList.rx_itemsWithCellIdentifier(<span class="string">"clubCell"</span>))&#123;(<span class="number">_</span>, viewModel, cell: <span class="type">ClubListCell</span>) <span class="keyword">in</span></div><div class="line">        cell.viewModel = viewModel</div><div class="line">    &#125;</div><div class="line">    .addDisposableTo(<span class="keyword">self</span>.dispose)</div></pre></td></tr></table></figure>
+<p>这段代码里实现了在page发生变化的时候自动去请求服务端的数据，然后刷新tableview。throttle保证了事件序列发送的频率不会过快，doOn在每次.Next到来之前让我们有机会做些额外的处理，页码变化通过flatMap触发API调用，然后把得到的数据绑定到每个cell上面。</p>
 
           
         
@@ -407,7 +757,7 @@
               
                 
                 <a class="post-title-link" href="/2016/08/30/Swift ObjC转Swift/" itemprop="url">
-                  Swift ObjC转Swift的那些事
+                  Swift ObjC转Swift
                 </a>
               
             
@@ -484,15 +834,13 @@
       
         
           
-            <p>Swift，2014年苹果发布的新开发语言，从最开的1.0到现在的2.2，在等几天swift3.0也要发布了。通过学习swift,我个人觉得让我感受最深刻的是代码快速而干净。Swift3.0也会更加简单明了</p>
-<h2 id="一、ObjC什么时候转Swift"><a href="#一、ObjC什么时候转Swift" class="headerlink" title="一、ObjC什么时候转Swift"></a>一、ObjC什么时候转Swift</h2><p>我最开始也是从ObjC开始学习的，从Swift的发展来看，2016年8月最新的语言使用情况，Swift的使用排名已经超过了ObjC,现在国外越来越多的公司也已经把Swift作为开发了，但是国内的话比较慢，而相对于一些大企业大公司，现在基本都还是在用ObjC,一些老的迭代代码也基本都是用ObjC写的。如果用Swift,初始界面学习适应Swift语言肯定耗时，必须一天的工作任务，可能2-3天才能完成，产品肯定不同意，大大加大的成本。如果你们公司的应用没有做SDK需求且必须支持iOS7.0以上，那么你完全可以用Swift来开发了，我认为以后Swift必将取代ObjC，虽然前期可能辛苦一点，只要去做，也不一样有那么想象中的那么艰难。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// old code (Swift 2.2)</div><div class="line"><span class="built_in">let</span> content = text.stringByTrimmingCharactersInSet(NSCharacterSet.newlineCharacterSet())</div><div class="line">// new code (Swift 3.0)</div><div class="line"><span class="built_in">let</span> content2 = text.trimmingCharacters(<span class="keyword">in</span>: .newlines)</div></pre></td></tr></table></figure>
-<h2 id="二、ObjC与Swift如何相互调用"><a href="#二、ObjC与Swift如何相互调用" class="headerlink" title="二、ObjC与Swift如何相互调用"></a>二、ObjC与Swift如何相互调用</h2><p>现在要用Swift写应用，基本上不可能存在纯Swift开发，如果你做SDK可以用Swift,但是swift制作SDK只支持iOS8以后，iOS7Swift不支持编译成静态库，iOS8以后的所有Framework打包出来都是以动态库的形式加载。</p>
+            <h1 id="Swift-ObjC转Swift"><a href="#Swift-ObjC转Swift" class="headerlink" title="Swift ObjC转Swift"></a>Swift ObjC转Swift</h1><h2 id="历史"><a href="#历史" class="headerlink" title="历史"></a>历史</h2><p>Swift1.0，2014年苹果发布的新开发语言，让我记忆犹新的是才出来几天，就有人用swift写了当时非常火的游戏1024，从1.0版本开始，期初我只是对iOS又出新语言了的好奇心，当时只是初略看了一些基础的语法，记得当时一个swift项目中包含一个中文，代码提示就不会出来，可想而知当时用swift写代码是多么一键恼火的事情，最后自己还是死磕到底写了一个简单的登录注册界面，也没有在实际的项目中使用，因为swift最初的时候使用起来不是很方便，主要体现在文档与资料不多，第三方库的支持也不是很多。<br>swift2.0时代，swift语法上变化了很多，其核心是面向协议编程，关于swift的一些第三方库增加了很多，我也开始用swift写点实际的项目，我的第一个swift项目peve,在用swift写项目的时候，也有让人恼火的坑，比如一个swift工程文件超过了3000多行，代码提示以及速度都非常的慢（我的当时的电脑配置可是mac book pro 高配），有时候代码根本没有高亮，不过整体写下来之后的感觉，总体来说代码上比objc少很多，看起来舒服很多（ps：我们这里就不讨论swift底层还是用的objc库，在编译ipa的时候会多一部分动态库链接objc库，但是总体来是也大不了多少M）。<br>swift3.0,刚出来的时候，让我头疼的以前swift2.0的代码要转swift3.0有会花很大的时间和精力。but，从这次swift2.0到3.0的过程中，居然只花费了我1天的时间就过度到3.0了，在刚刚发布的4小时内，强大的Alamofire(同于objcAFNetwork)的网络请求框架，就已经支持Xcode8.0GM版本swift3.0,同时其他第三方框架更新也是非常迅速就支持了swift3.0,swift3.0比起以前，语法上简单大方，代码语义上更加精确。同时改动也有点点大。虽然有一些地方不足（我在实际项目中编译GPUImage2时，只要我一改动一点代码，编译就会耗上我5-10分钟时间，感觉编译器有点傻，居然没有增量编译，这一点有点让我傻眼）。</p>
+<h2 id="ObjC什么时候转Swift"><a href="#ObjC什么时候转Swift" class="headerlink" title="ObjC什么时候转Swift"></a>ObjC什么时候转Swift</h2><p>我最开始也是从ObjC开始学习的，从Swift的发展来看，2016年8月最新的语言使用情况，Swift的使用排名已经超过了ObjC,现在国外越来越多的公司也已经把Swift作为开发了，但是国内的话比较慢，而相对于一些大企业大公司，现在基本都还是在用ObjC,一些老的迭代代码也基本都是用ObjC写的。如果用Swift,初始界面学习适应Swift语言肯定耗时，必须一天的工作任务，可能2-3天才能完成，产品经理肯定不同意，大大加大的成本。如果你们公司的应用没有做SDK需求且必须支持iOS7.0以上，那么你完全可以用Swift来开发了，我认为以后Swift必将取代ObjC，虽然前期可能辛苦一点，只要去做，也不一样有那么想象中的那么艰难。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// old code (Swift 2.2)</span></div><div class="line"><span class="keyword">let</span> content = text.stringByTrimmingCharactersInSet(<span class="type">NSCharacterSet</span>.newlineCharacterSet())</div><div class="line"><span class="comment">// new code (Swift 3.0)</span></div><div class="line"><span class="keyword">let</span> content2 = text.trimmingCharacters(<span class="keyword">in</span>: .newlines)</div></pre></td></tr></table></figure>
+<h2 id="ObjC与Swift之间如何相互调用"><a href="#ObjC与Swift之间如何相互调用" class="headerlink" title="ObjC与Swift之间如何相互调用"></a>ObjC与Swift之间如何相互调用</h2><p>现在要用Swift写应用，基本上不可能存在纯Swift开发，如果你做SDK可以用Swift,但是swift制作SDK只支持iOS8以后，iOS7Swift不支持编译成静态库，iOS8以后的所有Framework打包出来都是以动态库的形式加载。</p>
 <ol>
-<li><p>Swift用XX-Bridging-header.h连接所有你可以在Swift调用ObjC的类</p>
-</li>
-<li><p>在ObjC中调用Swift的类，只需要在ObjC中#import “XX-Swift.h”文件即可（ps:swift文件中的类要被Swift调用）</p>
-</li>
+<li>Swift用XX-Bridging-header.h连接所有你可以在Swift调用ObjC的类<br><img src="http://7o50py.com1.z0.glb.clouddn.com/QQ20161121-0@2x.jpg" alt="截图"><br><img src="http://7o50py.com1.z0.glb.clouddn.com/QQ20161121-1@2x.jpg" alt="截图"></li>
+<li>在ObjC中调用Swift的类，只需要在ObjC中#import “XX-Swift.h”文件即可（XX为你的项目名）<br><img src="http://7o50py.com1.z0.glb.clouddn.com/QQ20161121-2@2x.jpg" alt="截图"></li>
 </ol>
 
           
@@ -1114,290 +1462,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://74lee.com/2015/11/16/记录一下吧，好久没有坚持写博客了。/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="74Lee">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="74Lee">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/11/16/记录一下吧，好久没有坚持写博客了。/" itemprop="url">
-                  记录一下吧，好久没有坚持写博客了。
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-11-16T16:40:00+08:00">
-                2015-11-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Lifes/" itemprop="url" rel="index">
-                    <span itemprop="name">Lifes</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <a href="/2015/11/16/记录一下吧，好久没有坚持写博客了。/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/16/记录一下吧，好久没有坚持写博客了。/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>long long to see,好久好久没更新博客了，回顾以前，工作之余，总会抽一点时间记录一点点滴在blog上。最近几个月很忙，忙外包忙结婚忙工作等等。<br>2015年马上就要过去了，这里回顾一下2015年收获吧。首先，说下今年最为难忘的事吧，结婚啦！也算了解一件人生大事吧。结个婚真心不容易，求婚、照婚纱照、看项链戒指、买结婚需要用的鞋子和衣服、定酒席、发请柬、邀请兄弟帮忙抢新娘、向公司请婚假、蜜月旅行等等。其次，结婚后不久老婆也怀孕了，今天是老婆怀孕20周，已经怀孕5个月了，宝贝期待你的诞生哦。现在宝宝有胎动，只是听老婆大人讲，自己却还没有感受到过。在自己的生活上，虽然结婚比较忙，抽空之余也终于拿到了驾照，暂时不能买车，为了咋家宝宝值得。最后谈谈工作上，今年2015年在工作上也算有一些技术上的一些收获吧，巩固了自己前面的一些知识，自己私下为了结婚也干过一段时间外包，艰辛的回忆！<br>    这一年感觉自己肩上的担子重了，也相信自己会在后面的日子里，让家里人感到幸福快乐!</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://74lee.com/2015/09/25/ iOS  根据CMMotion重力做旋转通知/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="74Lee">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="74Lee">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/09/25/ iOS  根据CMMotion重力做旋转通知/" itemprop="url">
-                  iOS  根据CMMotion重力做旋转通知
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-09-25T18:06:00+08:00">
-                2015-09-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <a href="/2015/09/25/ iOS  根据CMMotion重力做旋转通知/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/25/ iOS  根据CMMotion重力做旋转通知/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div></pre></td><td class="code"><pre><div class="line">//</div><div class="line">//  ViewController.m</div><div class="line">//  demo</div><div class="line">//</div><div class="line">//  Created by austin on 15/9/25.</div><div class="line">//  Copyright © 2015年 demo. All rights reserved.</div><div class="line">//</div><div class="line"></div><div class="line"><span class="comment">#import "ViewController.h"</span></div><div class="line"><span class="comment">#import &lt;CoreMotion/CoreMotion.h&gt;</span></div><div class="line"></div><div class="line">@interface <span class="function"><span class="title">ViewController</span></span> ()</div><div class="line">&#123;</div><div class="line">CMMotionManager  *motionManager;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@property (nonatomic,assign) UIDeviceOrientation lastOrientation;</div><div class="line">@end</div><div class="line"></div><div class="line">@implementation ViewController</div><div class="line"></div><div class="line">- (void)viewDidLoad &#123;</div><div class="line"></div><div class="line">motionManager=[[CMMotionManager alloc]init];</div><div class="line">__weak typeof(self) weakSelf = self;</div><div class="line"></div><div class="line"><span class="keyword">if</span> (motionManager.accelerometerAvailable) &#123;</div><div class="line">[motionManager <span class="built_in">set</span>AccelerometerUpdateInterval:0.5f];</div><div class="line">NSOperationQueue *operationQueue = [NSOperationQueue mainQueue];</div><div class="line">[motionManager startAccelerometerUpdatesToQueue:operationQueue withHandler:^(CMAccelerometerData *data,NSError *error)</div><div class="line">&#123;</div><div class="line">typeof(self) selfBlock = weakSelf;</div><div class="line"></div><div class="line">CGFloat xx = data.acceleration.x;</div><div class="line"></div><div class="line">CGFloat yy = -data.acceleration.y;</div><div class="line"></div><div class="line">CGFloat zz = data.acceleration.z;</div><div class="line"></div><div class="line">CGFloat device_angle = M_PI / 2.0f - atan2(yy, xx);</div><div class="line"></div><div class="line">UIDeviceOrientation orientation = UIDeviceOrientationUnknown;</div><div class="line"></div><div class="line"><span class="keyword">if</span> (device_angle &gt; M_PI)</div><div class="line"></div><div class="line">device_angle -= 2 * M_PI;</div><div class="line"></div><div class="line"><span class="keyword">if</span> ((zz &lt; -.60f) || (zz &gt; .60f)) &#123;</div><div class="line"></div><div class="line"><span class="keyword">if</span> ( UIDeviceOrientationIsLandscape(selfBlock.lastOrientation) )</div><div class="line"></div><div class="line">orientation = selfBlock.lastOrientation;</div><div class="line"></div><div class="line"><span class="keyword">else</span></div><div class="line"></div><div class="line">orientation = UIDeviceOrientationUnknown;</div><div class="line"></div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line"></div><div class="line"><span class="keyword">if</span> ( (device_angle &gt; -M_PI_4) &amp;&amp; (device_angle &lt; M_PI_4) )</div><div class="line"></div><div class="line">orientation = UIDeviceOrientationPortrait;</div><div class="line"></div><div class="line"><span class="keyword">else</span> <span class="keyword">if</span> ((device_angle &lt; -M_PI_4) &amp;&amp; (device_angle &gt; -3 * M_PI_4))</div><div class="line"></div><div class="line">orientation = UIDeviceOrientationLandscapeLeft;</div><div class="line"></div><div class="line"><span class="keyword">else</span> <span class="keyword">if</span> ((device_angle &gt; M_PI_4) &amp;&amp; (device_angle &lt; 3 * M_PI_4))</div><div class="line"></div><div class="line">orientation = UIDeviceOrientationLandscapeRight;</div><div class="line"></div><div class="line"><span class="keyword">else</span></div><div class="line"></div><div class="line">orientation = UIDeviceOrientationPortraitUpsideDown;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">if</span> (orientation != selfBlock.lastOrientation) &#123;</div><div class="line"></div><div class="line">dispatch_async(dispatch_get_main_queue(), ^&#123;</div><div class="line"></div><div class="line">[selfBlock deviceOrientationDidChangeTo:orientation];</div><div class="line"></div><div class="line">&#125;);</div><div class="line">&#125;</div><div class="line">&#125;];</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">[super viewDidLoad];</div><div class="line">// Do any additional setup after loading the view, typically from a nib.</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)deviceOrientationDidChangeTo:(UIDeviceOrientation )orientation&#123;</div><div class="line"></div><div class="line">switch (orientation) &#123;</div><div class="line"><span class="keyword">case</span>  UIDeviceOrientationUnknown:</div><div class="line">NSLog(@<span class="string">"UIDeviceOrientationUnknown"</span>);</div><div class="line"><span class="built_in">break</span>;</div><div class="line"><span class="keyword">case</span>  UIDeviceOrientationPortrait:</div><div class="line">NSLog(@<span class="string">"UIDeviceOrientationPortrait"</span>);</div><div class="line"><span class="built_in">break</span>;</div><div class="line"><span class="keyword">case</span>  UIDeviceOrientationPortraitUpsideDown:</div><div class="line">NSLog(@<span class="string">"UIDeviceOrientationPortraitUpsideDown"</span>);</div><div class="line"><span class="built_in">break</span>;</div><div class="line"><span class="keyword">case</span>  UIDeviceOrientationLandscapeLeft:</div><div class="line">NSLog(@<span class="string">"UIDeviceOrientationLandscapeLeft"</span>);</div><div class="line"><span class="built_in">break</span>;</div><div class="line"><span class="keyword">case</span>  UIDeviceOrientationLandscapeRight:</div><div class="line">NSLog(@<span class="string">"UIDeviceOrientationLandscapeRight"</span>);</div><div class="line"><span class="built_in">break</span>;</div><div class="line"><span class="keyword">case</span>  UIDeviceOrientationFaceUp:</div><div class="line">NSLog(@<span class="string">"UIDeviceOrientationFaceUp"</span>);</div><div class="line"><span class="built_in">break</span>;</div><div class="line"><span class="keyword">case</span>  UIDeviceOrientationFaceDown:</div><div class="line">NSLog(@<span class="string">"UIDeviceOrientationFaceDown"</span>);</div><div class="line"><span class="built_in">break</span>;</div><div class="line">default:</div><div class="line"><span class="built_in">break</span>;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">- (void)didReceiveMemoryWarning &#123;</div><div class="line">[super didReceiveMemoryWarning];</div><div class="line">// Dispose of any resources that can be recreated.</div><div class="line">&#125;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1443,7 +1507,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">124</span>
+              <span class="site-state-item-count">126</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -1451,7 +1515,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">categories</span>
               
             </div>
@@ -1460,7 +1524,7 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>
