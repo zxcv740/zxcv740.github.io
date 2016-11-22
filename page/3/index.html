@@ -236,6 +236,154 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://74lee.com/2015/03/06/iOS dispatch_once 创建单例/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="74Lee">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="74Lee">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/03/06/iOS dispatch_once 创建单例/" itemprop="url">
+                  iOS dispatch_once 创建单例
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-03-06T11:52:36+08:00">
+                2015-03-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2015/03/06/iOS dispatch_once 创建单例/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/03/06/iOS dispatch_once 创建单例/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>创建单例相信大家一定不陌生,简而言之就是一个类的实例方便我们在程序外界访问,也可以节省系统资源。单例的生命周期就是应用的生命周期。</p>
+<p>1.一般的单例创建</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">+(Singleton *)singleton &#123;</div><div class="line">    static Single *shared = nil;</div><div class="line">    </div><div class="line">    <span class="keyword">if</span>(shared == nil) &#123;</div><div class="line">        shared = [[Single alloc] init];</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">return</span> shared;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这是一个不安全的线程，如果多个线程同时访问就会出现问题，可能创建2个实例。</p>
+<p>2.为了不让这种情况发生，一般会加@synchronize</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">+(Singleton *)singleton &#123;</div><div class="line">    static Single *shared = nil;</div><div class="line">    @synchronized(self)&#123;</div><div class="line">        <span class="keyword">if</span>(shared == nil) &#123;</div><div class="line">            shared = [[Single alloc] init];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">return</span> shared;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>3.但是加上@synchronize并没有dispatch_once速度快。dispatch_once能保证在多线程的情况下线程安全。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">+(Singleton *)singleton &#123;</div><div class="line">    static dispatch_once_t pred;</div><div class="line">    static Singleton *shared = nil;</div><div class="line"></div><div class="line">    dispatch_once(&amp;pred, ^&#123;</div><div class="line">        shared = [[Singleton alloc] init];</div><div class="line">    &#125;);</div><div class="line">    <span class="built_in">return</span> shared;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://74lee.com/2015/03/05/iOS RGB 黑白滤镜/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1273,152 +1421,6 @@ YUV则是在欧洲电视系统PAL中的色差信号的通称，包含数字及�
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/11/06/Mac 配置goagent 使用GoAgentX进行翻墙/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="74Lee">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="74Lee">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/11/06/Mac 配置goagent 使用GoAgentX进行翻墙/" itemprop="url">
-                  Mac 配置goagent 使用GoAgentX进行翻墙
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-11-06T08:38:00+08:00">
-                2014-11-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Mac/" itemprop="url" rel="index">
-                    <span itemprop="name">Mac</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <a href="/2014/11/06/Mac 配置goagent 使用GoAgentX进行翻墙/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/11/06/Mac 配置goagent 使用GoAgentX进行翻墙/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>#简介<br>Goagent的工作原理是利用免费的Google appengine服务搭建一个自己的代理服务器，通过自己的代理服务器访问网络。</p>
-<p>#创建application<br>需要google账号，进入这个网站(<a href="https://appengine.google.com" target="_blank" rel="external">https://appengine.google.com</a>),<br>在创建这里申请application id  这个用来翻墙的。多创建几个,这样流量一天就用不完了,我创建了10个。操作步骤如下:<br><img src="http://hexo-zxcv740.qiniudn.com/goagent1.gif" alt="创建app id"></p>
-<p>#下载 安装 配置到服务器<br>GoAgentX 是Mac 上简单配置goagent的图形界面工具,相当简单易用。(<a href="https://goagentx.com/releasenotes.html" target="_blank" rel="external">https://goagentx.com/releasenotes.html</a>)<br>GoAgentX 源代码下载:(<a href="https://github.com/ohdarling/GoAgentX" target="_blank" rel="external">https://github.com/ohdarling/GoAgentX</a>)<br>下载完成后开始部署appid到服务器,操作步骤如下:<br><img src="http://hexo-zxcv740.qiniudn.com/goagent3.gif" alt="配置到服务器"><br>在部署的时候，如果失败，请关闭二次验证后在部署。</p>
-<p>#开始使用<br>进入goagent配置页面  输入服务器App ID ,完成后点击状态  点击启动即可</p>
-<p><img src="http://hexo-zxcv740.qiniudn.com/goagent4.gif" alt="开始使用"></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1464,7 +1466,7 @@ YUV则是在欧洲电视系统PAL中的色差信号的通称，包含数字及�
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">126</span>
+              <span class="site-state-item-count">127</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -1472,7 +1474,7 @@ YUV则是在欧洲电视系统PAL中的色差信号的通称，包含数字及�
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">categories</span>
               
             </div>
@@ -1481,7 +1483,7 @@ YUV则是在欧洲电视系统PAL中的色差信号的通称，包含数字及�
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>

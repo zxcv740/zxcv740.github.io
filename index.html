@@ -236,6 +236,169 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://74lee.com/2016/11/22/Sikuli自动化测试/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="74Lee">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="74Lee">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/22/Sikuli自动化测试/" itemprop="url">
+                  Sikuli自动化测试
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-22T09:48:36+08:00">
+                2016-11-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/sikuli/" itemprop="url" rel="index">
+                    <span itemprop="name">sikuli</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2016/11/22/Sikuli自动化测试/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/22/Sikuli自动化测试/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Sikuli自动化测试"><a href="#Sikuli自动化测试" class="headerlink" title="Sikuli自动化测试"></a>Sikuli自动化测试</h1><p>作为iOS开发，在开发过程中，每次对App进行debug的时候都要进行一些频繁的操作，比如登录，注册等等，输出手机号密码操作频繁，就想有没有什么工具可以自动化测试的，后来找了一下，sikuli这个软件能够满足一般的需求，只要你会截图，就会自动化测试，它的核心是基于opencv图像识别的。</p>
+<h2 id="MAC电脑下配置"><a href="#MAC电脑下配置" class="headerlink" title="MAC电脑下配置"></a>MAC电脑下配置</h2><ol>
+<li><p>首先在官网下载<a href="https://launchpad.net/sikuli/sikulix/1.1.0" target="_blank" rel="external">Sikulix</a>,下载sikilixsetup-1.1.0.jar文件。S<br><img src="http://ofwkdof59.bkt.clouddn.com/sikuli1.png" alt="配置"></p>
+</li>
+<li><p>然后在电脑桌面新建Sikuli文件夹，把jar放进去。<br><img src="http://ofwkdof59.bkt.clouddn.com/sikuli2.png" alt="配置"></p>
+</li>
+<li><p>双击sikulixsetup-1.1.0安装，勾选如下设置，点击“Setup Now”进行自动安装，然后等待下载安装成功。<br><img src="http://ofwkdof59.bkt.clouddn.com/sikuli3.png" alt="配置"></p>
+</li>
+</ol>
+<h2 id="使用Sikuli"><a href="#使用Sikuli" class="headerlink" title="使用Sikuli"></a>使用Sikuli</h2><ol>
+<li>打开SikuliX<br><img src="http://ofwkdof59.bkt.clouddn.com/sikuli4.png" alt="配置"><br><img src="http://ofwkdof59.bkt.clouddn.com/sikuli5.png" alt="配置"></li>
+</ol>
+<h2 id="使用Sikuli对iOS设备进行自动化测试"><a href="#使用Sikuli对iOS设备进行自动化测试" class="headerlink" title="使用Sikuli对iOS设备进行自动化测试"></a>使用Sikuli对iOS设备进行自动化测试</h2><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><ol>
+<li>在iPhone上输入汉字太慢，手机画面能否实时同步到pc,pc能够输入汉字，iPhone不显示软键盘。</li>
+<li>如果能在开发过程中，使用脚本自动测试，就大大节约了开发成本，提供工作效率，在自测上也非常方便，随时切换帐号进行测试方便。</li>
+</ol>
+<h3 id="iOS配置"><a href="#iOS配置" class="headerlink" title="iOS配置"></a>iOS配置</h3><ol>
+<li>iOS设备必须越狱</li>
+<li>在iOS设备上装上veency,装上之后可以看见在设置中多出了2项，Mouse和Veency。在Veency中设置访问密码。<br><img src="http://ofwkdof59.bkt.clouddn.com/sikuli6.png" alt="配置"><br><img src="http://ofwkdof59.bkt.clouddn.com/sikuli7.png" alt="配置"><br><img src="http://ofwkdof59.bkt.clouddn.com/sikuli8.png" alt="配置"></li>
+<li>下载<a href="http://www.tightvnc.com/release-jviewer2.php" target="_blank" rel="external">tightVNC java viewer</a>软件，通过VNC软件连接iPhone进行控制<br><img src="http://ofwkdof59.bkt.clouddn.com/sikuli9.png" alt="配置"><br><img src="http://ofwkdof59.bkt.clouddn.com/sikuli10.png" alt="配置"><br><img src="http://ofwkdof59.bkt.clouddn.com/sikuli11.png" alt="配置"></li>
+<li>连接成功之后，用sikuli对VNC中的手机画面进行自动化测试操作。<br><img src="http://ofwkdof59.bkt.clouddn.com/sikuli12.png" alt="配置"><br>5.剩下的就是你自己的sikuli对App自动化测试流程。</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://74lee.com/2016/11/21/Swift RxSwift学习--入门新手篇/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -674,10 +837,7 @@
       
         
           
-            <h1 id="RxSwift学习–Observable"><a href="#RxSwift学习–Observable" class="headerlink" title="RxSwift学习–Observable"></a>RxSwift学习–Observable</h1><p>RxSwift,一个非常火的框架，基本上国内很少有企业或者公司用，一方面是因为Swift国内很少有公司用，毕竟大部分公司还是Objc,而且还要支持iOS7,一下子转Swift不现实，另一方便就是RxSwift对于实际项目来说前期可能有点慢，团队协作不可能都能理解，前期投入大，产品只看重产品。</p>
-<ul>
-<li>要求：Xcode8.0以上，Swift 3.0</li>
-</ul>
+            <h1 id="RxSwift学习–Observable"><a href="#RxSwift学习–Observable" class="headerlink" title="RxSwift学习–Observable"></a>RxSwift学习–Observable</h1><p>RxSwift,一个非常火的框架，基本上国内很少有企业或者公司用，一方面，毕竟现在大部分公司还是ObjC语言，而且还要支持iOS7，一下子转Swift不现实。另一方便就是RxSwift对于实际项目来说前期可能有点慢，团队开发效率慢，团队协作时要求每个人都需要理解和学习RxSwift，前期投入精力大，对成员要求高，实际中开发APP也要有进度控制。</p>
 <h2 id="为什么我要使用RxSwift"><a href="#为什么我要使用RxSwift" class="headerlink" title="为什么我要使用RxSwift"></a>为什么我要使用RxSwift</h2><p>因为RxSwift可以使你的整个项目的代码量减少了很多，逻辑和功能也变得更加易读和清晰。</p>
 <h2 id="什么是RxSwift"><a href="#什么是RxSwift" class="headerlink" title="什么是RxSwift"></a>什么是RxSwift</h2><p>RxSwift是一个响应式函数式编程(Functional Reactive Programming:FRP)的框架,FRP是一种和事件流有关的编程方式，其角度类似于EventSoucing,关注导致状态值改变的行为事件，一系列事件组成的事件流。举例：a + b = c；之前iOS比较火的RAC（ReactiveCocoa），目前已经3.0，支持swift和ObjC,他们2个概念上都基本相同，看个人喜好。</p>
 <h2 id="RxSwift核心（Observable）"><a href="#RxSwift核心（Observable）" class="headerlink" title="RxSwift核心（Observable）"></a>RxSwift核心（Observable）</h2><p>Observable也就是一个被观察的对象，是一个事件序列，可以订阅它，监测事件的发生(Next\Complete\Error)。KVO?</p>
@@ -834,8 +994,10 @@
       
         
           
-            <h1 id="Swift-ObjC转Swift"><a href="#Swift-ObjC转Swift" class="headerlink" title="Swift ObjC转Swift"></a>Swift ObjC转Swift</h1><h2 id="历史"><a href="#历史" class="headerlink" title="历史"></a>历史</h2><p>Swift1.0，2014年苹果发布的新开发语言，让我记忆犹新的是才出来几天，就有人用swift写了当时非常火的游戏1024，从1.0版本开始，期初我只是对iOS又出新语言了的好奇心，当时只是初略看了一些基础的语法，记得当时一个swift项目中包含一个中文，代码提示就不会出来，可想而知当时用swift写代码是多么一键恼火的事情，最后自己还是死磕到底写了一个简单的登录注册界面，也没有在实际的项目中使用，因为swift最初的时候使用起来不是很方便，主要体现在文档与资料不多，第三方库的支持也不是很多。<br>swift2.0时代，swift语法上变化了很多，其核心是面向协议编程，关于swift的一些第三方库增加了很多，我也开始用swift写点实际的项目，我的第一个swift项目peve,在用swift写项目的时候，也有让人恼火的坑，比如一个swift工程文件超过了3000多行，代码提示以及速度都非常的慢（我的当时的电脑配置可是mac book pro 高配），有时候代码根本没有高亮，不过整体写下来之后的感觉，总体来说代码上比objc少很多，看起来舒服很多（ps：我们这里就不讨论swift底层还是用的objc库，在编译ipa的时候会多一部分动态库链接objc库，但是总体来是也大不了多少M）。<br>swift3.0,刚出来的时候，让我头疼的以前swift2.0的代码要转swift3.0有会花很大的时间和精力。but，从这次swift2.0到3.0的过程中，居然只花费了我1天的时间就过度到3.0了，在刚刚发布的4小时内，强大的Alamofire(同于objcAFNetwork)的网络请求框架，就已经支持Xcode8.0GM版本swift3.0,同时其他第三方框架更新也是非常迅速就支持了swift3.0,swift3.0比起以前，语法上简单大方，代码语义上更加精确。同时改动也有点点大。虽然有一些地方不足（我在实际项目中编译GPUImage2时，只要我一改动一点代码，编译就会耗上我5-10分钟时间，感觉编译器有点傻，居然没有增量编译，这一点有点让我傻眼）。</p>
-<h2 id="ObjC什么时候转Swift"><a href="#ObjC什么时候转Swift" class="headerlink" title="ObjC什么时候转Swift"></a>ObjC什么时候转Swift</h2><p>我最开始也是从ObjC开始学习的，从Swift的发展来看，2016年8月最新的语言使用情况，Swift的使用排名已经超过了ObjC,现在国外越来越多的公司也已经把Swift作为开发了，但是国内的话比较慢，而相对于一些大企业大公司，现在基本都还是在用ObjC,一些老的迭代代码也基本都是用ObjC写的。如果用Swift,初始界面学习适应Swift语言肯定耗时，必须一天的工作任务，可能2-3天才能完成，产品经理肯定不同意，大大加大的成本。如果你们公司的应用没有做SDK需求且必须支持iOS7.0以上，那么你完全可以用Swift来开发了，我认为以后Swift必将取代ObjC，虽然前期可能辛苦一点，只要去做，也不一样有那么想象中的那么艰难。</p>
+            <h1 id="Swift-ObjC转Swift"><a href="#Swift-ObjC转Swift" class="headerlink" title="Swift ObjC转Swift"></a>Swift ObjC转Swift</h1><h2 id="历史"><a href="#历史" class="headerlink" title="历史"></a>历史</h2><h3 id="swift1-0"><a href="#swift1-0" class="headerlink" title="swift1.0"></a>swift1.0</h3><p>Swift1.0，2014年苹果发布的全新语言，在刚发布的时候，最让我记忆深刻的是，几天时间就有人用swift写了当时非常火的游戏1024。从1.0版本开始，最初我只是对iOS又出新语言的一种好奇心，只是初略看了一些基础的语法，问题也是非常多多，记得让我头疼的是一个swift项目中只要包含一个中文，在写代码时就不会出来相应的代码提示，可想而知当时如果用swift写应用是多么一键恼火的事情，不过，自己还是坚持死磕到底写了一个简单的登录注册界面，也没有在实际的项目中使用，在swift最初发展阶段，使用起来不是很方便，文档与资料不多，github中关于swift的第三方库也不多。</p>
+<h3 id="swift2-0"><a href="#swift2-0" class="headerlink" title="swift2.0"></a>swift2.0</h3><p>swift2.0时代，swift语法上变化了很多，其核心是面向协议编程，经历1年多的发展，github上swift的第三方库增加了很多，于是我也开始用swift写点实际的项目，第一个swift项目peve，在用swift写项目的时候，也有让人恼火的坑，比如一个swift工程文件超过了3000多行，代码提示以及速度都非常的慢（当时的电脑配置可是mac book pro 高配），有时候代码根本没有高亮，不过整体写下来之后的感觉，总体来说代码上比objc少很多，看起来舒服很多（ps：我们这里就不讨论swift底层还是用的objc库，在编译ipa的时候会多一部分动态库链接objc库，但是总体来是也大不了多少M）。</p>
+<h3 id="swift3-0"><a href="#swift3-0" class="headerlink" title="swift3.0"></a>swift3.0</h3><p>swift3.0,刚出来的时候，让我头疼的以前swift2.0的代码要转swift3.0有会花很大的时间和精力。but，从这次swift2.0到3.0的过程中，居然只花费了我1天的时间就过度到3.0了，在刚刚发布的4小时内，强大的Alamofire(同于objcAFNetwork)的网络请求框架，就已经支持Xcode8.0GM版本swift3.0,同时其他第三方框架更新也是非常迅速就支持了swift3.0,swift3.0比起以前，语法上简单大方，代码语义上更加精确。同时改动也有点点大。虽然有一些地方不足（我在实际项目中编译GPUImage2时，只要我一改动一点代码，编译就会耗上我5-10分钟时间，感觉编译器有点傻，居然没有增量编译，这一点有点让我傻眼）。相信在以后swift会越变越好。</p>
+<h2 id="ObjC什么时候转Swift"><a href="#ObjC什么时候转Swift" class="headerlink" title="ObjC什么时候转Swift"></a>ObjC什么时候转Swift</h2><p>从ObjC开始学习的，从Swift的发展来看，2016年8月最新的语言使用情况，Swift的使用排名已经超过了ObjC,现在国外越来越多的公司也已经把Swift作为开发了，但是国内的话比较慢，而相对于一些大企业大公司，现在基本都还是在用ObjC,一些老的迭代代码也基本都是用ObjC写的。如果用Swift,初始界面学习适应Swift语言肯定耗时，必须一天的工作任务，可能2-3天才能完成，开发进度肯定会比以前慢，大大加大开发成本。但是，这些只是最初阶段，swift以后发展也会越来越好，如果你们公司的应用没有做SDK需求且必须支持iOS7.0以上，那么你完全可以用Swift来开发了，我认为以后Swift必将取代ObjC，虽然前期可能辛苦一点，只要去做，也不一样有那么想象中的那么艰难。</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// old code (Swift 2.2)</span></div><div class="line"><span class="keyword">let</span> content = text.stringByTrimmingCharactersInSet(<span class="type">NSCharacterSet</span>.newlineCharacterSet())</div><div class="line"><span class="comment">// new code (Swift 3.0)</span></div><div class="line"><span class="keyword">let</span> content2 = text.trimmingCharacters(<span class="keyword">in</span>: .newlines)</div></pre></td></tr></table></figure>
 <h2 id="ObjC与Swift之间如何相互调用"><a href="#ObjC与Swift之间如何相互调用" class="headerlink" title="ObjC与Swift之间如何相互调用"></a>ObjC与Swift之间如何相互调用</h2><p>现在要用Swift写应用，基本上不可能存在纯Swift开发，如果你做SDK可以用Swift,但是swift制作SDK只支持iOS8以后，iOS7Swift不支持编译成静态库，iOS8以后的所有Framework打包出来都是以动态库的形式加载。</p>
 <ol>
@@ -1320,148 +1482,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://74lee.com/2015/11/16/iOS xcodebuild 打包/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="74Lee">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="74Lee">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/11/16/iOS xcodebuild 打包/" itemprop="url">
-                  iOS xcodebuild 打包
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-11-16T16:40:00+08:00">
-                2015-11-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <a href="/2015/11/16/iOS xcodebuild 打包/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/16/iOS xcodebuild 打包/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>xcodebuild 用命令行直接打包工程文件。以下是自己的工程打包代码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Remove archive and ipa file</span></div><div class="line">rm -rf <span class="variable">$PWD</span>/xpkUISdk.xcarchive</div><div class="line">rm -rf <span class="variable">$PWD</span>/xpkUISdk.ipa</div><div class="line"></div><div class="line"><span class="comment"># Create an archive</span></div><div class="line">xcodebuild -project ./xpkUISdk.xcodeproj -configuration Release CODE_SIGN_IDENTITY=<span class="string">"iPhone Distribution: Beijing RuiDongTianDi Information Tech. LTD (K8UMEY246Y)"</span> PROVISIONING_PROFILE=<span class="string">"68673951-0f6d-4ebe-9c07-fff0cb23aa91"</span> -scheme xpkUISdk -archivePath <span class="variable">$PWD</span>/xpkUISdk.xcarchive archive</div><div class="line"></div><div class="line"><span class="comment"># Create the IPA file from the archive</span></div><div class="line">xcodebuild -exportProvisioningProfile <span class="string">"56show_all_dis"</span> -exportArchive -exportFormat IPA -archivePath <span class="variable">$PWD</span>/xpkUISdk.xcarchive -exportPath <span class="variable">$PWD</span>/xpkUISdk.ipa CODE_SIGN_IDENTITY=<span class="string">"iPhone Distribution: Beijing RuiDongTianDi Information Tech. LTD (K8UMEY246Y)"</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># Remove archive and ipa file</span></div><div class="line">rm -rf <span class="variable">$PWD</span>/快秀.xcarchive</div><div class="line">rm -rf <span class="variable">$PWD</span>/快秀.ipa</div><div class="line"><span class="comment"># Create an archive</span></div><div class="line">xcodebuild -project ./快秀/快秀.xcodeproj -configuration Release CODE_SIGN_IDENTITY=<span class="string">"iPhone Distribution: Beijing RuiDongTianDi Information Tech. LTD (K8UMEY246Y)"</span> PROVISIONING_PROFILE=<span class="string">"7f2263b2-97d4-431b-b647-f3bac08822ec"</span> -scheme 快秀 -archivePath <span class="variable">$PWD</span>/快秀.xcarchive archive</div><div class="line"></div><div class="line"><span class="comment"># Create the IPA file from the archive</span></div><div class="line">xcodebuild -exportProvisioningProfile <span class="string">"DIstribution_KX_APNS"</span> -exportArchive -exportFormat IPA -archivePath <span class="variable">$PWD</span>/快秀.xcarchive -exportPath <span class="variable">$PWD</span>/快秀.ipa CODE_SIGN_IDENTITY=<span class="string">"iPhone Distribution: Beijing RuiDongTianDi Information Tech. LTD (K8UMEY246Y)"</span></div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1507,7 +1527,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">126</span>
+              <span class="site-state-item-count">127</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -1515,7 +1535,7 @@
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">categories</span>
               
             </div>
@@ -1524,7 +1544,7 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>
