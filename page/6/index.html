@@ -236,149 +236,6 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/13/iOS Convert UIImage to CVImageBufferRef/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="74Lee">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="74Lee">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/10/13/iOS Convert UIImage to CVImageBufferRef/" itemprop="url">
-                  iOS Convert UIImage to CVImageBufferRef
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-13T08:38:00+08:00">
-                2014-10-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <a href="/2014/10/13/iOS Convert UIImage to CVImageBufferRef/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/13/iOS Convert UIImage to CVImageBufferRef/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>1、Sample<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">UIImage* myImage=[UIImage imageNamed:@<span class="string">"test.png"</span>];</div><div class="line">CVImageBufferRef pixelBuffer = [self pixelBufferFromCGImage:myImage.CGImage];</div></pre></td></tr></table></figure></p>
-<p>2、Method<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">+ (CVPixelBufferRef) pixelBufferFromCGImage: (CGImageRef) image</div><div class="line">&#123;</div><div class="line"></div><div class="line">CGSize frameSize = CGSizeMake(CGImageGetWidth(image), CGImageGetHeight(image));</div><div class="line">NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:</div><div class="line">[NSNumber numberWithBool:NO], kCVPixelBufferCGImageCompatibilityKey,</div><div class="line">[NSNumber numberWithBool:NO], kCVPixelBufferCGBitmapContextCompatibilityKey,</div><div class="line">nil];</div><div class="line">CVPixelBufferRef pxbuffer = NULL;</div><div class="line">CVReturn status = CVPixelBufferCreate(kCFAllocatorDefault, frameSize.width,</div><div class="line">frameSize.height,  kCVPixelFormatType_32ARGB, (CFDictionaryRef) options,</div><div class="line">&amp;pxbuffer);</div><div class="line">NSParameterAssert(status == kCVReturnSuccess &amp;&amp; pxbuffer != NULL);</div><div class="line"></div><div class="line">CVPixelBufferLockBaseAddress(pxbuffer, 0);</div><div class="line">void *pxdata = CVPixelBufferGetBaseAddress(pxbuffer);</div><div class="line"></div><div class="line"></div><div class="line">CGColorSpaceRef rgbColorSpace = CGColorSpaceCreateDeviceRGB();</div><div class="line">CGContextRef context = CGBitmapContextCreate(pxdata, frameSize.width,</div><div class="line">frameSize.height, 8, 4*frameSize.width, rgbColorSpace,</div><div class="line">kCGImageAlphaNoneSkipLast);</div><div class="line"></div><div class="line">CGContextDrawImage(context, CGRectMake(0, 0, CGImageGetWidth(image),</div><div class="line">CGImageGetHeight(image)), image);</div><div class="line">CGColorSpaceRelease(rgbColorSpace);</div><div class="line">CGContextRelease(context);</div><div class="line"></div><div class="line">CVPixelBufferUnlockBaseAddress(pxbuffer, 0);</div><div class="line"></div><div class="line"><span class="built_in">return</span> pxbuffer;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/13/iOS 使用AudioSession AudioUnitRender从麦克风获取数据/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -811,6 +668,150 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/13/iOS http上传视频或者图片到服务器/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="74Lee">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="74Lee">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/10/13/iOS http上传视频或者图片到服务器/" itemprop="url">
+                  iOS http上传视频或者图片到服务器
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-13T08:38:00+08:00">
+                2014-10-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2014/10/13/iOS http上传视频或者图片到服务器/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/13/iOS http上传视频或者图片到服务器/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>1.add post method<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#pragma mark 上传视频或者Image</span></div><div class="line">-(void)postLocalFile</div><div class="line">&#123;</div><div class="line">NSMutableDictionary *uploadParams=[[NSMutableDictionary alloc] init];</div><div class="line">[uploadParams <span class="built_in">set</span>Object:@<span class="string">"Params1"</span> <span class="keyword">for</span>Key:@<span class="string">"Params1"</span>];</div><div class="line">[uploadParams <span class="built_in">set</span>Object:@<span class="string">"Params2"</span> <span class="keyword">for</span>Key:@<span class="string">"Params2"</span>];</div><div class="line"></div><div class="line"><span class="comment">#if 0  //图片测试</span></div><div class="line">UIImage *image=[UIImage imageNamed:@<span class="string">"视频详情.jpg"</span>];</div><div class="line">NSData *uploadData=UIImagePNGRepresentation(image);</div><div class="line"><span class="comment">#else  //视频测试</span></div><div class="line"></div><div class="line">NSBundle *bundle = [NSBundle mainBundle];</div><div class="line">NSString *path = [bundle pathForResource:@<span class="string">"IMG_0069"</span> ofType:@<span class="string">"mp4"</span>];</div><div class="line">NSData *uploadData=[[NSData alloc]initWithContentsOfFile:path];</div><div class="line"><span class="comment">#endif</span></div><div class="line"></div><div class="line">NSDictionary *sl1Dic=[NSDictionary dictionaryWithObjectsAndKeys:</div><div class="line">uploadData,@<span class="string">"data"</span>,</div><div class="line">@<span class="string">"IMG_0069.mp4"</span>,@<span class="string">"name"</span>, nil];</div><div class="line"></div><div class="line">NSMutableArray *imageArray=[NSMutableArray arrayWithObjects:sl1Dic, nil];</div><div class="line">NSString *urlString = @<span class="string">"http://v221.56.com/coop_upload"</span>;//post url</div><div class="line">NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];</div><div class="line">[request <span class="built_in">set</span>URL:[NSURL URLWithString:urlString]];</div><div class="line">[request <span class="built_in">set</span>HTTPMethod:@<span class="string">"POST"</span>];</div><div class="line"></div><div class="line">NSMutableData *body =[NSMutableData data];</div><div class="line">NSString *boundary = @<span class="string">"---------------------------14737809831466499882746641449"</span>;</div><div class="line">NSString *contentType = [NSString stringWithFormat:@<span class="string">"multipart/form-data; boundary=%@"</span>, boundary];</div><div class="line">[request addValue:contentType <span class="keyword">for</span>HTTPHeaderField:@<span class="string">"Content-Type"</span>];</div><div class="line"></div><div class="line">// image or video</div><div class="line"><span class="keyword">for</span>(int i=0;i&lt;[imageArray count];i++)</div><div class="line">&#123;</div><div class="line">NSData *imageData =[[imageArray objectAtIndex:i] objectForKey:@<span class="string">"data"</span>];</div><div class="line">NSString *fileName=[[imageArray objectAtIndex:i] objectForKey:@<span class="string">"name"</span>];</div><div class="line">[body appendData:[[NSString stringWithFormat:@<span class="string">"--%@\r\n"</span>, boundary] dataUsingEncoding:NSUTF8StringEncoding]];</div><div class="line">[body appendData:[[NSString stringWithFormat:@<span class="string">"Content-Disposition: attachment; name=\"Filedata\"; filename=\"%@\"\r\n"</span>,fileName] dataUsingEncoding:NSUTF8StringEncoding]];</div><div class="line">[body appendData:[[NSString stringWithFormat:@<span class="string">"Content-Type: application/octet-stream\r\n\r\n"</span>] dataUsingEncoding:NSUTF8StringEncoding]];</div><div class="line">[body appendData:[NSData dataWithData:imageData]];</div><div class="line">[body appendData:[@<span class="string">"\r\n"</span> dataUsingEncoding:NSUTF8StringEncoding]];</div><div class="line">&#125;</div><div class="line">NSArray *keys= [uploadParams allKeys];</div><div class="line"><span class="keyword">for</span>(int i=0;i&lt;[keys count];i++)</div><div class="line">&#123;</div><div class="line">NSString *key=[keys objectAtIndex:i];</div><div class="line">[body appendData:[[NSString stringWithFormat:@<span class="string">"--%@\r\n"</span>, boundary] dataUsingEncoding:NSUTF8StringEncoding]];</div><div class="line">[body appendData:[[NSString stringWithFormat:@<span class="string">"Content-Disposition: form-data; name=\"%@\"\r\n\r\n"</span>,key] dataUsingEncoding:NSUTF8StringEncoding]];</div><div class="line">[body appendData:[[uploadParams objectForKey:key] dataUsingEncoding:NSUTF8StringEncoding]];</div><div class="line">[body appendData:[@<span class="string">"\r\n"</span> dataUsingEncoding:NSUTF8StringEncoding]];</div><div class="line">&#125;</div><div class="line"></div><div class="line">[body appendData:[[NSString stringWithFormat:@<span class="string">"--%@--\r\n"</span>, boundary] dataUsingEncoding:NSUTF8StringEncoding]];</div><div class="line"></div><div class="line">NSString *bodyString = [[NSString alloc] initWithData:body encoding:NSUTF8StringEncoding];</div><div class="line">NSLog(@<span class="string">"body:%@"</span>, bodyString);</div><div class="line"></div><div class="line">[request <span class="built_in">set</span>HTTPBody:body];</div><div class="line"><span class="comment">#if 1</span></div><div class="line">NSURLConnection *connection = nil;</div><div class="line">connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];</div><div class="line"><span class="comment">#else</span></div><div class="line">NSData *<span class="built_in">return</span>Data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];</div><div class="line">NSString *<span class="built_in">return</span>String = [[NSString alloc] initWithData:<span class="built_in">return</span>Data encoding:NSUTF8StringEncoding];</div><div class="line">NSLog(@<span class="string">"上传成功返回vid%@"</span>, <span class="built_in">return</span>String);</div><div class="line"><span class="comment">#endif</span></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>2.add delegate<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;NSURLConnectionDataDelegate&gt;</div></pre></td></tr></table></figure></p>
+<p>3.delegate method</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data&#123;</div><div class="line">NSString *<span class="built_in">return</span>String = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];</div><div class="line">NSLog(@<span class="string">"=====%@"</span>, <span class="built_in">return</span>String);</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)connection:(NSURLConnection *)connection   didSendBodyData:(NSInteger)bytesWritten</div><div class="line">totalBytesWritten:(NSInteger)totalBytesWritten</div><div class="line">totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite&#123;</div><div class="line">NSLog(@<span class="string">"进度%f"</span>,(<span class="built_in">float</span>) totalBytesWritten/totalBytesExpectedToWrite);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/13/OpenGL glVertexAttribPointer/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1110,158 +1111,6 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/13/10.10懒人版镜像U盘引导的制作/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="74Lee">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="74Lee">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/10/13/10.10懒人版镜像U盘引导的制作/" itemprop="url">
-                  10.10懒人版镜像U盘引导的制作
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-13T08:38:00+08:00">
-                2014-10-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hackintosh/" itemprop="url" rel="index">
-                    <span itemprop="name">Hackintosh</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <a href="/2014/10/13/10.10懒人版镜像U盘引导的制作/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/13/10.10懒人版镜像U盘引导的制作/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>1.准备8G以上U盘，打开磁盘工具 U盘–&gt;分区–&gt;一个分区–&gt;选项–&gt;主引导记录–&gt;应用<br><img src="http://hexo-zxcv740.qiniudn.com/Hackintosh_10.101.png" alt="图片"><br>2.下载原版镜像,鼠标右击显示包内容–&gt;Contents–&gt;SharedSupport</p>
-<p>终端开启显示隐藏文件defaults write com.apple.finder AppleShowAllFiles YES<br><img src="http://hexo-zxcv740.qiniudn.com/Hackintosh_10.102.png" alt="图片"></p>
-<p><img src="http://hexo-zxcv740.qiniudn.com/Hackintosh_10.103.png" alt="图片"></p>
-<p><img src="http://hexo-zxcv740.qiniudn.com/Hackintosh_10.104.png" alt="图片"></p>
-<p>3.双击打开,右击打开BaseSystem.dmg<br><img src="http://hexo-zxcv740.qiniudn.com/Hackintosh_10.105.png" alt="图片"><br><img src="http://hexo-zxcv740.qiniudn.com/Hackintosh_10.106.png" alt="图片"></p>
-<p>4.回到磁盘工具,操作如图,点击恢复<br><img src="http://hexo-zxcv740.qiniudn.com/Hackintosh_10.107.png" alt="图片"><br>等待几分钟…<br><img src="http://hexo-zxcv740.qiniudn.com/Hackintosh_10.108.png" alt="图片"></p>
-<p>5.恢复完成后,打开恢复的OX X Base System 修改名字Mac 10.10和图标<br><img src="http://hexo-zxcv740.qiniudn.com/Hackintosh_10.109.png" alt="图片"><br>到U盘那目录(即Mac 10.10)/System/Installation/下面有个Packages的替身（快捷方式），删除！<br><img src="http://hexo-zxcv740.qiniudn.com/Hackintosh_10.1010.png" alt="图片"></p>
-<p>6.打开OS X Install ESD 找到Packages复制到刚刚删除的目录,同时拷贝BaseSystem.chunklist和BaseSystem.dmg到Mac 10.10下<br><img src="http://hexo-zxcv740.qiniudn.com/Hackintosh_10.1011.png" alt="图片"><br><img src="http://hexo-zxcv740.qiniudn.com/Hackintosh_10.1012.png" alt="图片"><br><img src="http://hexo-zxcv740.qiniudn.com/Hackintosh_10.1013.png" alt="图片"></p>
-<p>7.加入extra文件夹,这样就制作完成了。结构图如下<br><img src="http://hexo-zxcv740.qiniudn.com/Hackintosh_10.1014.png" alt="图片"></p>
-<p>8.下载MBR破解补丁，在OS X系统下解压缩。<br>MBR破解补丁<a href="http://hexo-zxcv740.qiniudn.com/Hackintosh_10.10MBR.zip" target="_blank" rel="external">下载</a></p>
-<p>将 OSInstall.mpkg 替换到 /System/Installation/Packages/OSInstall.mpkg<br>将 OSInstaller 替换到 /System/Library/PrivateFrameworks/OSInstaller.framework/Versions/A/OSInstaller</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/11/黑苹果安装详解/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1401,6 +1250,150 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/09/29/iOS7 CGBitmapContextCreate()/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="74Lee">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="74Lee">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/09/29/iOS7 CGBitmapContextCreate()/" itemprop="url">
+                  iOS7 CGBitmapContextCreate()
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-09-29T11:48:00+08:00">
+                2014-09-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2014/09/29/iOS7 CGBitmapContextCreate()/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/09/29/iOS7 CGBitmapContextCreate()/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>一、简介CGBitmapContextCreate<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">CGContextRef CGBitmapContextCreate （</div><div class="line">　　void *data，</div><div class="line">　　size_t width，</div><div class="line">　　size_t height，</div><div class="line">　　size_t bitsPerComponent，</div><div class="line">　　size_t bytesPerRow，</div><div class="line">　　CGColorSpaceRef colorspace，</div><div class="line">　　CGBitmapInfo bitmapInfo</div><div class="line">　　）;</div></pre></td></tr></table></figure></p>
+<p>1.data:<br>  指向绘图操作被渲染的内存区域，这个内存区域大小应该为（bytesPerRow*height）个字节。如果对绘制操作被渲染的内存区域并无特别的要求，<br>  那么可以传递NULL给参数date。<br>2.width:<br>  被渲染内存区域的宽度。<br>3.height:<br>  被渲染内存区域的高度。<br>4.bitsPerComponent:<br>  被渲染内存区域中组件在屏幕每个像素点上需要使用的bits位，举例来说，如果使用32-bit像素和RGB颜色格式，那么RGBA颜色格式中每个组件在<br>  屏幕每个像素点上需要使用的bits位就为32/4=8。<br>5.bytesPerRow:<br>  被渲染内存区域中每行所使用的bytes位数<br>6.colorspace:<br>  用于被渲染内存区域的“位图上下文”,即颜色空间。<br>7.bitmapInfo:<br>  指定被渲染内存区域的“视图”是否包含一个alpha（透视）通道以及每个像素相应的位置，除此之外还可以指定组件式是浮点值还是整数值。</p>
+<p>二、</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
@@ -1446,7 +1439,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">127</span>
+              <span class="site-state-item-count">126</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
