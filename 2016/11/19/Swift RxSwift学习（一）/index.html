@@ -1,0 +1,744 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="RxSwift," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Swift RxSwift学习（一）RxSwift,一个非常火的框架，基本上国内很少有企业或者公司用，一方面，毕竟现在大部分公司还是ObjC语言，而且还要支持iOS7，一下子转Swift不现实。另一方便就是RxSwift对于实际项目来说前期可能有点慢，团队开发效率慢，团队协作时要求每个人都需要理解和学习RxSwift，前期投入精力大，对成员要求高，实际中开发APP也要有进度控制。
+为什么我要使用R">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift RxSwift学习（一）">
+<meta property="og:url" content="http://74lee.com/2016/11/19/Swift RxSwift学习（一）/index.html">
+<meta property="og:site_name" content="74Lee">
+<meta property="og:description" content="Swift RxSwift学习（一）RxSwift,一个非常火的框架，基本上国内很少有企业或者公司用，一方面，毕竟现在大部分公司还是ObjC语言，而且还要支持iOS7，一下子转Swift不现实。另一方便就是RxSwift对于实际项目来说前期可能有点慢，团队开发效率慢，团队协作时要求每个人都需要理解和学习RxSwift，前期投入精力大，对成员要求高，实际中开发APP也要有进度控制。
+为什么我要使用R">
+<meta property="og:updated_time" content="2016-11-23T06:15:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift RxSwift学习（一）">
+<meta name="twitter:description" content="Swift RxSwift学习（一）RxSwift,一个非常火的框架，基本上国内很少有企业或者公司用，一方面，毕竟现在大部分公司还是ObjC语言，而且还要支持iOS7，一下子转Swift不现实。另一方便就是RxSwift对于实际项目来说前期可能有点慢，团队开发效率慢，团队协作时要求每个人都需要理解和学习RxSwift，前期投入精力大，对成员要求高，实际中开发APP也要有进度控制。
+为什么我要使用R">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://74lee.com/2016/11/19/Swift RxSwift学习（一）/"/>
+
+
+
+
+
+  <title> Swift RxSwift学习（一） | 74Lee </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">74Lee</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Insist on yourself,believe yourself,forever...</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://74lee.com/2016/11/19/Swift RxSwift学习（一）/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="74Lee">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="74Lee">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Swift RxSwift学习（一）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-19T00:00:00+08:00">
+                2016-11-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RxSwift/" itemprop="url" rel="index">
+                    <span itemprop="name">RxSwift</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2016/11/19/Swift RxSwift学习（一）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/19/Swift RxSwift学习（一）/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Swift-RxSwift学习（一）"><a href="#Swift-RxSwift学习（一）" class="headerlink" title="Swift RxSwift学习（一）"></a>Swift RxSwift学习（一）</h1><p>RxSwift,一个非常火的框架，基本上国内很少有企业或者公司用，一方面，毕竟现在大部分公司还是ObjC语言，而且还要支持iOS7，一下子转Swift不现实。另一方便就是RxSwift对于实际项目来说前期可能有点慢，团队开发效率慢，团队协作时要求每个人都需要理解和学习RxSwift，前期投入精力大，对成员要求高，实际中开发APP也要有进度控制。</p>
+<h2 id="为什么我要使用RxSwift？"><a href="#为什么我要使用RxSwift？" class="headerlink" title="为什么我要使用RxSwift？"></a>为什么我要使用RxSwift？</h2><p>因为RxSwift可以使你的整个项目的代码量减少了很多，逻辑和功能也变得更加易读和清晰。</p>
+<h2 id="什么是RxSwift"><a href="#什么是RxSwift" class="headerlink" title="什么是RxSwift"></a>什么是RxSwift</h2><p>RxSwift是一个响应式函数式编程(Functional Reactive Programming:FRP)的框架,FRP是一种和事件流有关的编程方式，其角度类似于EventSoucing,关注导致状态值改变的行为事件，一系列事件组成的事件流。举例：a + b = c；之前iOS比较火的RAC（ReactiveCocoa），目前已经3.0，支持swift和ObjC,他们2个概念上都基本相同，看个人喜好。</p>
+<h2 id="RxSwift核心（Observable）"><a href="#RxSwift核心（Observable）" class="headerlink" title="RxSwift核心（Observable）"></a>RxSwift核心（Observable）</h2><p>Observable也就是一个被观察的对象，是一个事件序列，可以订阅它，监测事件的发生(Next\Complete\Error)。KVO?</p>
+<h2 id="热信号和冷信号"><a href="#热信号和冷信号" class="headerlink" title="热信号和冷信号"></a>热信号和冷信号</h2><p>最本质的区别是一个是有订阅者来订阅的时候，热信号已经触发了一些事件，那么此订阅者可能会错过一些事，冷信号则不会，冷信号是被订阅了才会发生事件，因此不会错过事件。</p>
+<h2 id="获取或创建Observable"><a href="#获取或创建Observable" class="headerlink" title="获取或创建Observable"></a>获取或创建Observable</h2><h3 id="Observable有2种方式"><a href="#Observable有2种方式" class="headerlink" title="Observable有2种方式"></a>Observable有2种方式</h3><ol>
+<li>第一种是框架自带提供的，比如UITextfield，如果你要订阅text的变化，可以通过textfield.rx_text来获取Observable<string>的对象</string></li>
+<li>第二种是自己创建（Create），比如你要用到Alamofire,你想把response作为一个Observable，你可以这样写：</li>
+</ol>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">fetchClubList</span><span class="params">(fromPage page:Int)</span></span> -&gt; <span class="type">Observable</span>&lt;[<span class="type">ClubTableCellViewModel</span>]&gt;&#123;</div><div class="line">    <span class="keyword">return</span> create&#123; (observer ) -&gt; <span class="type">Disposable</span> <span class="keyword">in</span></div><div class="line">        <span class="type">Alamofire</span>.request(<span class="type">Method</span>.<span class="type">GET</span>, <span class="string">"http://www.mocky.io/v2/560a046995e00cc208981280"</span>).responseArray&#123;[<span class="keyword">unowned</span> <span class="keyword">self</span>]</div><div class="line">             (results:[<span class="type">ClubModel</span>]?, err:<span class="type">ErrorType</span>?) -&gt; <span class="type">Void</span> <span class="keyword">in</span></div><div class="line">                <span class="keyword">if</span> <span class="keyword">let</span> <span class="number">_</span> = err&#123;</div><div class="line">                    observer.on(<span class="type">Event</span>.<span class="type">Error</span>(err!))</div><div class="line">                &#125;<span class="keyword">else</span>&#123;</div><div class="line">                    <span class="keyword">if</span> <span class="keyword">let</span> cellVMs = (results?.<span class="built_in">map</span>&#123;<span class="type">ClubTableCellViewModel</span>(club: $<span class="number">0</span>)&#125;)&#123;</div><div class="line">                        <span class="keyword">if</span> page == <span class="number">0</span>&#123;</div><div class="line">                            <span class="keyword">self</span>.cellViewModels.removeAll()</div><div class="line">                        &#125;</div><div class="line">                        <span class="keyword">self</span>.cellViewModels.appendContentsOf(cellVMs)</div><div class="line"></div><div class="line">                        observer.on(<span class="type">Event</span>.<span class="type">Next</span>(<span class="keyword">self</span>.cellViewModels))</div><div class="line">                        observer.on(<span class="type">Event</span>.<span class="type">Completed</span>)</div><div class="line">                    &#125;<span class="keyword">else</span>&#123;</div><div class="line">                        <span class="comment">//<span class="doctag">TODO:</span> error handle</span></div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> <span class="type">NopDisposable</span>.instance</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>ps: 除了create，还可以通过never()创建一个什么都不发送的空序列，用empty()创建一个空序列但会发送.Complete等等。</p>
+<h2 id="信号操作"><a href="#信号操作" class="headerlink" title="信号操作"></a>信号操作</h2><p>常用的操作符有map，flatMap，subscribe，doOn，retry等等，具体的用法在它的文档中有具体说明。比如你在做分页刷新数据的是偶，我们需要这样做，在UIViewController里先创建一个属性： </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">var</span> page : <span class="type">Variable</span>&lt;<span class="type">Int</span>&gt; = <span class="type">Variable</span>(<span class="number">0</span>)</div></pre></td></tr></table></figure>
+<p>那么接下来我们要如何做呢，接下来我们需要订阅page这个参数</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">self</span>.page</div><div class="line">    .throttle(<span class="number">0.5</span>, <span class="type">MainScheduler</span>.sharedInstance)</div><div class="line">    .doOn&#123; [<span class="keyword">unowned</span> <span class="keyword">self</span>] value <span class="keyword">in</span></div><div class="line">        <span class="keyword">self</span>.refreshCtrl.enabled = <span class="literal">false</span></div><div class="line">    &#125;</div><div class="line">    .flatMap &#123;[<span class="keyword">unowned</span> <span class="keyword">self</span>] <span class="keyword">in</span></div><div class="line">        <span class="keyword">self</span>.viewModel.fetchClubList(fromPage: $<span class="number">0</span>)</div><div class="line">            .doOn&#123; [<span class="keyword">unowned</span> <span class="keyword">self</span>] <span class="keyword">in</span></div><div class="line">                <span class="keyword">self</span>.refreshCtrl.endRefreshing()</div><div class="line">                <span class="keyword">self</span>.refreshCtrl.enabled = <span class="literal">true</span></div><div class="line">            &#125;</div><div class="line">            .retry()</div><div class="line">            .catchErrorJustReturn([])</div><div class="line">    &#125;</div><div class="line">    .bindTo(<span class="keyword">self</span>.clubList.rx_itemsWithCellIdentifier(<span class="string">"clubCell"</span>))&#123;(<span class="number">_</span>, viewModel, cell: <span class="type">ClubListCell</span>) <span class="keyword">in</span></div><div class="line">        cell.viewModel = viewModel</div><div class="line">    &#125;</div><div class="line">    .addDisposableTo(<span class="keyword">self</span>.dispose)</div></pre></td></tr></table></figure>
+<p>这段代码里实现了在page发生变化的时候自动去请求服务端的数据，然后刷新tableview。throttle保证了事件序列发送的频率不会过快，doOn在每次.Next到来之前让我们有机会做些额外的处理，页码变化通过flatMap触发API调用，然后把得到的数据绑定到每个cell上面。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/RxSwift/" rel="tag"># RxSwift</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/30/Swift ObjC转Swift/" rel="next" title="Swift ObjC转Swift">
+                <i class="fa fa-chevron-left"></i> Swift ObjC转Swift
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/21/Swift RxSwift学习（二）/" rel="prev" title="Swift RxSwift（二）">
+                Swift RxSwift（二） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/11/19/Swift RxSwift学习（一）/"
+     data-title="Swift RxSwift学习（一）"
+     data-content=""
+     data-url="http://74lee.com/2016/11/19/Swift RxSwift学习（一）/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/19/Swift RxSwift学习（一）/"
+           data-title="Swift RxSwift学习（一）" data-url="http://74lee.com/2016/11/19/Swift RxSwift学习（一）/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="74Lee" />
+          <p class="site-author-name" itemprop="name">74Lee</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">126</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="//github.com/zxcv740/" title="github" target="_blank">github</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://stackoverflow.com/users/4065296/zxcv740" title="stackoverflow" target="_blank">stackoverflow</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://weibo.com/u/1894668544" title="sina" target="_blank">sina</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://twitter.com/zxcv740" title="twitter" target="_blank">twitter</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://zasper.net/" title="jasper blog" target="_blank">jasper blog</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Swift-RxSwift学习（一）"><span class="nav-number">1.</span> <span class="nav-text">Swift RxSwift学习（一）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么我要使用RxSwift？"><span class="nav-number">1.1.</span> <span class="nav-text">为什么我要使用RxSwift？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是RxSwift"><span class="nav-number">1.2.</span> <span class="nav-text">什么是RxSwift</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RxSwift核心（Observable）"><span class="nav-number">1.3.</span> <span class="nav-text">RxSwift核心（Observable）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#热信号和冷信号"><span class="nav-number">1.4.</span> <span class="nav-text">热信号和冷信号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取或创建Observable"><span class="nav-number">1.5.</span> <span class="nav-text">获取或创建Observable</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Observable有2种方式"><span class="nav-number">1.5.1.</span> <span class="nav-text">Observable有2种方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#信号操作"><span class="nav-number">1.6.</span> <span class="nav-text">信号操作</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">74Lee</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"74Lee"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
