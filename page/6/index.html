@@ -236,149 +236,6 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/13/iOS Convert UIImage to CVImageBufferRef/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="74Lee">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="74Lee">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/10/13/iOS Convert UIImage to CVImageBufferRef/" itemprop="url">
-                  iOS Convert UIImage to CVImageBufferRef
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-13T08:38:00+08:00">
-                2014-10-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <a href="/2014/10/13/iOS Convert UIImage to CVImageBufferRef/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/13/iOS Convert UIImage to CVImageBufferRef/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>1、Sample<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">UIImage* myImage=[UIImage imageNamed:@<span class="string">"test.png"</span>];</div><div class="line">CVImageBufferRef pixelBuffer = [self pixelBufferFromCGImage:myImage.CGImage];</div></pre></td></tr></table></figure></p>
-<p>2、Method<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">+ (CVPixelBufferRef) pixelBufferFromCGImage: (CGImageRef) image</div><div class="line">&#123;</div><div class="line"></div><div class="line">CGSize frameSize = CGSizeMake(CGImageGetWidth(image), CGImageGetHeight(image));</div><div class="line">NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:</div><div class="line">[NSNumber numberWithBool:NO], kCVPixelBufferCGImageCompatibilityKey,</div><div class="line">[NSNumber numberWithBool:NO], kCVPixelBufferCGBitmapContextCompatibilityKey,</div><div class="line">nil];</div><div class="line">CVPixelBufferRef pxbuffer = NULL;</div><div class="line">CVReturn status = CVPixelBufferCreate(kCFAllocatorDefault, frameSize.width,</div><div class="line">frameSize.height,  kCVPixelFormatType_32ARGB, (CFDictionaryRef) options,</div><div class="line">&amp;pxbuffer);</div><div class="line">NSParameterAssert(status == kCVReturnSuccess &amp;&amp; pxbuffer != NULL);</div><div class="line"></div><div class="line">CVPixelBufferLockBaseAddress(pxbuffer, 0);</div><div class="line">void *pxdata = CVPixelBufferGetBaseAddress(pxbuffer);</div><div class="line"></div><div class="line"></div><div class="line">CGColorSpaceRef rgbColorSpace = CGColorSpaceCreateDeviceRGB();</div><div class="line">CGContextRef context = CGBitmapContextCreate(pxdata, frameSize.width,</div><div class="line">frameSize.height, 8, 4*frameSize.width, rgbColorSpace,</div><div class="line">kCGImageAlphaNoneSkipLast);</div><div class="line"></div><div class="line">CGContextDrawImage(context, CGRectMake(0, 0, CGImageGetWidth(image),</div><div class="line">CGImageGetHeight(image)), image);</div><div class="line">CGColorSpaceRelease(rgbColorSpace);</div><div class="line">CGContextRelease(context);</div><div class="line"></div><div class="line">CVPixelBufferUnlockBaseAddress(pxbuffer, 0);</div><div class="line"></div><div class="line"><span class="built_in">return</span> pxbuffer;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/13/iOS 使用AudioSession AudioUnitRender从麦克风获取数据/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -824,6 +681,298 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/13/OpenGL glVertexAttribPointer/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="74Lee">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="74Lee">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/10/13/OpenGL glVertexAttribPointer/" itemprop="url">
+                  OpenGL glVertexAttribPointer
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-13T08:38:00+08:00">
+                2014-10-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OpenGL/" itemprop="url" rel="index">
+                    <span itemprop="name">OpenGL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2014/10/13/OpenGL glVertexAttribPointer/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/13/OpenGL glVertexAttribPointer/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>glVertexAttribPointer,一个二维的纹理图片</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">//    glVertexAttribPointer(attrpos, 2, GL_FLOAT, GL_FALSE, sizeof(<span class="built_in">float</span>) * 4, BUFFER_OFFSET(0));</div><div class="line"></div><div class="line"></div><div class="line">GL_API void           GL_APIENTRY glVertexAttribPointer (</div><div class="line">                                                        GLuint indx, </div><div class="line">                                                        GLint size,</div><div class="line">                                                        GLenum <span class="built_in">type</span>,</div><div class="line">                                                        GLboolean normalized, </div><div class="line">                                                        GLsizei stride, </div><div class="line">                                                        const GLvoid* ptr)</div><div class="line">__OSX_AVAILABLE_STARTING(__MAC_NA,__IPHONE_3_0);</div></pre></td></tr></table></figure>
+<p>调用glVertexAttribPointer来为vertex shader的两个输入参数配置两个合适的值。</p>
+<p>这里，是一个很重要的方法，让我们来认真地看看它是如何工作的：</p>
+<p>第一个参数，声明这个属性的名称，之前我们称之为glGetAttribLocation</p>
+<p>第二个参数，定义这个属性由多少个值组成。譬如说position是由3个float（x,y,z）组成，而颜色是4个float（r,g,b,a）</p>
+<p>第三个，声明每一个值是什么类型。（这例子中无论是位置还是颜色，我们都用了GL_FLOAT）</p>
+<p>第四个，嗯……它总是false就好了。</p>
+<p>第五个，指 stride 的大小。这是一个种描述每个 vertex数据大小的方式。所以我们可以简单地传入 sizeof（Vertex），让编译器计算出来就好。</p>
+<p>最六个，是这个数据结构的偏移量。表示在这个结构中，从哪里开始获取我们的值。Position的值在前面，所以传0进去就可以了。而颜色是紧接着位置的数据，而position的大小是3个float的大小，所以是从 3 * sizeof(float) 开始的。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/13/iOS 手机屏幕分辨率-宏/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="74Lee">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="74Lee">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/10/13/iOS 手机屏幕分辨率-宏/" itemprop="url">
+                  iOS 手机屏幕分辨率-宏
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-13T08:38:00+08:00">
+                2014-10-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2014/10/13/iOS 手机屏幕分辨率-宏/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/13/iOS 手机屏幕分辨率-宏/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#define isIPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)</span></div><div class="line"><span class="comment">#define isIPhone6 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(750, 1334), [[UIScreen mainScreen] currentMode].size) : NO)</span></div><div class="line"><span class="comment">#define isIPhone6plus ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242, 2208), [[UIScreen mainScreen] currentMode].size) : NO)</span></div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/13/iOS http上传视频或者图片到服务器/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1077,147 +1226,6 @@
 <p>VideoCore’s architecture is inspired by Microsoft Media Foundation (except with saner naming). Samples start at the source, are passed through a series of transforms, and end up at the output.</p>
 <p>e.g. Source (Camera) -&gt; Transform (Composite) -&gt; Transform (H.264 Encode) -&gt; Transform (RTMP Packetize) -&gt; Output (RTMP)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">videocore/</div><div class="line">sources/</div><div class="line">videocore::ISource</div><div class="line">videocore::IAudioSource : videocore::ISource</div><div class="line">videocore::IVideoSource : videocore::ISource</div><div class="line">videocore::Watermark : videocore:IVideoSource</div><div class="line">iOS/</div><div class="line">videocore::iOS::CameraSource : videocore::IVideoSource</div><div class="line">Apple/</div><div class="line">videocore::Apple::MicrophoneSource : videocore::IAudioSource</div><div class="line">OSX/</div><div class="line">videocore::OSX::DisplaySource : videocore::IVideoSource</div><div class="line">videocore::OSX::SystemAudioSource : videocore::IAudioSource</div><div class="line">outputs/</div><div class="line">videocore::IOutput</div><div class="line">videocore::ITransform : videocore::IOutput</div><div class="line">iOS/</div><div class="line">videocore::iOS::H264Transform : videocore::ITransform</div><div class="line">videocore::iOS::AACTransform  : videocore::ITransform</div><div class="line">OSX/</div><div class="line">videocore::OSX::H264Transform : videocore::ITransform</div><div class="line">videocore::OSX::AACTransform  : videocore::ITransform</div><div class="line">RTMP/</div><div class="line">videocore::rtmp::H264Packetizer : videocore::ITransform</div><div class="line">videocore::rtmp::AACPacketizer : videocore::ITransform</div><div class="line"></div><div class="line">mixers/</div><div class="line">videocore::IMixer</div><div class="line">videocore::IAudioMixer : videocore::IMixer</div><div class="line">videocore::IVideoMixer : videocore::IMixer</div><div class="line">videocore::AudioMixer : videocore::IAudioMixer</div><div class="line">iOS/</div><div class="line">videocore::iOS::GLESVideoMixer : videocore::IVideoMixer</div><div class="line">OSX/</div><div class="line">videocore::OSX::GLVideoMixer : videocore::IVideoMixer</div><div class="line"></div><div class="line">rtmp/</div><div class="line">videocore::RTMPSession : videocore::IOutput</div><div class="line"></div><div class="line">stream/</div><div class="line">videocore::IStreamSession</div><div class="line">Apple/</div><div class="line">videocore::Apple::StreamSession : videocore::IStreamSession</div></pre></td></tr></table></figure></p>
 
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/13/iOS 手机屏幕分辨率-宏/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="74Lee">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="74Lee">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/10/13/iOS 手机屏幕分辨率-宏/" itemprop="url">
-                  iOS 手机屏幕分辨率-宏
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-13T08:38:00+08:00">
-                2014-10-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <a href="/2014/10/13/iOS 手机屏幕分辨率-宏/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/13/iOS 手机屏幕分辨率-宏/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#define isIPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)</span></div><div class="line"><span class="comment">#define isIPhone6 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(750, 1334), [[UIScreen mainScreen] currentMode].size) : NO)</span></div><div class="line"><span class="comment">#define isIPhone6plus ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242, 2208), [[UIScreen mainScreen] currentMode].size) : NO)</span></div></pre></td></tr></table></figure>
           
         
       

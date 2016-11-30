@@ -1247,7 +1247,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/09/22/iOS 隐藏状态栏/">
+  <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/09/22/iOS 获取各种文件的路径/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="74Lee">
@@ -1272,8 +1272,8 @@
             
               
                 
-                <a class="post-title-link" href="/2014/09/22/iOS 隐藏状态栏/" itemprop="url">
-                  iOS 隐藏状态栏
+                <a class="post-title-link" href="/2014/09/22/iOS 获取各种文件的路径/" itemprop="url">
+                  iOS 获取各种文件的路径
                 </a>
               
             
@@ -1321,8 +1321,8 @@
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
-                <a href="/2014/09/22/iOS 隐藏状态栏/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/09/22/iOS 隐藏状态栏/" itemprop="commentCount"></span>
+                <a href="/2014/09/22/iOS 获取各种文件的路径/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/09/22/iOS 获取各种文件的路径/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1350,9 +1350,16 @@
       
         
           
-            <p>1.在工程TARGETS–&gt;info–&gt;添加–&gt;View controller-based status bar appearance 设置为YES<br><img src="http://hexo-zxcv740.qiniudn.com/status1.png" alt="图片"></p>
-<p>2.在ViewController添加代码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">override func prefersStatusBarHidden() -&gt; Bool &#123;</div><div class="line"><span class="built_in">return</span> <span class="literal">true</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-
+            <p>1.app主目录路径  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">NSString *homeDir = NSHomeDirectory();</div></pre></td></tr></table></figure>
+<p>2.Documents目录路径 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);  </div><div class="line">NSString *docDir = [paths objectAtIndex:0];</div></pre></td></tr></table></figure>
+<p>3.Caches目录路径   </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);  </div><div class="line">NSString *cachesDir = [paths objectAtIndex:0];</div></pre></td></tr></table></figure>
+<p>4.tmp目录路径  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">NSString *tmpDir =  NSTemporaryDirectory();</div></pre></td></tr></table></figure>
+<p>5.程序包中一个图片资源(test.jpg)路径 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">NSString *imagePath = [[NSBundle mainBundle] pathForResource:@<span class="string">"test"</span> ofType:@<span class="string">"jpg"</span>];</div></pre></td></tr></table></figure>
           
         
       
