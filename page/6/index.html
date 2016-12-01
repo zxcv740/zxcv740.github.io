@@ -236,157 +236,6 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/13/OpenGL glVertexAttribPointer/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="74Lee">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="74Lee">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/10/13/OpenGL glVertexAttribPointer/" itemprop="url">
-                  OpenGL glVertexAttribPointer
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-13T08:38:00+08:00">
-                2014-10-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/OpenGL/" itemprop="url" rel="index">
-                    <span itemprop="name">OpenGL</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <a href="/2014/10/13/OpenGL glVertexAttribPointer/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/13/OpenGL glVertexAttribPointer/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>glVertexAttribPointer,一个二维的纹理图片</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">//    glVertexAttribPointer(attrpos, 2, GL_FLOAT, GL_FALSE, sizeof(<span class="built_in">float</span>) * 4, BUFFER_OFFSET(0));</div><div class="line"></div><div class="line"></div><div class="line">GL_API void           GL_APIENTRY glVertexAttribPointer (</div><div class="line">                                                        GLuint indx, </div><div class="line">                                                        GLint size,</div><div class="line">                                                        GLenum <span class="built_in">type</span>,</div><div class="line">                                                        GLboolean normalized, </div><div class="line">                                                        GLsizei stride, </div><div class="line">                                                        const GLvoid* ptr)</div><div class="line">__OSX_AVAILABLE_STARTING(__MAC_NA,__IPHONE_3_0);</div></pre></td></tr></table></figure>
-<p>调用glVertexAttribPointer来为vertex shader的两个输入参数配置两个合适的值。</p>
-<p>这里，是一个很重要的方法，让我们来认真地看看它是如何工作的：</p>
-<p>第一个参数，声明这个属性的名称，之前我们称之为glGetAttribLocation</p>
-<p>第二个参数，定义这个属性由多少个值组成。譬如说position是由3个float（x,y,z）组成，而颜色是4个float（r,g,b,a）</p>
-<p>第三个，声明每一个值是什么类型。（这例子中无论是位置还是颜色，我们都用了GL_FLOAT）</p>
-<p>第四个，嗯……它总是false就好了。</p>
-<p>第五个，指 stride 的大小。这是一个种描述每个 vertex数据大小的方式。所以我们可以简单地传入 sizeof（Vertex），让编译器计算出来就好。</p>
-<p>最六个，是这个数据结构的偏移量。表示在这个结构中，从哪里开始获取我们的值。Position的值在前面，所以传0进去就可以了。而颜色是紧接着位置的数据，而position的大小是3个float的大小，所以是从 3 * sizeof(float) 开始的。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/13/iOS Convert UIImage to CVImageBufferRef/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -492,6 +341,154 @@
           
             <p>1、Sample<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">UIImage* myImage=[UIImage imageNamed:@<span class="string">"test.png"</span>];</div><div class="line">CVImageBufferRef pixelBuffer = [self pixelBufferFromCGImage:myImage.CGImage];</div></pre></td></tr></table></figure></p>
 <p>2、Method<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">+ (CVPixelBufferRef) pixelBufferFromCGImage: (CGImageRef) image</div><div class="line">&#123;</div><div class="line"></div><div class="line">CGSize frameSize = CGSizeMake(CGImageGetWidth(image), CGImageGetHeight(image));</div><div class="line">NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:</div><div class="line">[NSNumber numberWithBool:NO], kCVPixelBufferCGImageCompatibilityKey,</div><div class="line">[NSNumber numberWithBool:NO], kCVPixelBufferCGBitmapContextCompatibilityKey,</div><div class="line">nil];</div><div class="line">CVPixelBufferRef pxbuffer = NULL;</div><div class="line">CVReturn status = CVPixelBufferCreate(kCFAllocatorDefault, frameSize.width,</div><div class="line">frameSize.height,  kCVPixelFormatType_32ARGB, (CFDictionaryRef) options,</div><div class="line">&amp;pxbuffer);</div><div class="line">NSParameterAssert(status == kCVReturnSuccess &amp;&amp; pxbuffer != NULL);</div><div class="line"></div><div class="line">CVPixelBufferLockBaseAddress(pxbuffer, 0);</div><div class="line">void *pxdata = CVPixelBufferGetBaseAddress(pxbuffer);</div><div class="line"></div><div class="line"></div><div class="line">CGColorSpaceRef rgbColorSpace = CGColorSpaceCreateDeviceRGB();</div><div class="line">CGContextRef context = CGBitmapContextCreate(pxdata, frameSize.width,</div><div class="line">frameSize.height, 8, 4*frameSize.width, rgbColorSpace,</div><div class="line">kCGImageAlphaNoneSkipLast);</div><div class="line"></div><div class="line">CGContextDrawImage(context, CGRectMake(0, 0, CGImageGetWidth(image),</div><div class="line">CGImageGetHeight(image)), image);</div><div class="line">CGColorSpaceRelease(rgbColorSpace);</div><div class="line">CGContextRelease(context);</div><div class="line"></div><div class="line">CVPixelBufferUnlockBaseAddress(pxbuffer, 0);</div><div class="line"></div><div class="line"><span class="built_in">return</span> pxbuffer;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/13/iOS 8推送注册方式改变的问题/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="74Lee">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="74Lee">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/10/13/iOS 8推送注册方式改变的问题/" itemprop="url">
+                  iOS 8推送注册方式改变的问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-13T08:38:00+08:00">
+                2014-10-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2014/10/13/iOS 8推送注册方式改变的问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/13/iOS 8推送注册方式改变的问题/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>升级iOS8后发现原来的工程出现问题,报错提示为:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">registerForRemoteNotificationTypes: is not supported <span class="keyword">in</span> iOS 8.0 and later.</div></pre></td></tr></table></figure></p>
+<p>stackoverflow 一下<a href="http://stackoverflow.com/questions/24454033/registerforremotenotificationtypes-is-not-supported-in-ios-8-0-and-later" target="_blank" rel="external">链接</a></p>
+<p>iOS 8因为改变了推送消息的注册方式,新的iOS8 注册方式如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">- (void)registerPushForIOS8&#123;</div><div class="line"><span class="comment">#if __IPHONE_OS_VERSION_MAX_ALLOWED &gt;= _IPHONE80_</span></div><div class="line"></div><div class="line">//Types</div><div class="line">UIUserNotificationType types = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;</div><div class="line"></div><div class="line">//Actions</div><div class="line">UIMutableUserNotificationAction *acceptAction = [[UIMutableUserNotificationAction alloc] init];</div><div class="line"></div><div class="line">acceptAction.identifier = @<span class="string">"ACCEPT_IDENTIFIER"</span>;</div><div class="line">acceptAction.title = @<span class="string">"Accept"</span>;</div><div class="line"></div><div class="line">acceptAction.activationMode = UIUserNotificationActivationModeForeground;</div><div class="line">acceptAction.destructive = NO;</div><div class="line">acceptAction.authenticationRequired = NO;</div><div class="line"></div><div class="line">//Categories</div><div class="line">UIMutableUserNotificationCategory *inviteCategory = [[UIMutableUserNotificationCategory alloc] init];</div><div class="line"></div><div class="line">inviteCategory.identifier = @<span class="string">"INVITE_CATEGORY"</span>;</div><div class="line"></div><div class="line">[inviteCategory <span class="built_in">set</span>Actions:@[acceptAction] <span class="keyword">for</span>Context:UIUserNotificationActionContextDefault];</div><div class="line"></div><div class="line">[inviteCategory <span class="built_in">set</span>Actions:@[acceptAction] <span class="keyword">for</span>Context:UIUserNotificationActionContextMinimal];</div><div class="line"></div><div class="line">NSSet *categories = [NSSet <span class="built_in">set</span>WithObjects:inviteCategory, nil];</div><div class="line"></div><div class="line"></div><div class="line">UIUserNotificationSettings *mySettings = [UIUserNotificationSettings settingsForTypes:types categories:categories];</div><div class="line"></div><div class="line">[[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];</div><div class="line"></div><div class="line"></div><div class="line">[[UIApplication sharedApplication] registerForRemoteNotifications];</div><div class="line"><span class="comment">#endif</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里是老的注册方式<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">- (void)registerPush&#123;</div><div class="line">    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound)];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>那么现在在appdelegate的- (BOOL)application:(UIApplication <em>)application didFinishLaunchingWithOptions:(NSDictionary </em>)launchOptions<br>方法下需要判断系统版本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">float</span> sysVer = [[[UIDevice currentDevice] systemVersion] <span class="built_in">float</span>Value];</div><div class="line"> <span class="keyword">if</span>(sysVer &lt; 8)&#123;</div><div class="line"> 	[self registerPush];</div><div class="line"> &#125;</div><div class="line"> <span class="keyword">else</span>&#123;</div><div class="line">	[self registerPushForIOS8];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在新的iOS8 中  加入了注册成功回调<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings</div><div class="line">&#123;</div><div class="line">    //用户已经允许接收以下类型的推送</div><div class="line">    //UIUserNotificationType allowedTypes = [notificationSettings types];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
           
         
@@ -820,299 +817,6 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/13/iOS 8推送注册方式改变的问题/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="74Lee">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="74Lee">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/10/13/iOS 8推送注册方式改变的问题/" itemprop="url">
-                  iOS 8推送注册方式改变的问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-13T08:38:00+08:00">
-                2014-10-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <a href="/2014/10/13/iOS 8推送注册方式改变的问题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/13/iOS 8推送注册方式改变的问题/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>升级iOS8后发现原来的工程出现问题,报错提示为:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">registerForRemoteNotificationTypes: is not supported <span class="keyword">in</span> iOS 8.0 and later.</div></pre></td></tr></table></figure></p>
-<p>stackoverflow 一下<a href="http://stackoverflow.com/questions/24454033/registerforremotenotificationtypes-is-not-supported-in-ios-8-0-and-later" target="_blank" rel="external">链接</a></p>
-<p>iOS 8因为改变了推送消息的注册方式,新的iOS8 注册方式如下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">- (void)registerPushForIOS8&#123;</div><div class="line"><span class="comment">#if __IPHONE_OS_VERSION_MAX_ALLOWED &gt;= _IPHONE80_</span></div><div class="line"></div><div class="line">//Types</div><div class="line">UIUserNotificationType types = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;</div><div class="line"></div><div class="line">//Actions</div><div class="line">UIMutableUserNotificationAction *acceptAction = [[UIMutableUserNotificationAction alloc] init];</div><div class="line"></div><div class="line">acceptAction.identifier = @<span class="string">"ACCEPT_IDENTIFIER"</span>;</div><div class="line">acceptAction.title = @<span class="string">"Accept"</span>;</div><div class="line"></div><div class="line">acceptAction.activationMode = UIUserNotificationActivationModeForeground;</div><div class="line">acceptAction.destructive = NO;</div><div class="line">acceptAction.authenticationRequired = NO;</div><div class="line"></div><div class="line">//Categories</div><div class="line">UIMutableUserNotificationCategory *inviteCategory = [[UIMutableUserNotificationCategory alloc] init];</div><div class="line"></div><div class="line">inviteCategory.identifier = @<span class="string">"INVITE_CATEGORY"</span>;</div><div class="line"></div><div class="line">[inviteCategory <span class="built_in">set</span>Actions:@[acceptAction] <span class="keyword">for</span>Context:UIUserNotificationActionContextDefault];</div><div class="line"></div><div class="line">[inviteCategory <span class="built_in">set</span>Actions:@[acceptAction] <span class="keyword">for</span>Context:UIUserNotificationActionContextMinimal];</div><div class="line"></div><div class="line">NSSet *categories = [NSSet <span class="built_in">set</span>WithObjects:inviteCategory, nil];</div><div class="line"></div><div class="line"></div><div class="line">UIUserNotificationSettings *mySettings = [UIUserNotificationSettings settingsForTypes:types categories:categories];</div><div class="line"></div><div class="line">[[UIApplication sharedApplication] registerUserNotificationSettings:mySettings];</div><div class="line"></div><div class="line"></div><div class="line">[[UIApplication sharedApplication] registerForRemoteNotifications];</div><div class="line"><span class="comment">#endif</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这里是老的注册方式<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">- (void)registerPush&#123;</div><div class="line">    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound)];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>那么现在在appdelegate的- (BOOL)application:(UIApplication <em>)application didFinishLaunchingWithOptions:(NSDictionary </em>)launchOptions<br>方法下需要判断系统版本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">float</span> sysVer = [[[UIDevice currentDevice] systemVersion] <span class="built_in">float</span>Value];</div><div class="line"> <span class="keyword">if</span>(sysVer &lt; 8)&#123;</div><div class="line"> 	[self registerPush];</div><div class="line"> &#125;</div><div class="line"> <span class="keyword">else</span>&#123;</div><div class="line">	[self registerPushForIOS8];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>在新的iOS8 中  加入了注册成功回调<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings</div><div class="line">&#123;</div><div class="line">    //用户已经允许接收以下类型的推送</div><div class="line">    //UIUserNotificationType allowedTypes = [notificationSettings types];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/13/iOS 使用AudioSession AudioUnitRender从麦克风获取数据/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="74Lee">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="74Lee">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/10/13/iOS 使用AudioSession AudioUnitRender从麦克风获取数据/" itemprop="url">
-                  iOS 使用AudioSession AudioUnitRender从麦克风获取数据
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-13T08:38:00+08:00">
-                2014-10-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <a href="/2014/10/13/iOS 使用AudioSession AudioUnitRender从麦克风获取数据/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/13/iOS 使用AudioSession AudioUnitRender从麦克风获取数据/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>iOS 一般实现录音都是用AVAudioRecorder 需要导入#import <avfoundation avfoundation.h="">利用此框架中的AVAudioRecorder,今天偶尔发现通过AudioUnitRender也可以。<br><a href="https://developer.apple.com/library/ios/samplecode/AVCaptureToAudioUnit/AVCaptureToAudioUnit.zip" target="_blank" rel="external">官方相关例子</a></avfoundation></p>
-<p>##介绍AudioSession<br>iOS handles audio behavior at the app, inter-app, and device levels through audio sessions and the <a href="https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVAudioSession_ClassReference/index.html#//apple_ref/occ/cl/AVAudioSession" target="_blank" rel="external">AVAudioSession</a> APIs.<br>主要引用场景:<br>1.如何使用音频（是播放？还是录音？）<br>2.选择合适的输入输出设备（比如输入用的麦克风，输出是耳机、手机功放或者airplay）<br>3.音频播放和系统以及其他行为（例如有电话时需要打断，电话结束时需要恢复，按下静音按钮时是否歌曲也要静音等）<br><img src="http://hexo-zxcv740.qiniudn.com/audioaudio.png" alt="图片"></p>
-<p>#第一步<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">AudioBuffer buffer;</div><div class="line">   buffer.mData = NULL;</div><div class="line">   buffer.mDataByteSize = 0;</div><div class="line">   buffer.mNumberChannels = 2;</div><div class="line"></div><div class="line">   AudioBufferList buffers;</div><div class="line">   buffers.mNumberBuffers = 1;</div><div class="line">   buffers.mBuffers[0] = buffer;</div><div class="line"></div><div class="line">   OSStatus status = AudioUnitRender(mc-&gt;audioUnit(),</div><div class="line">                                     ioActionFlags,</div><div class="line">                                     <span class="keyword">in</span>TimeStamp,</div><div class="line">                                     <span class="keyword">in</span>BusNumber,</div><div class="line">                                     <span class="keyword">in</span>NumberFrames,</div><div class="line">                                     &amp;buffers);</div></pre></td></tr></table></figure></p>
-<p>#第二步<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">AVAudioSession *session = [AVAudioSession sharedInstance];</div><div class="line"></div><div class="line">        __block MicSource* bThis = this;</div><div class="line">        </div><div class="line"></div><div class="line">        [session requestRecordPermission:^(BOOL granted) &#123;</div><div class="line">            <span class="keyword">if</span>(granted) &#123;</div><div class="line"></div><div class="line">                [session <span class="built_in">set</span>Category:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionMixWithOthers | AVAudioSessionCategoryOptionDefaultToSpeaker error:nil];</div><div class="line">                [session <span class="built_in">set</span>Active:YES error:nil];</div><div class="line">                </div><div class="line">                AudioComponentDescription acd;</div><div class="line">                acd.componentType = kAudioUnitType_Output;</div><div class="line">                acd.componentSubType = kAudioUnitSubType_VoiceProcessingIO;</div><div class="line">                acd.componentManufacturer = kAudioUnitManufacturer_Apple;</div><div class="line">                acd.componentFlags = 0;</div><div class="line">                acd.componentFlagsMask = 0;</div><div class="line">                </div><div class="line">                bThis-&gt;m_component = AudioComponentFindNext(NULL, &amp;acd);</div><div class="line">                </div><div class="line">                AudioComponentInstanceNew(bThis-&gt;m_component, &amp;bThis-&gt;m_audioUnit);</div><div class="line">                </div><div class="line">                <span class="keyword">if</span>(excludeAudioUnit) &#123;</div><div class="line">                    excludeAudioUnit(bThis-&gt;m_audioUnit);</div><div class="line">                &#125;</div><div class="line">                UInt32 flagOne = 1;</div><div class="line">                </div><div class="line">                AudioUnitSetProperty(bThis-&gt;m_audioUnit, kAudioOutputUnitProperty_EnableIO, kAudioUnitScope_Input, 1, &amp;flagOne, sizeof(flagOne));</div><div class="line">                </div><div class="line">                AudioStreamBasicDescription desc = &#123;0&#125;;</div><div class="line">                desc.mSampleRate = bThis-&gt;m_sampleRate;</div><div class="line">                desc.mFormatID = kAudioFormatLinearPCM;</div><div class="line">                desc.mFormatFlags = kAudioFormatFlagIsSignedInteger | kAudioFormatFlagIsPacked;</div><div class="line">                desc.mChannelsPerFrame = bThis-&gt;m_channelCount;</div><div class="line">                desc.mFramesPerPacket = 1;</div><div class="line">                desc.mBitsPerChannel = 16;</div><div class="line">                desc.mBytesPerFrame = desc.mBitsPerChannel / 8 * desc.mChannelsPerFrame;</div><div class="line">                desc.mBytesPerPacket = desc.mBytesPerFrame * desc.mFramesPerPacket;</div><div class="line">                </div><div class="line">                AURenderCallbackStruct cb;</div><div class="line">                cb.inputProcRefCon = this;</div><div class="line">                cb.inputProc = handleInputBuffer;</div><div class="line">                AudioUnitSetProperty(bThis-&gt;m_audioUnit, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Output, 1, &amp;desc, sizeof(desc));</div><div class="line">                AudioUnitSetProperty(bThis-&gt;m_audioUnit, kAudioOutputUnitProperty_SetInputCallback, kAudioUnitScope_Global, 1, &amp;cb, sizeof(cb));</div><div class="line">                </div><div class="line">                AudioUnitInitialize(bThis-&gt;m_audioUnit);</div><div class="line">                AudioOutputUnitStart(bThis-&gt;m_audioUnit);</div><div class="line">            &#125;</div><div class="line">        &#125;];</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/13/10.10懒人版镜像U盘引导的制作/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1228,6 +932,298 @@
 <p>8.下载MBR破解补丁，在OS X系统下解压缩。<br>MBR破解补丁<a href="http://hexo-zxcv740.qiniudn.com/Hackintosh_10.10MBR.zip" target="_blank" rel="external">下载</a></p>
 <p>将 OSInstall.mpkg 替换到 /System/Installation/Packages/OSInstall.mpkg<br>将 OSInstaller 替换到 /System/Library/PrivateFrameworks/OSInstaller.framework/Versions/A/OSInstaller</p>
 
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/13/OpenGL glVertexAttribPointer/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="74Lee">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="74Lee">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/10/13/OpenGL glVertexAttribPointer/" itemprop="url">
+                  OpenGL glVertexAttribPointer
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-13T08:38:00+08:00">
+                2014-10-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OpenGL/" itemprop="url" rel="index">
+                    <span itemprop="name">OpenGL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2014/10/13/OpenGL glVertexAttribPointer/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/13/OpenGL glVertexAttribPointer/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>glVertexAttribPointer,一个二维的纹理图片</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">//    glVertexAttribPointer(attrpos, 2, GL_FLOAT, GL_FALSE, sizeof(<span class="built_in">float</span>) * 4, BUFFER_OFFSET(0));</div><div class="line"></div><div class="line"></div><div class="line">GL_API void           GL_APIENTRY glVertexAttribPointer (</div><div class="line">                                                        GLuint indx, </div><div class="line">                                                        GLint size,</div><div class="line">                                                        GLenum <span class="built_in">type</span>,</div><div class="line">                                                        GLboolean normalized, </div><div class="line">                                                        GLsizei stride, </div><div class="line">                                                        const GLvoid* ptr)</div><div class="line">__OSX_AVAILABLE_STARTING(__MAC_NA,__IPHONE_3_0);</div></pre></td></tr></table></figure>
+<p>调用glVertexAttribPointer来为vertex shader的两个输入参数配置两个合适的值。</p>
+<p>这里，是一个很重要的方法，让我们来认真地看看它是如何工作的：</p>
+<p>第一个参数，声明这个属性的名称，之前我们称之为glGetAttribLocation</p>
+<p>第二个参数，定义这个属性由多少个值组成。譬如说position是由3个float（x,y,z）组成，而颜色是4个float（r,g,b,a）</p>
+<p>第三个，声明每一个值是什么类型。（这例子中无论是位置还是颜色，我们都用了GL_FLOAT）</p>
+<p>第四个，嗯……它总是false就好了。</p>
+<p>第五个，指 stride 的大小。这是一个种描述每个 vertex数据大小的方式。所以我们可以简单地传入 sizeof（Vertex），让编译器计算出来就好。</p>
+<p>最六个，是这个数据结构的偏移量。表示在这个结构中，从哪里开始获取我们的值。Position的值在前面，所以传0进去就可以了。而颜色是紧接着位置的数据，而position的大小是3个float的大小，所以是从 3 * sizeof(float) 开始的。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/13/iOS 手机屏幕分辨率-宏/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="74Lee">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="74Lee">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/10/13/iOS 手机屏幕分辨率-宏/" itemprop="url">
+                  iOS 手机屏幕分辨率-宏
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-13T08:38:00+08:00">
+                2014-10-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2014/10/13/iOS 手机屏幕分辨率-宏/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/13/iOS 手机屏幕分辨率-宏/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#define isIPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)</span></div><div class="line"><span class="comment">#define isIPhone6 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(750, 1334), [[UIScreen mainScreen] currentMode].size) : NO)</span></div><div class="line"><span class="comment">#define isIPhone6plus ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242, 2208), [[UIScreen mainScreen] currentMode].size) : NO)</span></div></pre></td></tr></table></figure>
           
         
       
