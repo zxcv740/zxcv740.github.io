@@ -815,6 +815,148 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/09/22/iOS Date Compare/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="74Lee">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="74Lee">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/09/22/iOS Date Compare/" itemprop="url">
+                  iOS Date Compare
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-09-22T14:13:00+08:00">
+                2014-09-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2014/09/22/iOS Date Compare/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/09/22/iOS Date Compare/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>##iOS 时间比较<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">NSDate *nowDate=[NSDate date];</div><div class="line">NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];</div><div class="line"></div><div class="line">NSString *dateStr=@<span class="string">"2015-01-01 00:00:00"</span>;</div><div class="line">NSDate *compareDate=[dateFormatter dateFromString:dateStr];</div><div class="line"></div><div class="line">switch ([nowDate compare:compareDate]) &#123;</div><div class="line"><span class="keyword">case</span> NSOrderedSame:</div><div class="line">NSLog(@<span class="string">"一样"</span>);</div><div class="line"><span class="built_in">break</span>;</div><div class="line"><span class="keyword">case</span> NSOrderedAscending:</div><div class="line">NSLog(@<span class="string">"现在时间小于比较时间"</span>);</div><div class="line"><span class="built_in">break</span>;</div><div class="line"><span class="keyword">case</span> NSOrderedDescending:</div><div class="line">NSLog(@<span class="string">"现在时间大于比较时间"</span>);</div><div class="line"><span class="built_in">break</span>;</div><div class="line">default:</div><div class="line">NSLog(@<span class="string">"错误"</span>);</div><div class="line"><span class="built_in">break</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/09/22/iOS CVImageBufferRef/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -926,148 +1068,6 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">+ (UIImage *) imageFromSampleBuffer:(CMSampleBufferRef) sampleBuffer</div><div class="line">&#123;</div><div class="line">    // Get a CMSampleBuffer<span class="string">'s Core Video image buffer for the media data</span></div><div class="line">    CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);</div><div class="line">    // Lock the base address of the pixel buffer</div><div class="line">    CVPixelBufferLockBaseAddress(imageBuffer, 0);</div><div class="line"></div><div class="line">    // Get the number of bytes per row for the pixel buffer</div><div class="line">    void *baseAddress = CVPixelBufferGetBaseAddress(imageBuffer);</div><div class="line"></div><div class="line">    // Get the number of bytes per row for the pixel buffer</div><div class="line">    size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);</div><div class="line">    // Get the pixel buffer width and height</div><div class="line">    size_t width = CVPixelBufferGetWidth(imageBuffer);</div><div class="line">    size_t height = CVPixelBufferGetHeight(imageBuffer);</div><div class="line"></div><div class="line">    // Create a device-dependent RGB color space</div><div class="line">    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();</div><div class="line"></div><div class="line">    // Create a bitmap graphics context with the sample buffer data</div><div class="line">    CGContextRef context = CGBitmapContextCreate(baseAddress, width, height, 8,</div><div class="line">    bytesPerRow, colorSpace, kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);</div><div class="line">    // Create a Quartz image from the pixel data in the bitmap graphics context</div><div class="line">    CGImageRef quartzImage = CGBitmapContextCreateImage(context);</div><div class="line">    // Unlock the pixel buffer</div><div class="line">    CVPixelBufferUnlockBaseAddress(imageBuffer,0);</div><div class="line"></div><div class="line">    // Free up the context and color space</div><div class="line">    CGContextRelease(context);</div><div class="line">    CGColorSpaceRelease(colorSpace);</div><div class="line"></div><div class="line">    // Create an image object from the Quartz image</div><div class="line">    UIImage *image = [UIImage imageWithCGImage:quartzImage];</div><div class="line"></div><div class="line">    // Release the Quartz image</div><div class="line">    CGImageRelease(quartzImage);</div><div class="line"></div><div class="line">    return (image);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>3.image to CVPixelBufferRef,这个方法CGContextDrawImage 占用很高的CPU</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">+ (CVPixelBufferRef) pixelBufferFromCGImage: (CGImageRef) image</div><div class="line">&#123;</div><div class="line"></div><div class="line">    CGSize frameSize = CGSizeMake(CGImageGetWidth(image), CGImageGetHeight(image));</div><div class="line">    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:</div><div class="line">                            [NSNumber numberWithBool:NO], kCVPixelBufferCGImageCompatibilityKey,</div><div class="line">                            [NSNumber numberWithBool:NO], kCVPixelBufferCGBitmapContextCompatibilityKey,</div><div class="line">                            nil];</div><div class="line">    CVPixelBufferRef pxbuffer = NULL;</div><div class="line">    CVReturn status = CVPixelBufferCreate(kCFAllocatorDefault, frameSize.width,</div><div class="line">                                        frameSize.height,  kCVPixelFormatType_32BGRA, (CFDictionaryRef) options,</div><div class="line">                                        &amp;pxbuffer);</div><div class="line">    NSParameterAssert(status == kCVReturnSuccess &amp;&amp; pxbuffer != NULL);</div><div class="line"></div><div class="line">    CVPixelBufferLockBaseAddress(pxbuffer, 0);</div><div class="line">    void *pxdata = CVPixelBufferGetBaseAddress(pxbuffer);</div><div class="line"></div><div class="line"></div><div class="line">    CGColorSpaceRef rgbColorSpace = CGColorSpaceCreateDeviceRGB();</div><div class="line">    CGContextRef context = CGBitmapContextCreate(pxdata, frameSize.width,</div><div class="line">    frameSize.height, 8, 4*frameSize.width, rgbColorSpace,</div><div class="line">    kCGBitmapByteOrder32Little | kCGImageAlphaNoneSkipFirst);</div><div class="line"></div><div class="line">    CGContextDrawImage(context, CGRectMake(0, 0, CGImageGetWidth(image),</div><div class="line">    CGImageGetHeight(image)), image);//这个站CPU 相当高</div><div class="line">    CGColorSpaceRelease(rgbColorSpace);</div><div class="line">    CGContextRelease(context);</div><div class="line"></div><div class="line">    CVPixelBufferUnlockBaseAddress(pxbuffer, 0);</div><div class="line"></div><div class="line">    <span class="built_in">return</span> pxbuffer;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/09/22/iOS Date Compare/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="74Lee">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="74Lee">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/09/22/iOS Date Compare/" itemprop="url">
-                  iOS Date Compare
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-09-22T14:13:00+08:00">
-                2014-09-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <a href="/2014/09/22/iOS Date Compare/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/09/22/iOS Date Compare/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>##iOS 时间比较<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">NSDate *nowDate=[NSDate date];</div><div class="line">NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];</div><div class="line"></div><div class="line">NSString *dateStr=@<span class="string">"2015-01-01 00:00:00"</span>;</div><div class="line">NSDate *compareDate=[dateFormatter dateFromString:dateStr];</div><div class="line"></div><div class="line">switch ([nowDate compare:compareDate]) &#123;</div><div class="line"><span class="keyword">case</span> NSOrderedSame:</div><div class="line">NSLog(@<span class="string">"一样"</span>);</div><div class="line"><span class="built_in">break</span>;</div><div class="line"><span class="keyword">case</span> NSOrderedAscending:</div><div class="line">NSLog(@<span class="string">"现在时间小于比较时间"</span>);</div><div class="line"><span class="built_in">break</span>;</div><div class="line"><span class="keyword">case</span> NSOrderedDescending:</div><div class="line">NSLog(@<span class="string">"现在时间大于比较时间"</span>);</div><div class="line"><span class="built_in">break</span>;</div><div class="line">default:</div><div class="line">NSLog(@<span class="string">"错误"</span>);</div><div class="line"><span class="built_in">break</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-
           
         
       
@@ -1520,7 +1520,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
