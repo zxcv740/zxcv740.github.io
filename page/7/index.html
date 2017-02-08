@@ -1247,7 +1247,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/09/22/iOS 获取各种文件的路径/">
+  <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/09/22/CocoaPods 第三方库管理/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="74Lee">
@@ -1272,8 +1272,8 @@
             
               
                 
-                <a class="post-title-link" href="/2014/09/22/iOS 获取各种文件的路径/" itemprop="url">
-                  iOS 获取各种文件的路径
+                <a class="post-title-link" href="/2014/09/22/CocoaPods 第三方库管理/" itemprop="url">
+                  CocoaPods 第三方库管理
                 </a>
               
             
@@ -1306,8 +1306,8 @@
               <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
+                  <a href="/categories/CocoaPods/" itemprop="url" rel="index">
+                    <span itemprop="name">CocoaPods</span>
                   </a>
                 </span>
 
@@ -1321,8 +1321,8 @@
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
-                <a href="/2014/09/22/iOS 获取各种文件的路径/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/09/22/iOS 获取各种文件的路径/" itemprop="commentCount"></span>
+                <a href="/2014/09/22/CocoaPods 第三方库管理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/09/22/CocoaPods 第三方库管理/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1350,16 +1350,22 @@
       
         
           
-            <p>1.app主目录路径  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">NSString *homeDir = NSHomeDirectory();</div></pre></td></tr></table></figure>
-<p>2.Documents目录路径 </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);  </div><div class="line">NSString *docDir = [paths objectAtIndex:0];</div></pre></td></tr></table></figure>
-<p>3.Caches目录路径   </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);  </div><div class="line">NSString *cachesDir = [paths objectAtIndex:0];</div></pre></td></tr></table></figure>
-<p>4.tmp目录路径  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">NSString *tmpDir =  NSTemporaryDirectory();</div></pre></td></tr></table></figure>
-<p>5.程序包中一个图片资源(test.jpg)路径 </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">NSString *imagePath = [[NSBundle mainBundle] pathForResource:@<span class="string">"test"</span> ofType:@<span class="string">"jpg"</span>];</div></pre></td></tr></table></figure>
+            <p>  开发应用的时候第三方的库是不可缺少的，它能提高开发的效率。一些经常用到的库，在新的项目里用是，你又得手工的Add到项目里，用的到库多起来了，就不方便管理了。CocoaPods这个软件，可以方便的帮你管理Xcode里的第三方的库。</p>
+<p>一.CocoaPods 安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//查看</div><div class="line">gem sources -</div><div class="line">//移除</div><div class="line">gem sources --remove https://rubygems.org/</div><div class="line">//添加 </div><div class="line">gem sources <span class="_">-a</span> http://ruby.taobao.org/</div><div class="line">//安装CocoaPods</div><div class="line">sudo gem install cocoapods</div></pre></td></tr></table></figure>
+<p>二.CocoaPods 使用<br>1.新建一个CocoaPods-demo工程<br><img src="http://hexo-zxcv740.qiniudn.com/CocoaPods1.png" alt="新建一个CocoaPods-demo工程"></p>
+<p>2.新建工程结构<br><img src="http://hexo-zxcv740.qiniudn.com/CocoaPods2.png" alt="新建工程结构"></p>
+<p>3.cd到CocoaPods-demo目录<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /Users/Mac/Desktop/CocoaPods-demo</div></pre></td></tr></table></figure></p>
+<p>4.创建Podfile文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">//终端创建Podfile文件</div><div class="line">vim Podfile</div><div class="line">//编辑命令a 进入编辑输入以下文字</div><div class="line">platform :ios, <span class="string">'7.0'</span></div><div class="line">pod <span class="string">"AFNetworking"</span>, <span class="string">"~&gt; 2.0"</span></div><div class="line">//点击按键Esc, 然后保存退出命令:</div><div class="line">:wq</div><div class="line">//开始下载安装</div><div class="line">pod install</div></pre></td></tr></table></figure></p>
+<p>5.安装成功<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">bogon:CocoaPods-demo Austin$ pod install</div><div class="line">Analyzing dependencies</div><div class="line">Downloading dependencies</div><div class="line">Installing AFNetworking (2.4.1)</div><div class="line">Generating Pods project</div><div class="line">Integrating client project</div><div class="line"></div><div class="line">[!] From now on use `CocoaPods-demo.xcworkspace`.</div></pre></td></tr></table></figure></p>
+<p>6.CocoaPods工程结构<br><img src="http://hexo-zxcv740.qiniudn.com/CocoaPods3.png" alt="CocoaPods工程结构"><br>7.打开CocoaPods-demo.scworkspace<br><img src="http://hexo-zxcv740.qiniudn.com/CocoaPods4.png" alt="打开CocoaPods-demo.scworkspace"><br>8.使用AFNetworking<br><img src="http://hexo-zxcv740.qiniudn.com/CocoaPods5.png" alt="使用AFNetworking"></p>
+<p>二.git 配置</p>
+<p>###设置用户账号邮箱信息<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config --global user.name <span class="string">"zxcv740"</span></div><div class="line">git config --global user.email <span class="string">"zxcv740@qq.com"</span></div></pre></td></tr></table></figure></p>
+<p>三.SSH 配置</p>
+<p>###查看电脑上的SSH Key<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~/. ssh</div></pre></td></tr></table></figure></p>
+<p>###生成新的SSH Key,全部回车。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa -C <span class="string">"zxcv740@qq.com"</span></div></pre></td></tr></table></figure></p>
+<p>###生产的SSH Key 添加到github SSH里面 然后测试是否设置成功<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh -T git@github.com</div></pre></td></tr></table></figure></p>
+
           
         
       
