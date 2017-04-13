@@ -236,6 +236,162 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/09/22/CocoaPods 第三方库管理/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="74Lee">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="74Lee">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/09/22/CocoaPods 第三方库管理/" itemprop="url">
+                  CocoaPods 第三方库管理
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-09-22T08:38:00+08:00">
+                2014-09-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CocoaPods/" itemprop="url" rel="index">
+                    <span itemprop="name">CocoaPods</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2014/09/22/CocoaPods 第三方库管理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/09/22/CocoaPods 第三方库管理/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>  开发应用的时候第三方的库是不可缺少的，它能提高开发的效率。一些经常用到的库，在新的项目里用是，你又得手工的Add到项目里，用的到库多起来了，就不方便管理了。CocoaPods这个软件，可以方便的帮你管理Xcode里的第三方的库。</p>
+<p>一.CocoaPods 安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//查看</div><div class="line">gem sources -</div><div class="line">//移除</div><div class="line">gem sources --remove https://rubygems.org/</div><div class="line">//添加 </div><div class="line">gem sources <span class="_">-a</span> http://ruby.taobao.org/</div><div class="line">//安装CocoaPods</div><div class="line">sudo gem install cocoapods</div></pre></td></tr></table></figure>
+<p>二.CocoaPods 使用<br>1.新建一个CocoaPods-demo工程<br><img src="http://hexo-zxcv740.qiniudn.com/CocoaPods1.png" alt="新建一个CocoaPods-demo工程"></p>
+<p>2.新建工程结构<br><img src="http://hexo-zxcv740.qiniudn.com/CocoaPods2.png" alt="新建工程结构"></p>
+<p>3.cd到CocoaPods-demo目录<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /Users/Mac/Desktop/CocoaPods-demo</div></pre></td></tr></table></figure></p>
+<p>4.创建Podfile文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">//终端创建Podfile文件</div><div class="line">vim Podfile</div><div class="line">//编辑命令a 进入编辑输入以下文字</div><div class="line">platform :ios, <span class="string">'7.0'</span></div><div class="line">pod <span class="string">"AFNetworking"</span>, <span class="string">"~&gt; 2.0"</span></div><div class="line">//点击按键Esc, 然后保存退出命令:</div><div class="line">:wq</div><div class="line">//开始下载安装</div><div class="line">pod install</div></pre></td></tr></table></figure></p>
+<p>5.安装成功<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">bogon:CocoaPods-demo Austin$ pod install</div><div class="line">Analyzing dependencies</div><div class="line">Downloading dependencies</div><div class="line">Installing AFNetworking (2.4.1)</div><div class="line">Generating Pods project</div><div class="line">Integrating client project</div><div class="line"></div><div class="line">[!] From now on use `CocoaPods-demo.xcworkspace`.</div></pre></td></tr></table></figure></p>
+<p>6.CocoaPods工程结构<br><img src="http://hexo-zxcv740.qiniudn.com/CocoaPods3.png" alt="CocoaPods工程结构"><br>7.打开CocoaPods-demo.scworkspace<br><img src="http://hexo-zxcv740.qiniudn.com/CocoaPods4.png" alt="打开CocoaPods-demo.scworkspace"><br>8.使用AFNetworking<br><img src="http://hexo-zxcv740.qiniudn.com/CocoaPods5.png" alt="使用AFNetworking"></p>
+<p>二.git 配置</p>
+<p>###设置用户账号邮箱信息<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config --global user.name <span class="string">"zxcv740"</span></div><div class="line">git config --global user.email <span class="string">"zxcv740@qq.com"</span></div></pre></td></tr></table></figure></p>
+<p>三.SSH 配置</p>
+<p>###查看电脑上的SSH Key<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~/. ssh</div></pre></td></tr></table></figure></p>
+<p>###生成新的SSH Key,全部回车。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa -C <span class="string">"zxcv740@qq.com"</span></div></pre></td></tr></table></figure></p>
+<p>###生产的SSH Key 添加到github SSH里面 然后测试是否设置成功<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh -T git@github.com</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/09/22/iOS 隐藏状态栏/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1246,160 +1402,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/06/09/MAC 系统的启动过程和系统启动时运行shell 脚本/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="74Lee">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="74Lee">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/06/09/MAC 系统的启动过程和系统启动时运行shell 脚本/" itemprop="url">
-                  MAC 系统的启动过程和系统启动时运行shell 脚本
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-06-09T13:04:07+08:00">
-                2014-06-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Mac-OS-X/" itemprop="url" rel="index">
-                    <span itemprop="name">Mac OS X</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <a href="/2014/06/09/MAC 系统的启动过程和系统启动时运行shell 脚本/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/06/09/MAC 系统的启动过程和系统启动时运行shell 脚本/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>一、 Mac 开机启动脚本（系统启动时运行shell）</p>
-<p>1.在开机启动的时候可以通过图形化界面来设置：<br>system prefernce–&gt;Accounts–&gt;LogItems–&gt;add</p>
-<p>2.把shell放到/Labrary/Startupitems/目录中。</p>
-<p>3.创建/etc/rc.local文件,把脚本写在文件中。</p>
-<p>4.只启动shell,还有一种:<br>    1) 把Terminate 设置为开机启动。这样当系统启动时，可以自动运行shell。<br>    2) 在用户目录下创建或修改”.profile”。当shell 启动时，先运行”.profile” 文件<br>    3) 在”.profile” 中调用想要执行的shell 脚本</p>
-<p>5)  应用Mac的launchd,可以参见:<a href="http://cb.esast.com/cb/wiki/10020" target="_blank" rel="external">地址</a></p>
-<p>注： 苹果的安全检查：用上面说过的2，3 方法时，必须设置文件的用户id 和组id，还有文件的运行权限。具体方法，下文有述。<br>    当设置完成后，可以在终端上用SystemStarter 来调试配置的信息<br>    命令为：SystemStarter -n -D<br>    根据提示的信息可以查看配置的问题。</p>
-<p>二、 解决“Insecure Startup Item disabled.错误”</p>
-<p>可以把想要启动的shell 放到/Labrary/Startupitems/ 目录中。</p>
-<p>必须改变文件的用户id 和组id 才可以，并且权限为755</p>
-<p>sudo chown -R root:wheel /Library/StartupItems/xxx</p>
-<p>sudo chmod -R 755 /Library/StartupItems/xxx</p>
-<p>(如果运行的是shell 文件，则命令中不用加 -R 选项)</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1445,7 +1447,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">127</span>
+              <span class="site-state-item-count">128</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>

@@ -1,0 +1,1080 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="音视频技术简介由于时间不是很充裕，为了方便大家，从零开始学习音视频技术，需要大家注意的是，本文主要讲解一些理论知识和流程方面，不涉及相关具体细节和编程相关。
+首先在我们的生活中，自己的电脑中有各种不同格式的电源文件，例如avi、mp4、rmvb、mkv等等，这里的格式其实就是代表的封装格式。封装简单的理解就是把视频数据和音频数据打包成一个文件的规范。
+音视频技术主要为以下几个技术要点：
+
+封装技术">
+<meta property="og:type" content="article">
+<meta property="og:title" content="音视频技术">
+<meta property="og:url" content="http://74lee.com/2017/04/13/音视频技术/index.html">
+<meta property="og:site_name" content="74Lee">
+<meta property="og:description" content="音视频技术简介由于时间不是很充裕，为了方便大家，从零开始学习音视频技术，需要大家注意的是，本文主要讲解一些理论知识和流程方面，不涉及相关具体细节和编程相关。
+首先在我们的生活中，自己的电脑中有各种不同格式的电源文件，例如avi、mp4、rmvb、mkv等等，这里的格式其实就是代表的封装格式。封装简单的理解就是把视频数据和音频数据打包成一个文件的规范。
+音视频技术主要为以下几个技术要点：
+
+封装技术">
+<meta property="og:image" content="http://7o50py.com1.z0.glb.clouddn.com/14920485971458.jpg">
+<meta property="og:image" content="http://7o50py.com1.z0.glb.clouddn.com/14920486897432.jpg">
+<meta property="og:image" content="http://7o50py.com1.z0.glb.clouddn.com/14920486396566.jpg">
+<meta property="og:image" content="http://7o50py.com1.z0.glb.clouddn.com/14920487445972.jpg">
+<meta property="og:image" content="http://7o50py.com1.z0.glb.clouddn.com/14920503640445.jpg">
+<meta property="og:image" content="http://7o50py.com1.z0.glb.clouddn.com/14920503784028.jpg">
+<meta property="og:image" content="http://7o50py.com1.z0.glb.clouddn.com/14920504460821.jpg">
+<meta property="og:image" content="http://7o50py.com1.z0.glb.clouddn.com/14920504664562.jpg">
+<meta property="og:image" content="http://7o50py.com1.z0.glb.clouddn.com/%E8%A7%86%E9%A2%91%E8%A7%A3%E7%A0%81.jpg">
+<meta property="og:image" content="http://7o50py.com1.z0.glb.clouddn.com/14920508384755.jpg">
+<meta property="og:image" content="http://7o50py.com1.z0.glb.clouddn.com/14920509444869.jpg">
+<meta property="og:image" content="http://7o50py.com1.z0.glb.clouddn.com/14920509769334.jpg">
+<meta property="og:image" content="http://7o50py.com1.z0.glb.clouddn.com/14920509867329.jpg">
+<meta property="og:updated_time" content="2017-04-13T02:58:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="音视频技术">
+<meta name="twitter:description" content="音视频技术简介由于时间不是很充裕，为了方便大家，从零开始学习音视频技术，需要大家注意的是，本文主要讲解一些理论知识和流程方面，不涉及相关具体细节和编程相关。
+首先在我们的生活中，自己的电脑中有各种不同格式的电源文件，例如avi、mp4、rmvb、mkv等等，这里的格式其实就是代表的封装格式。封装简单的理解就是把视频数据和音频数据打包成一个文件的规范。
+音视频技术主要为以下几个技术要点：
+
+封装技术">
+<meta name="twitter:image" content="http://7o50py.com1.z0.glb.clouddn.com/14920485971458.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://74lee.com/2017/04/13/音视频技术/"/>
+
+
+
+
+
+  <title> 音视频技术 | 74Lee </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">74Lee</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Insist on yourself,believe yourself,forever...</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://74lee.com/2017/04/13/音视频技术/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="74Lee">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="74Lee">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                音视频技术
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-13T11:15:00+08:00">
+                2017-04-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2017/04/13/音视频技术/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/13/音视频技术/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="音视频技术"><a href="#音视频技术" class="headerlink" title="音视频技术"></a>音视频技术</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>由于时间不是很充裕，为了方便大家，从零开始学习音视频技术，需要大家注意的是，本文主要讲解一些理论知识和流程方面，不涉及相关具体细节和编程相关。</p>
+<p>首先在我们的生活中，自己的电脑中有各种不同格式的电源文件，例如avi、mp4、rmvb、mkv等等，这里的格式其实就是代表的封装格式。封装简单的理解就是把视频数据和音频数据打包成一个文件的规范。</p>
+<p>音视频技术主要为以下几个技术要点：</p>
+<ul>
+<li>封装技术</li>
+<li>音视频压缩编码技术</li>
+<li>音视频解码技术</li>
+<li>流媒体协议技术（网络传输）</li>
+</ul>
+<a id="more"></a>
+<h2 id="IPCamera详解"><a href="#IPCamera详解" class="headerlink" title="IPCamera详解"></a>IPCamera详解</h2><ul>
+<li>网络摄像头，IP Camera产生数字视频流，并将视频流通过无线网络传输的摄像头</li>
+<li>IPCamera = 摄像机+网络视频模块</li>
+</ul>
+<h2 id="IPCamera模组"><a href="#IPCamera模组" class="headerlink" title="IPCamera模组"></a>IPCamera模组</h2><ul>
+<li>镜头IR-CUT</li>
+<li>图像传感器（Sensor）</li>
+<li>数字信号处理器（DPS）</li>
+<li>H264编码RTSP协议</li>
+</ul>
+<p><img src="http://7o50py.com1.z0.glb.clouddn.com/14920485971458.jpg" alt="14920485971458"><br><img src="http://7o50py.com1.z0.glb.clouddn.com/14920486897432.jpg" alt="14920486897432"></p>
+<h2 id="IPCamera服务端"><a href="#IPCamera服务端" class="headerlink" title="IPCamera服务端"></a>IPCamera服务端</h2><p><img src="http://7o50py.com1.z0.glb.clouddn.com/14920486396566.jpg" alt="14920486396566"></p>
+<h2 id="视频播放原理"><a href="#视频播放原理" class="headerlink" title="视频播放原理"></a>视频播放原理</h2><p><img src="http://7o50py.com1.z0.glb.clouddn.com/14920487445972.jpg" alt="14920487445972"></p>
+<h3 id="解协议"><a href="#解协议" class="headerlink" title="解协议"></a>解协议</h3><ul>
+<li>解协议的作用就是将协议的数据，解析为标准的封装格式数据</li>
+<li>HTTP\RTSP\RTMP\MMS等等数据</li>
+<li>协议会携带一些指令数据，用于控制播放、暂停、停止、网络状况的描述等等</li>
+<li>例如：RTMP协议传输数据，经过解协议操作后，输出FLV格式的数据</li>
+</ul>
+<h3 id="解封装"><a href="#解封装" class="headerlink" title="解封装"></a>解封装</h3><ul>
+<li>解封装就是将封装格式的数据分离为音视频压缩数据</li>
+<li>MP4\MKV\RMVB\TS\FLV\AVI等等</li>
+<li>将音视频数据按照一定格式放到一起</li>
+<li>比如FLV格式的数据，解封装后，输出H.264编码的视频码流和AAC编码的音频码流</li>
+</ul>
+<h3 id="解码"><a href="#解码" class="headerlink" title="解码"></a>解码</h3><ul>
+<li>解码就是将音视频压缩编码数据，解码成为非压缩的音视频原始数据</li>
+<li>音频的压缩编码标准有AAC\MP3\AC-3等等</li>
+<li>视频的压缩编码有H264\MPEG2等等</li>
+<li>解码最重要、也是最复杂的一个环节</li>
+<li>视频解码后一般为YUV420P或RGB等等</li>
+<li>音频解码后一般为PCM数据</li>
+</ul>
+<h3 id="流媒体协议"><a href="#流媒体协议" class="headerlink" title="流媒体协议"></a>流媒体协议</h3><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>推出机构</th>
+<th>传输层协议</th>
+<th>客户端</th>
+<th>目前使用领域</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RTSP+RTP</td>
+<td>IETF</td>
+<td>TCP+UDP</td>
+<td>VLC,WMP</td>
+<td>IPTV</td>
+</tr>
+<tr>
+<td>RTMP</td>
+<td>Adobe</td>
+<td>TCP</td>
+<td>Flash</td>
+<td>互联网直播</td>
+</tr>
+<tr>
+<td>RTMFP</td>
+<td>Adobe</td>
+<td>UDP</td>
+<td>Flash</td>
+<td>互联网直播</td>
+</tr>
+<tr>
+<td>MMS</td>
+<td>Microsoft</td>
+<td>TCP/UDP</td>
+<td>WMP</td>
+<td>互联网直播+点播</td>
+</tr>
+<tr>
+<td>HTTP</td>
+<td>WWW+IETF</td>
+<td>TCP</td>
+<td>Flash</td>
+<td>互联网点播</td>
+</tr>
+</tbody>
+</table>
+<h3 id="封装格式"><a href="#封装格式" class="headerlink" title="封装格式"></a>封装格式</h3><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>推出机构</th>
+<th>流媒体</th>
+<th>支持视频的编码</th>
+<th>支持视频的编码</th>
+<th>目前使用领域</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AVI</td>
+<td>Misrosoft</td>
+<td>不支持</td>
+<td>几乎所有格式</td>
+<td>几乎所有格式</td>
+<td>BT下载影视</td>
+</tr>
+<tr>
+<td>MP4</td>
+<td>MPEG</td>
+<td>支持</td>
+<td>MPEG-2,MPEG-4,H264…</td>
+<td>AAC,MPEG-1 Layers,AC-3</td>
+<td>互联网视频网站</td>
+</tr>
+<tr>
+<td>TS</td>
+<td>MPEG</td>
+<td>支持</td>
+<td>MPEG-2,MPEG-4,H264…</td>
+<td>MPEG-1 Layers,AAC…</td>
+<td>IPTV,数字电视</td>
+</tr>
+<tr>
+<td>FLV</td>
+<td>Adobe</td>
+<td>支持</td>
+<td>VP6,H264</td>
+<td>MP3,ADPCM,PCM,AAC等等</td>
+<td>互联网视频网站</td>
+</tr>
+<tr>
+<td>MKV</td>
+<td>CoreCodec</td>
+<td>支持</td>
+<td>几乎所有格式</td>
+<td>几乎所有格式</td>
+<td>互联网视频网站</td>
+</tr>
+<tr>
+<td>RMVB</td>
+<td>Real Networks</td>
+<td>支持</td>
+<td>RealVideo8,9,10</td>
+<td>AAC,Cook Codec,</td>
+<td>BT下载影视</td>
+</tr>
+</tbody>
+</table>
+<h3 id="视频编码"><a href="#视频编码" class="headerlink" title="视频编码"></a>视频编码</h3><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>推出机构</th>
+<th>推出时间</th>
+<th>目前使用领域</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HEVC(H.265)</td>
+<td>MPEG/ITU-T</td>
+<td>2013</td>
+<td>研发中</td>
+</tr>
+<tr>
+<td>H.264</td>
+<td>MPEG/ITU-T</td>
+<td>2003</td>
+<td>各个领域</td>
+</tr>
+<tr>
+<td>MPEG4</td>
+<td>MPEG</td>
+<td>2001</td>
+<td>不温不火</td>
+</tr>
+<tr>
+<td>MPEG2</td>
+<td>MPEG</td>
+<td>1994</td>
+<td>数字电视</td>
+</tr>
+<tr>
+<td>VP9</td>
+<td>Google</td>
+<td>2013</td>
+<td>研发中</td>
+</tr>
+<tr>
+<td>VP8</td>
+<td>Google</td>
+<td>2008</td>
+<td>不普及</td>
+</tr>
+<tr>
+<td>VC-1</td>
+<td>Microsoft</td>
+<td>2006</td>
+<td>微软平台</td>
+</tr>
+</tbody>
+</table>
+<h3 id="音频编码"><a href="#音频编码" class="headerlink" title="音频编码"></a>音频编码</h3><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>推出机构</th>
+<th>推出时间</th>
+<th>目前使用领域</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AAC</td>
+<td>MPEG</td>
+<td>1997</td>
+<td>各个领域（新）</td>
+</tr>
+<tr>
+<td>AC-3</td>
+<td>Dolby</td>
+<td>1992</td>
+<td>电影</td>
+</tr>
+<tr>
+<td>MP3</td>
+<td>MPEG</td>
+<td>1993</td>
+<td>各个领域（旧）</td>
+</tr>
+<tr>
+<td>WMA</td>
+<td>Microsoft</td>
+<td>1999</td>
+<td>微软平台</td>
+</tr>
+</tbody>
+</table>
+<h3 id="RTSP协议"><a href="#RTSP协议" class="headerlink" title="RTSP协议"></a>RTSP协议</h3><ul>
+<li>RTSP（Real-TimeStream Protocol）是一种基于文本的应用层协议</li>
+<li>“网络远程控制”角色，媒体传送通过RTP/RTCP协议完成</li>
+<li>OPIONS、DESCRIBE、SETUP、PLAY、TEARDOWN</li>
+</ul>
+<h2 id="FFmpeg"><a href="#FFmpeg" class="headerlink" title="FFmpeg"></a>FFmpeg</h2><ul>
+<li>FFmpeg是一个非常快的音视频编解码</li>
+<li>FFmpeg就是通常我们所说的软解</li>
+<li>常用视频解码，用于做万能播放器</li>
+</ul>
+<p><img src="http://7o50py.com1.z0.glb.clouddn.com/14920503640445.jpg" alt="14920503640445"></p>
+<p><img src="http://7o50py.com1.z0.glb.clouddn.com/14920503784028.jpg" alt="14920503784028"></p>
+<h3 id="iOS-FFmpeg编译"><a href="#iOS-FFmpeg编译" class="headerlink" title="iOS FFmpeg编译"></a>iOS FFmpeg编译</h3><ul>
+<li>下载源码<a href="https://ffmpeg.org/download.html" target="_blank" rel="external">FFmpeg</a></li>
+<li>使用脚本编译<a href="https://github.com/kewlbear/FFmpeg-iOS-build-script" target="_blank" rel="external">FFmpeg-iOS-build-script</a></li>
+<li>编译完成，开始使用</li>
+</ul>
+<p><img src="http://7o50py.com1.z0.glb.clouddn.com/14920504460821.jpg" alt="14920504460821"></p>
+<h3 id="FFmpeg使用"><a href="#FFmpeg使用" class="headerlink" title="FFmpeg使用"></a>FFmpeg使用</h3><ul>
+<li>简单流程</li>
+</ul>
+<p><img src="http://7o50py.com1.z0.glb.clouddn.com/14920504664562.jpg" alt="14920504664562"></p>
+<ul>
+<li>详细流程</li>
+</ul>
+<p><img src="http://7o50py.com1.z0.glb.clouddn.com/%E8%A7%86%E9%A2%91%E8%A7%A3%E7%A0%81.jpg" alt=""></p>
+<h2 id="移动端流媒体播放实际流程"><a href="#移动端流媒体播放实际流程" class="headerlink" title="移动端流媒体播放实际流程"></a>移动端流媒体播放实际流程</h2><ul>
+<li>初始化引擎（InitEngine）</li>
+<li>连接流(Connection Stream)</li>
+<li>读包（Read Packets）</li>
+<li>流管理系统（Streams Management）</li>
+<li>解码（DecodeVideo）</li>
+<li>渲染（Render）</li>
+</ul>
+<h3 id="初始化引擎（InitEngine）"><a href="#初始化引擎（InitEngine）" class="headerlink" title="初始化引擎（InitEngine）"></a>初始化引擎（InitEngine）</h3><ul>
+<li><code>avcodec_register_all()</code></li>
+<li><code>av_register_all()</code></li>
+<li><code>avformat_network_init（）</code></li>
+<li><code>av_log_set_level(AV_LOG_QUIET)</code></li>
+</ul>
+<h3 id="连接流-Connection-Stream"><a href="#连接流-Connection-Stream" class="headerlink" title="连接流(Connection Stream)"></a>连接流(Connection Stream)</h3><ul>
+<li>初始化<code>avformat_alloc_context()</code></li>
+<li>打开前先检查协议（rtsp,mms,http,rtmp…）</li>
+<li>打开流<code>avformat_open_input()</code></li>
+<li>检查流获取流信息<code>avformat_find_stream_info()</code></li>
+<li>然后初始化音视频流管理系统</li>
+</ul>
+<h3 id="读包-Read-Packets"><a href="#读包-Read-Packets" class="headerlink" title="读包(Read Packets)"></a>读包(Read Packets)</h3><ul>
+<li>开启读包线程</li>
+<li>while循环不断读取<code>av_read_frame()</code></li>
+<li>把音视频分别加入对应的流管理系统</li>
+<li>通知播放音频和渲染视频</li>
+</ul>
+<h3 id="流管理系统（Streams-Management）"><a href="#流管理系统（Streams-Management）" class="headerlink" title="流管理系统（Streams Management）"></a>流管理系统（Streams Management）</h3><ul>
+<li>打开音视频解码器</li>
+<li>获取音视频流信息，视频宽高等等</li>
+<li>设置音频音量</li>
+<li>获取视频数据YUV/RGB</li>
+</ul>
+<h3 id="解码-Decode-Video"><a href="#解码-Decode-Video" class="headerlink" title="解码(Decode Video)"></a>解码(Decode Video)</h3><ul>
+<li>音频解码<code>avcodec_decode_audio4()</code></li>
+<li>音频使用AudioToolBox.framework播放</li>
+<li>视频解码<code>avcodec_decode_video2()</code></li>
+<li>视频解码之后缓存帧buffer</li>
+<li>视频使用OpenGL ES渲染播放</li>
+</ul>
+<h3 id="渲染-Render"><a href="#渲染-Render" class="headerlink" title="渲染(Render)"></a>渲染(Render)</h3><ul>
+<li>获取每帧画面的YUV数据或RGB数据</li>
+<li>设置OpenGL ES环境</li>
+<li>编译Shader脚本语言</li>
+<li>YUV或RGB贴图显示</li>
+</ul>
+<p><img src="http://7o50py.com1.z0.glb.clouddn.com/14920508384755.jpg" alt="14920508384755"></p>
+<h4 id="VertexShader"><a href="#VertexShader" class="headerlink" title="VertexShader"></a>VertexShader</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">attribute vec4 position;</div><div class="line">attribute vec2 texCoordIn;</div><div class="line">varying vec2 texCoordOut;</div><div class="line"></div><div class="line">void main() &#123;</div><div class="line">   gl_Position = position;</div><div class="line">   texCoordOut = texCoordIn;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="FragmentShader"><a href="#FragmentShader" class="headerlink" title="FragmentShader"></a>FragmentShader</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">precision highp float;</div><div class="line">varying highp vec2 texCoordOut;</div><div class="line">uniform sampler2D s_texture_y;</div><div class="line">uniform sampler2D s_texture_u;</div><div class="line">uniform sampler2D s_texture_v;</div><div class="line"></div><div class="line">const highp vec3 W = vec3(0.2125, 0.7154, 0.0721);</div><div class="line"></div><div class="line">void main()</div><div class="line">&#123;</div><div class="line">    highp float y = texture2D(s_texture_y, texCoordOut).r;</div><div class="line">    highp float u = texture2D(s_texture_u, texCoordOut).r - 0.5;</div><div class="line">    highp float v = texture2D(s_texture_v, texCoordOut).r - 0.5;</div><div class="line">    </div><div class="line">    highp float r = y + 1.13983 * v;</div><div class="line">    highp float g = y - 0.39465 * u - 0.58060 * v;</div><div class="line">    highp float b = y + 2.03211 * u;</div><div class="line">    </div><div class="line">    gl_FragColor = vec4(vec3(r,g,b),1.0);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="硬解"><a href="#硬解" class="headerlink" title="硬解"></a>硬解</h2><ul>
+<li>FFmpeg是使用CPU进行软解的，占用CPU资源，编解码效率不高</li>
+<li>硬解，一般系统会提供专业处理器对视频流进行编解码</li>
+<li>iOS8.0之前没有开放，私有API的形式</li>
+<li>iOS8.0之后开放，即VideoToolBox.framework<br><img src="http://7o50py.com1.z0.glb.clouddn.com/14920509444869.jpg" alt="14920509444869"></li>
+</ul>
+<h3 id="H264码流结构"><a href="#H264码流结构" class="headerlink" title="H264码流结构"></a>H264码流结构</h3><ul>
+<li>提取sps和pps生成format description</li>
+<li>每个NALU的开始码是0x00 00 01，按照开始码定位NALU。</li>
+<li>通过类型信息找到sps和pps并提取，开始码后第一个byte的后5位，7代表sps，8代表pps。</li>
+</ul>
+<p><img src="http://7o50py.com1.z0.glb.clouddn.com/14920509769334.jpg" alt="14920509769334"></p>
+<p><img src="http://7o50py.com1.z0.glb.clouddn.com/14920509867329.jpg" alt="14920509867329"></p>
+<h3 id="CVPixelBufferRef"><a href="#CVPixelBufferRef" class="headerlink" title="CVPixelBufferRef"></a>CVPixelBufferRef</h3><p>CoreVideo.framework，通过CVPixelBufferRef获取Y纹理，和UV纹理，然后渲染显示</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">CV_EXPORT CVReturn CVOpenGLESTextureCacheCreateTextureFromImage(</div><div class="line">    <span class="built_in">CFAllocatorRef</span> CV_NULLABLE allocator,</div><div class="line">    CVOpenGLESTextureCacheRef CV_NONNULL textureCache,</div><div class="line">    CVImageBufferRef CV_NONNULL sourceImage,</div><div class="line">    <span class="built_in">CFDictionaryRef</span> CV_NULLABLE textureAttributes,</div><div class="line">    GLenum target,</div><div class="line">    GLint internalFormat,</div><div class="line">    GLsizei width,</div><div class="line">    GLsizei height,</div><div class="line">    GLenum format,</div><div class="line">    GLenum type,</div><div class="line">    size_t planeIndex,</div><div class="line">    CV_RETURNS_RETAINED_PARAMETER CVOpenGLESTextureRef CV_NULLABLE * CV_NONNULL textureOut ) __OSX_AVAILABLE_STARTING(__MAC_NA,__IPHONE_5_0);</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/01/Swift RxSwift（三）/" rel="next" title="Swift RxSwift（三）">
+                <i class="fa fa-chevron-left"></i> Swift RxSwift（三）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2017/04/13/音视频技术/"
+     data-title="音视频技术"
+     data-content=""
+     data-url="http://74lee.com/2017/04/13/音视频技术/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/04/13/音视频技术/"
+           data-title="音视频技术" data-url="http://74lee.com/2017/04/13/音视频技术/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="74Lee" />
+          <p class="site-author-name" itemprop="name">74Lee</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">128</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="//github.com/zxcv740/" title="github" target="_blank">github</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://stackoverflow.com/users/4065296/zxcv740" title="stackoverflow" target="_blank">stackoverflow</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://weibo.com/u/1894668544" title="sina" target="_blank">sina</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://twitter.com/zxcv740" title="twitter" target="_blank">twitter</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://zasper.net/" title="jasper blog" target="_blank">jasper blog</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#音视频技术"><span class="nav-number">1.</span> <span class="nav-text">音视频技术</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IPCamera详解"><span class="nav-number">1.2.</span> <span class="nav-text">IPCamera详解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IPCamera模组"><span class="nav-number">1.3.</span> <span class="nav-text">IPCamera模组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IPCamera服务端"><span class="nav-number">1.4.</span> <span class="nav-text">IPCamera服务端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#视频播放原理"><span class="nav-number">1.5.</span> <span class="nav-text">视频播放原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解协议"><span class="nav-number">1.5.1.</span> <span class="nav-text">解协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解封装"><span class="nav-number">1.5.2.</span> <span class="nav-text">解封装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解码"><span class="nav-number">1.5.3.</span> <span class="nav-text">解码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流媒体协议"><span class="nav-number">1.5.4.</span> <span class="nav-text">流媒体协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#封装格式"><span class="nav-number">1.5.5.</span> <span class="nav-text">封装格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#视频编码"><span class="nav-number">1.5.6.</span> <span class="nav-text">视频编码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#音频编码"><span class="nav-number">1.5.7.</span> <span class="nav-text">音频编码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RTSP协议"><span class="nav-number">1.5.8.</span> <span class="nav-text">RTSP协议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FFmpeg"><span class="nav-number">1.6.</span> <span class="nav-text">FFmpeg</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#iOS-FFmpeg编译"><span class="nav-number">1.6.1.</span> <span class="nav-text">iOS FFmpeg编译</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FFmpeg使用"><span class="nav-number">1.6.2.</span> <span class="nav-text">FFmpeg使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移动端流媒体播放实际流程"><span class="nav-number">1.7.</span> <span class="nav-text">移动端流媒体播放实际流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化引擎（InitEngine）"><span class="nav-number">1.7.1.</span> <span class="nav-text">初始化引擎（InitEngine）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连接流-Connection-Stream"><span class="nav-number">1.7.2.</span> <span class="nav-text">连接流(Connection Stream)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#读包-Read-Packets"><span class="nav-number">1.7.3.</span> <span class="nav-text">读包(Read Packets)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流管理系统（Streams-Management）"><span class="nav-number">1.7.4.</span> <span class="nav-text">流管理系统（Streams Management）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解码-Decode-Video"><span class="nav-number">1.7.5.</span> <span class="nav-text">解码(Decode Video)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#渲染-Render"><span class="nav-number">1.7.6.</span> <span class="nav-text">渲染(Render)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#VertexShader"><span class="nav-number">1.7.6.1.</span> <span class="nav-text">VertexShader</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FragmentShader"><span class="nav-number">1.7.6.2.</span> <span class="nav-text">FragmentShader</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#硬解"><span class="nav-number">1.8.</span> <span class="nav-text">硬解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#H264码流结构"><span class="nav-number">1.8.1.</span> <span class="nav-text">H264码流结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CVPixelBufferRef"><span class="nav-number">1.8.2.</span> <span class="nav-text">CVPixelBufferRef</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">74Lee</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"74Lee"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
