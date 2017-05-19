@@ -92,7 +92,7 @@
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="74Lee">
-<meta property="og:url" content="http://74lee.com/page/5/index.html">
+<meta property="og:url" content="http://blog.74lee.com/page/5/index.html">
 <meta property="og:site_name" content="74Lee">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="74Lee">
@@ -123,7 +123,7 @@
 
 
 
-  <link rel="canonical" href="http://74lee.com/page/5/"/>
+  <link rel="canonical" href="http://blog.74lee.com/page/5/"/>
 
 
 
@@ -251,7 +251,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/23/OpenGL 新手入门/">
+    <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2014/10/23/OpenGL 新手入门/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="74Lee">
@@ -416,7 +416,154 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/22/OpenGL glTexImage2D/">
+    <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2014/10/22/iOS Copy 和mutableCopy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="74Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="74Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/10/22/iOS Copy 和mutableCopy/" itemprop="url">iOS Copy 和mutableCopy</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-22T08:38:00+08:00">
+                2014-10-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/10/22/iOS Copy 和mutableCopy/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/22/iOS Copy 和mutableCopy/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天在使用copy和mutableCopy出现了错误。<br>    在ios中并不是所有的对象都支持copy，mutableCopy，遵守NSCopying协议的类可以发送copy消息，遵守NSMutableCopying 协议的类才<br>可以发送mutableCopy消息。<br>    假如发送了一个没有遵守上诉两协议而发送copy或者 mutableCopy,那么就会发生异常。但是默认的ios类并没有遵<br>守这两个协议。<br>    如果想自定义一下copy 那么就必须遵守NSCopying,并且实现 copyWithZone: 方法，如果想自定义一下mutableCopy 那么就必须遵守NSMutableCopying,并且实现 mutableCopyWithZone: 方法。</p>
+<p>一、在需要的地放遵守NSCopying和NSMutableCopying协议,才能调用copy</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">//首先在类里面遵守&lt;NSCopying,NSMutableCopying&gt; 协议</div><div class="line"></div><div class="line">@interface ColorPlane : NSObject&lt;NSCopying,NSMutableCopying&gt;</div><div class="line"></div><div class="line">///Frame<span class="string">'s color data size</span></div><div class="line">@property (nonatomic, assign) int size;</div><div class="line"></div><div class="line">///Frame's color data</div><div class="line">@property (nonatomic, assign) UInt8 *data;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>二、在ColorPlane.m文件里面实现协议<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">@implementation ColorPlane</div><div class="line"></div><div class="line">- (id)init &#123;</div><div class="line">    self = [super init];</div><div class="line">    <span class="built_in">return</span> self;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (id)copyWithZone:(NSZone *)zone</div><div class="line">&#123;</div><div class="line">    ColorPlane *copy = [[[self class] allocWithZone:zone] init];</div><div class="line"></div><div class="line">    copy.size=self.size;</div><div class="line">    copy.data =self.data;</div><div class="line">    <span class="built_in">return</span> copy;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (id)mutableCopyWithZone:(NSZone *)zone</div><div class="line">&#123;</div><div class="line">    ColorPlane *copy = [[[self class] allocWithZone:zone] init];</div><div class="line">    copy.size=self.size;</div><div class="line">    copy.data =self.data;</div><div class="line">    <span class="built_in">return</span> copy;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">- (void)dealloc &#123;</div><div class="line">    <span class="keyword">if</span> (_data &amp;&amp; _size) &#123;</div><div class="line">        free(_data);</div><div class="line">        _data = NULL;</div><div class="line">    &#125;</div><div class="line">    [super dealloc];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2014/10/22/OpenGL glTexImage2D/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="74Lee">
@@ -565,7 +712,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/22/OpenGL 常用函数手册/">
+    <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2014/10/22/OpenGL 常用函数手册/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="74Lee">
@@ -711,307 +858,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/22/iOS Copy 和mutableCopy/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="74Lee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="74Lee">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/10/22/iOS Copy 和mutableCopy/" itemprop="url">iOS Copy 和mutableCopy</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-22T08:38:00+08:00">
-                2014-10-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2014/10/22/iOS Copy 和mutableCopy/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/22/iOS Copy 和mutableCopy/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>今天在使用copy和mutableCopy出现了错误。<br>    在ios中并不是所有的对象都支持copy，mutableCopy，遵守NSCopying协议的类可以发送copy消息，遵守NSMutableCopying 协议的类才<br>可以发送mutableCopy消息。<br>    假如发送了一个没有遵守上诉两协议而发送copy或者 mutableCopy,那么就会发生异常。但是默认的ios类并没有遵<br>守这两个协议。<br>    如果想自定义一下copy 那么就必须遵守NSCopying,并且实现 copyWithZone: 方法，如果想自定义一下mutableCopy 那么就必须遵守NSMutableCopying,并且实现 mutableCopyWithZone: 方法。</p>
-<p>一、在需要的地放遵守NSCopying和NSMutableCopying协议,才能调用copy</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">//首先在类里面遵守&lt;NSCopying,NSMutableCopying&gt; 协议</div><div class="line"></div><div class="line">@interface ColorPlane : NSObject&lt;NSCopying,NSMutableCopying&gt;</div><div class="line"></div><div class="line">///Frame<span class="string">'s color data size</span></div><div class="line">@property (nonatomic, assign) int size;</div><div class="line"></div><div class="line">///Frame's color data</div><div class="line">@property (nonatomic, assign) UInt8 *data;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
-<p>二、在ColorPlane.m文件里面实现协议<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">@implementation ColorPlane</div><div class="line"></div><div class="line">- (id)init &#123;</div><div class="line">    self = [super init];</div><div class="line">    <span class="built_in">return</span> self;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (id)copyWithZone:(NSZone *)zone</div><div class="line">&#123;</div><div class="line">    ColorPlane *copy = [[[self class] allocWithZone:zone] init];</div><div class="line"></div><div class="line">    copy.size=self.size;</div><div class="line">    copy.data =self.data;</div><div class="line">    <span class="built_in">return</span> copy;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (id)mutableCopyWithZone:(NSZone *)zone</div><div class="line">&#123;</div><div class="line">    ColorPlane *copy = [[[self class] allocWithZone:zone] init];</div><div class="line">    copy.size=self.size;</div><div class="line">    copy.data =self.data;</div><div class="line">    <span class="built_in">return</span> copy;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">- (void)dealloc &#123;</div><div class="line">    <span class="keyword">if</span> (_data &amp;&amp; _size) &#123;</div><div class="line">        free(_data);</div><div class="line">        _data = NULL;</div><div class="line">    &#125;</div><div class="line">    [super dealloc];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/15/Hexo GitHub SSH 配置/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="74Lee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="74Lee">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/10/15/Hexo GitHub SSH 配置/" itemprop="url">Hexo GitHub SSH 配置</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-15T08:38:00+08:00">
-                2014-10-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">Hexo</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2014/10/15/Hexo GitHub SSH 配置/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/15/Hexo GitHub SSH 配置/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>一.Hexo 配置</p>
-<p>1.安装<a href="http://nodejs.org/download/" target="_blank" rel="external">nodejs</a>和<a href="http://git-scm.com/downloads" target="_blank" rel="external">git</a>,打开终端(或git),安装Hexo</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g hexo</div></pre></td></tr></table></figure>
-<p>###2.部署Hexo<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">hexo init /Users/Mac/Desktop/hexo </div><div class="line"><span class="built_in">cd</span> /Users/Mac/Desktop/hexo </div><div class="line">nmp install</div><div class="line">hexo g</div><div class="line">hexo s</div></pre></td></tr></table></figure></p>
-<p>二.git 配置</p>
-<p>###设置用户账号邮箱信息<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config --global user.name <span class="string">"zxcv740"</span></div><div class="line">git config --global user.email <span class="string">"zxcv740@qq.com"</span></div></pre></td></tr></table></figure></p>
-<p>三.SSH 配置</p>
-<p>###查看电脑上的SSH Key<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~/. ssh</div></pre></td></tr></table></figure></p>
-<p>###生成新的SSH Key,全部回车。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa -C <span class="string">"zxcv740@qq.com"</span></div></pre></td></tr></table></figure></p>
-<p>###生产的SSH Key 添加到github SSH里面 然后测试是否设置成功<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh -T git@github.com</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/15/黑苹果安装10.10 DP5/">
+    <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2014/10/15/黑苹果安装10.10 DP5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="74Lee">
@@ -1167,7 +1014,160 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/14/ 高等数学笔记（扫描版）/">
+    <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2014/10/15/Hexo GitHub SSH 配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="74Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="74Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/10/15/Hexo GitHub SSH 配置/" itemprop="url">Hexo GitHub SSH 配置</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-15T08:38:00+08:00">
+                2014-10-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hexo/" itemprop="url" rel="index">
+                    <span itemprop="name">Hexo</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/10/15/Hexo GitHub SSH 配置/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/15/Hexo GitHub SSH 配置/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>一.Hexo 配置</p>
+<p>1.安装<a href="http://nodejs.org/download/" target="_blank" rel="external">nodejs</a>和<a href="http://git-scm.com/downloads" target="_blank" rel="external">git</a>,打开终端(或git),安装Hexo</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g hexo</div></pre></td></tr></table></figure>
+<p>###2.部署Hexo<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">hexo init /Users/Mac/Desktop/hexo </div><div class="line"><span class="built_in">cd</span> /Users/Mac/Desktop/hexo </div><div class="line">nmp install</div><div class="line">hexo g</div><div class="line">hexo s</div></pre></td></tr></table></figure></p>
+<p>二.git 配置</p>
+<p>###设置用户账号邮箱信息<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config --global user.name <span class="string">"zxcv740"</span></div><div class="line">git config --global user.email <span class="string">"zxcv740@qq.com"</span></div></pre></td></tr></table></figure></p>
+<p>三.SSH 配置</p>
+<p>###查看电脑上的SSH Key<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~/. ssh</div></pre></td></tr></table></figure></p>
+<p>###生成新的SSH Key,全部回车。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa -C <span class="string">"zxcv740@qq.com"</span></div></pre></td></tr></table></figure></p>
+<p>###生产的SSH Key 添加到github SSH里面 然后测试是否设置成功<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh -T git@github.com</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2014/10/14/ 高等数学笔记（扫描版）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="74Lee">
@@ -1311,7 +1311,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/14/macdrive 9/">
+    <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2014/10/14/macdrive 9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="74Lee">
