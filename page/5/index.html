@@ -13,8 +13,14 @@
 
 
 
+
+
+
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
 
 
 
@@ -65,7 +71,7 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="Hexo, NexT" />
@@ -77,7 +83,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
 
 
 
@@ -98,7 +104,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post"},
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -123,7 +129,7 @@
 
 
 
-  <title> 74Lee </title>
+  <title>74Lee</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -139,36 +145,45 @@
 
 
 
+
+
+
+
+
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-left 
+  <div class="container sidebar-position-left 
    page-home 
  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">74Lee</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">74Lee</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Insist on yourself,believe yourself,forever...</p>
+      
   </div>
-  <p class="site-subtitle">Insist on yourself,believe yourself,forever...</p>
-</div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 <nav class="site-nav">
@@ -188,22 +203,22 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            About
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
           </a>
         </li>
       
@@ -236,20 +251,17 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/23/OpenGL 新手入门/">
+    <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/23/OpenGL 新手入门/">
 
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="74Lee">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="74Lee">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="74Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
     </span>
-  </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="74Lee">
+    </span>
 
     
       <header class="post-header">
@@ -257,16 +269,8 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2014/10/23/OpenGL 新手入门/" itemprop="url">
-                  OpenGL 新手入门
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2014/10/23/OpenGL 新手入门/" itemprop="url">OpenGL 新手入门</a></h1>
         
 
         <div class="post-meta">
@@ -275,7 +279,9 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-23T08:38:00+08:00">
                 2014-10-23
               </time>
@@ -288,11 +294,15 @@
 
           
             <span class="post-category" >
+            
               <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              
+                <span class="post-meta-item-text">In</span>
+              
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/OpenGL/" itemprop="url" rel="index">
@@ -310,6 +320,9 @@
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
                 <a href="/2014/10/23/OpenGL 新手入门/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/23/OpenGL 新手入门/" itemprop="commentCount"></span>
                 </a>
@@ -318,8 +331,8 @@
           
 
           
-
           
+
           
 
           
@@ -329,7 +342,6 @@
         </div>
       </header>
     
-
 
     <div class="post-body" itemprop="articleBody">
 
@@ -375,8 +387,13 @@
       
     </div>
 
+    <div>
+      
+    </div>
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -399,20 +416,17 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/22/OpenGL glTexImage2D/">
+    <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/22/OpenGL glTexImage2D/">
 
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="74Lee">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="74Lee">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="74Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
     </span>
-  </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="74Lee">
+    </span>
 
     
       <header class="post-header">
@@ -420,16 +434,8 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2014/10/22/OpenGL glTexImage2D/" itemprop="url">
-                  OpenGL glTexImage2D
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2014/10/22/OpenGL glTexImage2D/" itemprop="url">OpenGL glTexImage2D</a></h1>
         
 
         <div class="post-meta">
@@ -438,7 +444,9 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-22T08:38:00+08:00">
                 2014-10-22
               </time>
@@ -451,11 +459,15 @@
 
           
             <span class="post-category" >
+            
               <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              
+                <span class="post-meta-item-text">In</span>
+              
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/OpenGL/" itemprop="url" rel="index">
@@ -473,6 +485,9 @@
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
                 <a href="/2014/10/22/OpenGL glTexImage2D/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/22/OpenGL glTexImage2D/" itemprop="commentCount"></span>
                 </a>
@@ -481,8 +496,8 @@
           
 
           
-
           
+
           
 
           
@@ -492,7 +507,6 @@
         </div>
       </header>
     
-
 
     <div class="post-body" itemprop="articleBody">
 
@@ -522,8 +536,13 @@
       
     </div>
 
+    <div>
+      
+    </div>
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -546,20 +565,17 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/22/OpenGL 常用函数手册/">
+    <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/22/OpenGL 常用函数手册/">
 
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="74Lee">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="74Lee">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="74Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
     </span>
-  </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="74Lee">
+    </span>
 
     
       <header class="post-header">
@@ -567,16 +583,8 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2014/10/22/OpenGL 常用函数手册/" itemprop="url">
-                  OpenGL 常用函数手册
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2014/10/22/OpenGL 常用函数手册/" itemprop="url">OpenGL 常用函数手册</a></h1>
         
 
         <div class="post-meta">
@@ -585,7 +593,9 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-22T08:38:00+08:00">
                 2014-10-22
               </time>
@@ -598,11 +608,15 @@
 
           
             <span class="post-category" >
+            
               <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              
+                <span class="post-meta-item-text">In</span>
+              
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/OpenGL/" itemprop="url" rel="index">
@@ -620,6 +634,9 @@
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
                 <a href="/2014/10/22/OpenGL 常用函数手册/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/22/OpenGL 常用函数手册/" itemprop="commentCount"></span>
                 </a>
@@ -628,8 +645,8 @@
           
 
           
-
           
+
           
 
           
@@ -639,7 +656,6 @@
         </div>
       </header>
     
-
 
     <div class="post-body" itemprop="articleBody">
 
@@ -666,8 +682,13 @@
       
     </div>
 
+    <div>
+      
+    </div>
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -690,20 +711,17 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/22/iOS Copy 和mutableCopy/">
+    <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/22/iOS Copy 和mutableCopy/">
 
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="74Lee">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="74Lee">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="74Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
     </span>
-  </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="74Lee">
+    </span>
 
     
       <header class="post-header">
@@ -711,16 +729,8 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2014/10/22/iOS Copy 和mutableCopy/" itemprop="url">
-                  iOS Copy 和mutableCopy
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2014/10/22/iOS Copy 和mutableCopy/" itemprop="url">iOS Copy 和mutableCopy</a></h1>
         
 
         <div class="post-meta">
@@ -729,7 +739,9 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-22T08:38:00+08:00">
                 2014-10-22
               </time>
@@ -742,11 +754,15 @@
 
           
             <span class="post-category" >
+            
               <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              
+                <span class="post-meta-item-text">In</span>
+              
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/iOS/" itemprop="url" rel="index">
@@ -764,6 +780,9 @@
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
                 <a href="/2014/10/22/iOS Copy 和mutableCopy/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/22/iOS Copy 和mutableCopy/" itemprop="commentCount"></span>
                 </a>
@@ -772,8 +791,8 @@
           
 
           
-
           
+
           
 
           
@@ -783,7 +802,6 @@
         </div>
       </header>
     
-
 
     <div class="post-body" itemprop="articleBody">
 
@@ -811,8 +829,13 @@
       
     </div>
 
+    <div>
+      
+    </div>
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -835,20 +858,17 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/15/黑苹果安装10.10 DP5/">
+    <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/15/Hexo GitHub SSH 配置/">
 
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="74Lee">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="74Lee">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="74Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
     </span>
-  </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="74Lee">
+    </span>
 
     
       <header class="post-header">
@@ -856,16 +876,8 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2014/10/15/黑苹果安装10.10 DP5/" itemprop="url">
-                  黑苹果安装10.10 DP5
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2014/10/15/Hexo GitHub SSH 配置/" itemprop="url">Hexo GitHub SSH 配置</a></h1>
         
 
         <div class="post-meta">
@@ -874,7 +886,9 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-15T08:38:00+08:00">
                 2014-10-15
               </time>
@@ -887,11 +901,168 @@
 
           
             <span class="post-category" >
+            
               <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hexo/" itemprop="url" rel="index">
+                    <span itemprop="name">Hexo</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/10/15/Hexo GitHub SSH 配置/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/15/Hexo GitHub SSH 配置/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>一.Hexo 配置</p>
+<p>1.安装<a href="http://nodejs.org/download/" target="_blank" rel="external">nodejs</a>和<a href="http://git-scm.com/downloads" target="_blank" rel="external">git</a>,打开终端(或git),安装Hexo</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g hexo</div></pre></td></tr></table></figure>
+<p>###2.部署Hexo<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">hexo init /Users/Mac/Desktop/hexo </div><div class="line"><span class="built_in">cd</span> /Users/Mac/Desktop/hexo </div><div class="line">nmp install</div><div class="line">hexo g</div><div class="line">hexo s</div></pre></td></tr></table></figure></p>
+<p>二.git 配置</p>
+<p>###设置用户账号邮箱信息<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config --global user.name <span class="string">"zxcv740"</span></div><div class="line">git config --global user.email <span class="string">"zxcv740@qq.com"</span></div></pre></td></tr></table></figure></p>
+<p>三.SSH 配置</p>
+<p>###查看电脑上的SSH Key<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~/. ssh</div></pre></td></tr></table></figure></p>
+<p>###生成新的SSH Key,全部回车。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa -C <span class="string">"zxcv740@qq.com"</span></div></pre></td></tr></table></figure></p>
+<p>###生产的SSH Key 添加到github SSH里面 然后测试是否设置成功<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh -T git@github.com</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/15/黑苹果安装10.10 DP5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="74Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="74Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/10/15/黑苹果安装10.10 DP5/" itemprop="url">黑苹果安装10.10 DP5</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-15T08:38:00+08:00">
+                2014-10-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Hackintosh/" itemprop="url" rel="index">
@@ -909,6 +1080,9 @@
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
                 <a href="/2014/10/15/黑苹果安装10.10 DP5/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/15/黑苹果安装10.10 DP5/" itemprop="commentCount"></span>
                 </a>
@@ -917,8 +1091,8 @@
           
 
           
-
           
+
           
 
           
@@ -928,7 +1102,6 @@
         </div>
       </header>
     
-
 
     <div class="post-body" itemprop="articleBody">
 
@@ -965,8 +1138,13 @@
       
     </div>
 
+    <div>
+      
+    </div>
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -989,20 +1167,17 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/15/Hexo GitHub SSH 配置/">
+    <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/14/ 高等数学笔记（扫描版）/">
 
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="74Lee">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="74Lee">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="74Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
     </span>
-  </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="74Lee">
+    </span>
 
     
       <header class="post-header">
@@ -1010,16 +1185,8 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2014/10/15/Hexo GitHub SSH 配置/" itemprop="url">
-                  Hexo GitHub SSH 配置
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2014/10/14/ 高等数学笔记（扫描版）/" itemprop="url">高等数学笔记（扫描版）</a></h1>
         
 
         <div class="post-meta">
@@ -1028,9 +1195,11 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-15T08:38:00+08:00">
-                2014-10-15
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-14T08:38:00+08:00">
+                2014-10-14
               </time>
             
 
@@ -1041,15 +1210,19 @@
 
           
             <span class="post-category" >
+            
               <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              
+                <span class="post-meta-item-text">In</span>
+              
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">Hexo</span>
+                  <a href="/categories/Math/" itemprop="url" rel="index">
+                    <span itemprop="name">Math</span>
                   </a>
                 </span>
 
@@ -1063,16 +1236,19 @@
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
-                <a href="/2014/10/15/Hexo GitHub SSH 配置/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/15/Hexo GitHub SSH 配置/" itemprop="commentCount"></span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/10/14/ 高等数学笔记（扫描版）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/14/ 高等数学笔记（扫描版）/" itemprop="commentCount"></span>
                 </a>
               </span>
             
           
 
           
-
           
+
           
 
           
@@ -1083,7 +1259,6 @@
       </header>
     
 
-
     <div class="post-body" itemprop="articleBody">
 
       
@@ -1092,16 +1267,7 @@
       
         
           
-            <p>一.Hexo 配置</p>
-<p>1.安装<a href="http://nodejs.org/download/" target="_blank" rel="external">nodejs</a>和<a href="http://git-scm.com/downloads" target="_blank" rel="external">git</a>,打开终端(或git),安装Hexo</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g hexo</div></pre></td></tr></table></figure>
-<p>###2.部署Hexo<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">hexo init /Users/Mac/Desktop/hexo </div><div class="line"><span class="built_in">cd</span> /Users/Mac/Desktop/hexo </div><div class="line">nmp install</div><div class="line">hexo g</div><div class="line">hexo s</div></pre></td></tr></table></figure></p>
-<p>二.git 配置</p>
-<p>###设置用户账号邮箱信息<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config --global user.name <span class="string">"zxcv740"</span></div><div class="line">git config --global user.email <span class="string">"zxcv740@qq.com"</span></div></pre></td></tr></table></figure></p>
-<p>三.SSH 配置</p>
-<p>###查看电脑上的SSH Key<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~/. ssh</div></pre></td></tr></table></figure></p>
-<p>###生成新的SSH Key,全部回车。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa -C <span class="string">"zxcv740@qq.com"</span></div></pre></td></tr></table></figure></p>
-<p>###生产的SSH Key 添加到github SSH里面 然后测试是否设置成功<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh -T git@github.com</div></pre></td></tr></table></figure></p>
+            <p><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue1.jpeg" alt="1"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue2.jpeg" alt="2"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue3.jpeg" alt="3"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue4.jpeg" alt="4"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue5.jpeg" alt="5"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue6.jpeg" alt="6"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue7.jpeg" alt="7"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue8.jpeg" alt="8"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue9.jpeg" alt="9"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue10.jpeg" alt="10"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue11.jpeg" alt="11"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue12.jpeg" alt="12"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue13.jpeg" alt="13"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue14.jpeg" alt="14"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue15.jpeg" alt="15"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue16.jpeg" alt="16"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue17.jpeg" alt="17"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue18.jpeg" alt="18"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue19.jpeg" alt="19"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue20.jpeg" alt="20"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue21.jpeg" alt="21"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue22.jpeg" alt="22"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue23.jpeg" alt="23"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue24.jpeg" alt="24"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue25.jpeg" alt="25"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue26.jpeg" alt="26"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue27.jpeg" alt="27"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue28.jpeg" alt="28"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue29.jpeg" alt="29"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue30.jpeg" alt="30"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue31.jpeg" alt="31"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue32.jpeg" alt="32"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue33.jpeg" alt="33"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue34.jpeg" alt="34"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue35.jpeg" alt="35"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue36.jpeg" alt="36"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue37.jpeg" alt="37"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue38.jpeg" alt="38"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue39.jpeg" alt="39"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue40.jpeg" alt="40"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue41.jpeg" alt="41"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue42.jpeg" alt="42"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue43.jpeg" alt="43"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue44.jpeg" alt="44"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue45.jpeg" alt="45"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue46.jpeg" alt="46"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue47.jpeg" alt="47"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue48.jpeg" alt="48"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue49.jpeg" alt="49"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue50.jpeg" alt="50"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue51.jpeg" alt="51"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue52.jpeg" alt="52"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue53.jpeg" alt="53"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue54.jpeg" alt="54"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue55.jpeg" alt="55"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue56.jpeg" alt="56"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue57.jpeg" alt="57"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue58.jpeg" alt="58"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue59.jpeg" alt="59"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue60.jpeg" alt="60"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue61.jpeg" alt="61"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue62.jpeg" alt="62"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue63.jpeg" alt="63"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue64.jpeg" alt="64"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue65.jpeg" alt="65"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue66.jpeg" alt="66"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue67.jpeg" alt="67"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue68.jpeg" alt="68"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue69.jpeg" alt="69"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue70.jpeg" alt="70"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue71.jpeg" alt="71"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue72.jpeg" alt="72"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue73.jpeg" alt="73"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue74.jpeg" alt="74"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue75.jpeg" alt="75"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue76.jpeg" alt="76"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue77.jpeg" alt="77"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue78.jpeg" alt="78"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue79.jpeg" alt="79"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue80.jpeg" alt="80"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue81.jpeg" alt="81"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue82.jpeg" alt="82"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue83.jpeg" alt="83"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue84.jpeg" alt="84"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue85.jpeg" alt="85"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue86.jpeg" alt="86"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue87.jpeg" alt="87"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue88.jpeg" alt="88"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue89.jpeg" alt="89"><br><a href="http://user.qzone.qq.com/1069113250/blog/1413188782" target="_blank" rel="external">来自QQ空间好友转载</a></p>
 
           
         
@@ -1116,8 +1282,13 @@
       
     </div>
 
+    <div>
+      
+    </div>
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -1140,20 +1311,17 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/14/macdrive 9/">
+    <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/14/macdrive 9/">
 
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="74Lee">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="74Lee">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="74Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
     </span>
-  </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="74Lee">
+    </span>
 
     
       <header class="post-header">
@@ -1161,16 +1329,8 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2014/10/14/macdrive 9/" itemprop="url">
-                  MacDrive 9
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2014/10/14/macdrive 9/" itemprop="url">MacDrive 9</a></h1>
         
 
         <div class="post-meta">
@@ -1179,7 +1339,9 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-14T08:38:00+08:00">
                 2014-10-14
               </time>
@@ -1192,11 +1354,15 @@
 
           
             <span class="post-category" >
+            
               <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              
+                <span class="post-meta-item-text">In</span>
+              
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Hackintosh/" itemprop="url" rel="index">
@@ -1214,6 +1380,9 @@
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
                 <a href="/2014/10/14/macdrive 9/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/14/macdrive 9/" itemprop="commentCount"></span>
                 </a>
@@ -1222,8 +1391,8 @@
           
 
           
-
           
+
           
 
           
@@ -1233,7 +1402,6 @@
         </div>
       </header>
     
-
 
     <div class="post-body" itemprop="articleBody">
 
@@ -1262,150 +1430,13 @@
       
     </div>
 
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://74lee.com/2014/10/14/ 高等数学笔记（扫描版）/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="74Lee">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="74Lee">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="74Lee" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/10/14/ 高等数学笔记（扫描版）/" itemprop="url">
-                  高等数学笔记（扫描版）
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-14T08:38:00+08:00">
-                2014-10-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Math/" itemprop="url" rel="index">
-                    <span itemprop="name">Math</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <a href="/2014/10/14/ 高等数学笔记（扫描版）/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/14/ 高等数学笔记（扫描版）/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue1.jpeg" alt="1"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue2.jpeg" alt="2"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue3.jpeg" alt="3"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue4.jpeg" alt="4"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue5.jpeg" alt="5"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue6.jpeg" alt="6"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue7.jpeg" alt="7"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue8.jpeg" alt="8"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue9.jpeg" alt="9"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue10.jpeg" alt="10"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue11.jpeg" alt="11"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue12.jpeg" alt="12"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue13.jpeg" alt="13"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue14.jpeg" alt="14"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue15.jpeg" alt="15"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue16.jpeg" alt="16"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue17.jpeg" alt="17"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue18.jpeg" alt="18"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue19.jpeg" alt="19"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue20.jpeg" alt="20"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue21.jpeg" alt="21"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue22.jpeg" alt="22"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue23.jpeg" alt="23"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue24.jpeg" alt="24"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue25.jpeg" alt="25"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue26.jpeg" alt="26"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue27.jpeg" alt="27"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue28.jpeg" alt="28"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue29.jpeg" alt="29"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue30.jpeg" alt="30"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue31.jpeg" alt="31"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue32.jpeg" alt="32"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue33.jpeg" alt="33"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue34.jpeg" alt="34"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue35.jpeg" alt="35"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue36.jpeg" alt="36"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue37.jpeg" alt="37"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue38.jpeg" alt="38"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue39.jpeg" alt="39"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue40.jpeg" alt="40"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue41.jpeg" alt="41"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue42.jpeg" alt="42"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue43.jpeg" alt="43"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue44.jpeg" alt="44"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue45.jpeg" alt="45"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue46.jpeg" alt="46"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue47.jpeg" alt="47"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue48.jpeg" alt="48"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue49.jpeg" alt="49"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue50.jpeg" alt="50"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue51.jpeg" alt="51"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue52.jpeg" alt="52"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue53.jpeg" alt="53"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue54.jpeg" alt="54"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue55.jpeg" alt="55"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue56.jpeg" alt="56"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue57.jpeg" alt="57"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue58.jpeg" alt="58"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue59.jpeg" alt="59"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue60.jpeg" alt="60"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue61.jpeg" alt="61"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue62.jpeg" alt="62"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue63.jpeg" alt="63"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue64.jpeg" alt="64"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue65.jpeg" alt="65"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue66.jpeg" alt="66"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue67.jpeg" alt="67"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue68.jpeg" alt="68"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue69.jpeg" alt="69"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue70.jpeg" alt="70"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue71.jpeg" alt="71"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue72.jpeg" alt="72"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue73.jpeg" alt="73"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue74.jpeg" alt="74"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue75.jpeg" alt="75"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue76.jpeg" alt="76"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue77.jpeg" alt="77"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue78.jpeg" alt="78"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue79.jpeg" alt="79"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue80.jpeg" alt="80"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue81.jpeg" alt="81"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue82.jpeg" alt="82"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue83.jpeg" alt="83"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue84.jpeg" alt="84"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue85.jpeg" alt="85"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue86.jpeg" alt="86"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue87.jpeg" alt="87"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue88.jpeg" alt="88"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue89.jpeg" alt="89"><br><a href="http://user.qzone.qq.com/1069113250/blog/1413188782" target="_blank" rel="external">来自QQ空间好友转载</a></p>
-
-          
-        
-      
-    </div>
-
     <div>
       
     </div>
 
-    <div>
-      
-    </div>
-
-
     <footer class="post-footer">
+      
+
       
 
       
@@ -1459,17 +1490,24 @@
                src="/images/avatar.jpg"
                alt="74Lee" />
           <p class="site-author-name" itemprop="name">74Lee</p>
-          <p class="site-description motion-element" itemprop="description"></p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
         </div>
         <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">128</span>
-              <span class="site-state-item-name">posts</span>
-            </a>
-          </div>
 
           
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">128</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
             <div class="site-state-item site-state-categories">
               
                 <span class="site-state-item-count">21</span>
@@ -1479,6 +1517,8 @@
           
 
           
+            
+            
             <div class="site-state-item site-state-tags">
               
                 <span class="site-state-item-count">20</span>
@@ -1538,6 +1578,8 @@
 
       
 
+      
+
     </div>
   </aside>
 
@@ -1577,9 +1619,13 @@
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
   </div>
 
   
@@ -1601,6 +1647,19 @@
   
 
 
+  
+  <script type="text/javascript"
+color="225,15,245" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
 
   
   <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
@@ -1620,32 +1679,35 @@
   
   <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
 
 
 
   
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
 
 
 
@@ -1656,7 +1718,7 @@
   
 
   <script type="text/javascript">
-    var duoshuoQuery = {short_name:"74Lee"};
+    var duoshuoQuery = {short_name:"74lee"};
     (function() {
       var ds = document.createElement('script');
       ds.type = 'text/javascript';ds.async = true;
@@ -1682,8 +1744,19 @@
 
 
 
+
+
+
+
+
+
+
+
   
-  
+
+
+
+
 
   
 
@@ -1693,6 +1766,8 @@
 
   
 
+  
 
+  <script type="text/javascript" color="225,15,245" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
 </body>
 </html>
