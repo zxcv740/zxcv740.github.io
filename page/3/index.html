@@ -251,6 +251,163 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2015/04/29/Linux Ubuntu 服务器安装、配置 apache php mysql ftp配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="74Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="74Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/04/29/Linux Ubuntu 服务器安装、配置 apache php mysql ftp配置/" itemprop="url">Linux Ubuntu 服务器安装、配置 apache php mysql ftp配置 svn配置</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-04-29T13:48:36+08:00">
+                2015-04-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/04/29/Linux Ubuntu 服务器安装、配置 apache php mysql ftp配置/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/04/29/Linux Ubuntu 服务器安装、配置 apache php mysql ftp配置/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Linux Ubuntu 服务器安装、配置 apache php mysql ftp配置</p>
+<h2 id="Ubuntu-Server"><a href="#Ubuntu-Server" class="headerlink" title="Ubuntu Server"></a>Ubuntu Server</h2><p>下载Ubuntu Server版 <a href="http://www.ubuntu.com/download/server" target="_blank" rel="external">http://www.ubuntu.com/download/server</a> </p>
+<h2 id="win32diskimager-U盘"><a href="#win32diskimager-U盘" class="headerlink" title="win32diskimager U盘"></a>win32diskimager U盘</h2><p>下载好镜像文件后,在windows下用win32diskimager 写入u盘(ps:这里用其他工具可能会出现安装过程中报错，我已经吃过这样的亏了)。然后U盘启动安装，我这里安装没有走EFI,安装过程中注意的是:中间磁盘分区,本人是一块硬盘直接分区的。最后就是安装引导,这里没有安装在第一个盘里面的。</p>
+<h2 id="进入系统-环境配置"><a href="#进入系统-环境配置" class="headerlink" title="进入系统 环境配置"></a>进入系统 环境配置</h2><p>安装完成，进入ubuntu,输入用户名密码进入系统</p>
+<h3 id="php-环境"><a href="#php-环境" class="headerlink" title="php 环境"></a>php 环境</h3><p>php 环境一键配置 sudo apt-get install apache2 php5-mysql libapache2-mod-php5 mysql-server phpmyadmin<br>配置完成后，其中phpmyadmin需要修改目录 sudo ln -s /usr/share/phpmyadmin/ /var/www/html</p>
+<h2 id="ftp-安装"><a href="#ftp-安装" class="headerlink" title="ftp 安装"></a>ftp 安装</h2><p>配置ftp apt-get install vsftpd  启动 sudo service vsftpd restart</p>
+<h2 id="svn-安装"><a href="#svn-安装" class="headerlink" title="svn 安装"></a>svn 安装</h2><p>1.安装包<br>$ sudo apt-get install subversion<br>2.添加svn管理用户及subversion组<br>$ sudo adduser svnuser<br>$ sudo addgroup subversion<br>$ sudo addgroup svnuser subversion<br>3.创建项目目录<br>$ sudo mkdir /home/svn<br>$ cd /home/svn<br>$ sudo mkdir repos<br>$ sudo chown -R root:subversion repos<br>$ sudo chmod -R g+rws repos<br>4.创建SVN文件仓库<br>$ sudo svnadmin create /home/svn/repos<br>5.访问权限设置<br>修改 /home/svn/repos目录下：<br>svnserve.conf 、passwd 、authz三个文件,行最前端不允许有空格</p>
+<p>编辑svnserve.conf文件,把如下两行取消注释<br>password-db = password<br>authz-db = authz<br>//补充说明<br>[general]<br>anon-access = read<br>auth-access = write<br>password-db = passwd<br>其中 anon-access 和 auth-access 分别为匿名和有权限用户的权限，默认给匿名用户只读的权限,但如果想拒绝匿<br>名用户的访问，只需把 read 改成 none 就能达到目的。<br>//–<br>编辑passwd 如下:<br>[users]<br>mirze = 123456<br>test1 = 123456<br>test2 = 123456<br>//–<br>编辑authz如下<br>[groups]<br>admin = mirze,test1<br>test = test2<br>[/]<br>@admin=rw<br>*=r<br>这里设置了三个用户mirze,test1,test2密码都是123456<br>其中mirze和test1属于admin组，有读和写的权限,test2属于test组只有读的权限</p>
+<p>6.启动SVN服务</p>
+<p>svnserve -d  –listen-post 3690 -r /home/svn/repos<br>描述说明：<br>-d 表示svnserver以“守护”进程模式运行<br>-r 指定文件系统的根位置（版本库repos的根目录），这样客户端不用输入全路径，就可以访问版本库</p>
+<p>二。服务开机启动：</p>
+<p>在init.d目录建立一个脚本文件svnd.sh<br>cd /etc/init.d<br>vim svnd.sh<br>输入svnd.sh内容如下（/var/svn 为svn安装目录）：</p>
+<p>!/bin/bash<br>svnserve startup<br>svnserve -d  –listen-post 3690 -r /home/svn/repos</p>
+<p>然后执行：<br>update-rc.d svnd.sh defaults<br>chmod 777 svnd.sh</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2015/03/16/iOS 改变User Agent/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1305,159 +1462,11 @@ YUV则是在欧洲电视系统PAL中的色差信号的通称，包含数字及�
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2014/11/25/iOS 图片加密,iOS客户端解密显示/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="74Lee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="74Lee">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/11/25/iOS 图片加密,iOS客户端解密显示/" itemprop="url">iOS 图片加密,iOS客户端解密显示</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-11-25T08:38:00+08:00">
-                2014-11-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2014/11/25/iOS 图片加密,iOS客户端解密显示/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/11/25/iOS 图片加密,iOS客户端解密显示/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>1.今天测试对图片进行加密,加密的图片放在服务器,客户端下载下来显示。<br>首页需要用到AESCrypt,在github上下载下来<a href="http://github.com/Gurpartap/aescrypt" target="_blank" rel="external">github地址</a></p>
-<p>2.引入头文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#import "NSData+CommonCrypto.h"</span></div></pre></td></tr></table></figure></p>
-<p>3.首页把本地图片加密保存在documents下 命名为:aesImage.kxqp (别人就不知道这个文件是用来做什么),加密key只有自己知道。</p>
-<p>4.然后客户端解密aesImage.kxqp文件，显示图片</p>
-<p>附代码:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">NSData *imagedata=[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@<span class="string">"sample"</span> ofType:@<span class="string">"jpg"</span>]];</div><div class="line">//加密</div><div class="line">NSData *aes_imagedata=[imagedata AES256EncryptedDataUsingKey:@<span class="string">"austin"</span> error:nil];</div><div class="line">NSString *pathToImage = [NSHomeDirectory() stringByAppendingPathComponent:@<span class="string">"Documents/aesImage.kxqp"</span>];</div><div class="line">unlink([pathToImage UTF8String]);</div><div class="line">BOOL suc=[[NSFileManager defaultManager] createFileAtPath:pathToImage contents:aes_imagedata attributes:nil];</div><div class="line"><span class="keyword">if</span> (suc) &#123;</div><div class="line">    NSData *aes_imageD=[NSData dataWithContentsOfFile:pathToImage];</div><div class="line">    //解密</div><div class="line">    NSData *oImage=[aes_imageD decryptedAES256DataUsingKey:@<span class="string">"austin"</span> error:nil];</div><div class="line">    UIImageView *imageView=[[UIImageView alloc]init];</div><div class="line">    imageView.image=[UIImage imageWithData:oImage];</div><div class="line">    imageView.frame=CGRectMake(0, 0, 320, 320);</div><div class="line">    [self.view addSubview:imageView];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1502,7 +1511,7 @@ YUV则是在欧洲电视系统PAL中的色差信号的通称，包含数字及�
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">128</span>
+                <span class="site-state-item-count">129</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

@@ -251,6 +251,154 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2014/11/25/iOS 图片加密,iOS客户端解密显示/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="74Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="74Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/11/25/iOS 图片加密,iOS客户端解密显示/" itemprop="url">iOS 图片加密,iOS客户端解密显示</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-11-25T08:38:00+08:00">
+                2014-11-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/11/25/iOS 图片加密,iOS客户端解密显示/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/11/25/iOS 图片加密,iOS客户端解密显示/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>1.今天测试对图片进行加密,加密的图片放在服务器,客户端下载下来显示。<br>首页需要用到AESCrypt,在github上下载下来<a href="http://github.com/Gurpartap/aescrypt" target="_blank" rel="external">github地址</a></p>
+<p>2.引入头文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#import "NSData+CommonCrypto.h"</span></div></pre></td></tr></table></figure></p>
+<p>3.首页把本地图片加密保存在documents下 命名为:aesImage.kxqp (别人就不知道这个文件是用来做什么),加密key只有自己知道。</p>
+<p>4.然后客户端解密aesImage.kxqp文件，显示图片</p>
+<p>附代码:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">NSData *imagedata=[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@<span class="string">"sample"</span> ofType:@<span class="string">"jpg"</span>]];</div><div class="line">//加密</div><div class="line">NSData *aes_imagedata=[imagedata AES256EncryptedDataUsingKey:@<span class="string">"austin"</span> error:nil];</div><div class="line">NSString *pathToImage = [NSHomeDirectory() stringByAppendingPathComponent:@<span class="string">"Documents/aesImage.kxqp"</span>];</div><div class="line">unlink([pathToImage UTF8String]);</div><div class="line">BOOL suc=[[NSFileManager defaultManager] createFileAtPath:pathToImage contents:aes_imagedata attributes:nil];</div><div class="line"><span class="keyword">if</span> (suc) &#123;</div><div class="line">    NSData *aes_imageD=[NSData dataWithContentsOfFile:pathToImage];</div><div class="line">    //解密</div><div class="line">    NSData *oImage=[aes_imageD decryptedAES256DataUsingKey:@<span class="string">"austin"</span> error:nil];</div><div class="line">    UIImageView *imageView=[[UIImageView alloc]init];</div><div class="line">    imageView.image=[UIImage imageWithData:oImage];</div><div class="line">    imageView.frame=CGRectMake(0, 0, 320, 320);</div><div class="line">    [self.view addSubview:imageView];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2014/11/13/iOS Maya2015下载与破解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1297,154 +1445,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2014/10/27/iOS 从视频文件提取sps和pps/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="74Lee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="74Lee">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/10/27/iOS 从视频文件提取sps和pps/" itemprop="url">iOS 从视频文件提取sps和pps</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-27T08:38:00+08:00">
-                2014-10-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2014/10/27/iOS 从视频文件提取sps和pps/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/27/iOS 从视频文件提取sps和pps/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line">void</div><div class="line">H264Encode::extractSpsAndPps(int wid)</div><div class="line">&#123;</div><div class="line">    FILE* fp = fopen(m_tmpFile[wid].c_str(), <span class="string">"r"</span>);</div><div class="line">    <span class="keyword">if</span>(fp) &#123;</div><div class="line">        uint32_t size ;</div><div class="line">        </div><div class="line">        fread(&amp;size, 4, 1, fp);</div><div class="line">        size = __builtin_bswap32(size);     // ftyp</div><div class="line">        fseek(fp, (long)size-4, SEEK_CUR);</div><div class="line">        fread(&amp;size,4,1, fp);               // wide</div><div class="line">        size = __builtin_bswap32(size);</div><div class="line">        fseek(fp,(long)size-4, SEEK_CUR);</div><div class="line">        fread(&amp;size,4,1, fp);               // mdat</div><div class="line">        size = __builtin_bswap32(size);</div><div class="line">        fseek(fp,(long)size-4, SEEK_CUR);</div><div class="line">        </div><div class="line">        long pos = ftell(fp);               // moov atom</div><div class="line">        fseek(fp,0,SEEK_END);</div><div class="line">        long len = ftell(fp) - pos;         // get length to <span class="built_in">read</span></div><div class="line">        fseek(fp,pos,SEEK_SET);</div><div class="line">        </div><div class="line">        std::unique_ptr&lt;uint8_t[]&gt; data(new uint8_t[len]);</div><div class="line">        uint8_t* p = &amp;data[0];</div><div class="line">        fread(p,(size_t)len,1,fp);</div><div class="line">        fclose(fp);</div><div class="line"></div><div class="line">        <span class="keyword">while</span> ( p &lt; (&amp;data[0] + len))</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">if</span>(*((int*)p) == __builtin_bswap32(<span class="string">'avcC'</span>))</div><div class="line">            &#123;</div><div class="line">                p += 4 ; // skip <span class="string">'avcC'</span></div><div class="line">                p += 4 ; // skip avcC header</div><div class="line">                p += 2; // skip skip length and sps count</div><div class="line">                uint16_t sps_size = *((uint16_t*)p);</div><div class="line">                sps_size = __builtin_bswap16(sps_size);</div><div class="line">                p += 2 ; // move pointer as we have just <span class="built_in">read</span> sps size</div><div class="line">                *(int*)(p-4) = sps_size;</div><div class="line">                m_sps.resize(sps_size+4);</div><div class="line">                m_sps.put(p-4, sps_size+4);</div><div class="line">                p += sps_size;</div><div class="line">                p ++ ; // skip pps count</div><div class="line">                uint16_t pps_size = *((uint16_t*)p);</div><div class="line">                p+= 2;</div><div class="line">                pps_size = __builtin_bswap16(pps_size);</div><div class="line">                *(int*)(p-4) = pps_size;</div><div class="line">                m_pps.resize(pps_size+4);</div><div class="line">                m_pps.put(p-4, pps_size+4);</div><div class="line"></div><div class="line">                <span class="built_in">break</span>;</div><div class="line">            &#125;</div><div class="line">            ++p;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1489,7 +1494,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">128</span>
+                <span class="site-state-item-count">129</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

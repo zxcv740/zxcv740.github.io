@@ -251,6 +251,156 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2016/01/30/Ubuntu 计划任务 PHP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="74Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="74Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/01/30/Ubuntu 计划任务 PHP/" itemprop="url">Ubuntu 计划任务 PHP</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-01-30T00:38:00+08:00">
+                2016-01-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Ubuntu/" itemprop="url" rel="index">
+                    <span itemprop="name">Ubuntu</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/01/30/Ubuntu 计划任务 PHP/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/30/Ubuntu 计划任务 PHP/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>一.下载文件命令 </p>
+<p>1.准备打开crontab,使用计划任务功能<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">crontab <span class="_">-e</span></div></pre></td></tr></table></figure></p>
+<p>2.第一次使用会出现选择以何种方式编辑，这里我选择2,以nano方式<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2</div></pre></td></tr></table></figure></p>
+<p>3.打开后出现一个文本，类似于如下:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># daemon's notion of time and timezones.</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># Output of the crontab jobs (including errors) is sent through</span></div><div class="line"><span class="comment"># email to the user the crontab file belongs to (unless redirected).</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># For example, you can run a backup of all your user accounts</span></div><div class="line"><span class="comment"># at 5 a.m every week with:</span></div><div class="line"><span class="comment"># 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># For more information see the manual pages of crontab(5) and cron(8)</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># m h  dom mon dow   command</span></div></pre></td></tr></table></figure></p>
+<p>4.时间规则,每一行一个任务,每一行 前面5个部分代表时间方式，后面1个代表执行何种任务<br>前面5部分依次是：分钟，小时，天，月，星期(取值范围如下)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">分钟          0 - 59</div><div class="line">小时          0 - 23</div><div class="line">天              1 - 31</div><div class="line">月              1 - 12</div><div class="line">星期          0 - 6       0表示星期天</div><div class="line"></div><div class="line">//另外</div><div class="line">星号          表示任意值，比如在小时部分填写 * 代表任意小时（每小时）</div><div class="line">逗号          可以允许在一个部分中填写多个值，比如在分钟部分填写 1,3 表示一分钟或三分钟</div><div class="line">斜线          一般配合 * 使用，代表每隔多长时间，比如在小时部分填写 */2 代表每隔两分钟。所以 */1 和 * 没有区别</div><div class="line">                  */2 可以看成是能被2整除的任意值。</div></pre></td></tr></table></figure></p>
+<p>例子:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">* * * * *                  <span class="comment"># 每隔一分钟执行一次任务  </span></div><div class="line"></div><div class="line">0 * * * *                  <span class="comment"># 每小时的0点执行一次任务，比如6:00，10:00  </span></div><div class="line"></div><div class="line">6,10 * 2 * *            <span class="comment"># 每个月2号，每小时的6分和10分执行一次任务  </span></div><div class="line"></div><div class="line">*/3,*/5 * * * *          <span class="comment"># 每隔3分钟或5分钟执行一次任务，比如10:03，10:05，10:06</span></div></pre></td></tr></table></figure></p>
+<p>5.最后一步，完成设置开始执行。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/etc/init.d/cron restart</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2016/01/28/Ubuntu个人常用命令/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -399,150 +549,6 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2015/11/16/iOS xcodebuild 打包/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="74Lee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="74Lee">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/11/16/iOS xcodebuild 打包/" itemprop="url">iOS xcodebuild 打包</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-11-16T16:40:00+08:00">
-                2015-11-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2015/11/16/iOS xcodebuild 打包/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/16/iOS xcodebuild 打包/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>xcodebuild 用命令行直接打包工程文件。以下是自己的工程打包代码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Remove archive and ipa file</span></div><div class="line">rm -rf <span class="variable">$PWD</span>/xpkUISdk.xcarchive</div><div class="line">rm -rf <span class="variable">$PWD</span>/xpkUISdk.ipa</div><div class="line"></div><div class="line"><span class="comment"># Create an archive</span></div><div class="line">xcodebuild -project ./xpkUISdk.xcodeproj -configuration Release CODE_SIGN_IDENTITY=<span class="string">"iPhone Distribution: Beijing RuiDongTianDi Information Tech. LTD (K8UMEY246Y)"</span> PROVISIONING_PROFILE=<span class="string">"68673951-0f6d-4ebe-9c07-fff0cb23aa91"</span> -scheme xpkUISdk -archivePath <span class="variable">$PWD</span>/xpkUISdk.xcarchive archive</div><div class="line"></div><div class="line"><span class="comment"># Create the IPA file from the archive</span></div><div class="line">xcodebuild -exportProvisioningProfile <span class="string">"56show_all_dis"</span> -exportArchive -exportFormat IPA -archivePath <span class="variable">$PWD</span>/xpkUISdk.xcarchive -exportPath <span class="variable">$PWD</span>/xpkUISdk.ipa CODE_SIGN_IDENTITY=<span class="string">"iPhone Distribution: Beijing RuiDongTianDi Information Tech. LTD (K8UMEY246Y)"</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># Remove archive and ipa file</span></div><div class="line">rm -rf <span class="variable">$PWD</span>/快秀.xcarchive</div><div class="line">rm -rf <span class="variable">$PWD</span>/快秀.ipa</div><div class="line"><span class="comment"># Create an archive</span></div><div class="line">xcodebuild -project ./快秀/快秀.xcodeproj -configuration Release CODE_SIGN_IDENTITY=<span class="string">"iPhone Distribution: Beijing RuiDongTianDi Information Tech. LTD (K8UMEY246Y)"</span> PROVISIONING_PROFILE=<span class="string">"7f2263b2-97d4-431b-b647-f3bac08822ec"</span> -scheme 快秀 -archivePath <span class="variable">$PWD</span>/快秀.xcarchive archive</div><div class="line"></div><div class="line"><span class="comment"># Create the IPA file from the archive</span></div><div class="line">xcodebuild -exportProvisioningProfile <span class="string">"DIstribution_KX_APNS"</span> -exportArchive -exportFormat IPA -archivePath <span class="variable">$PWD</span>/快秀.xcarchive -exportPath <span class="variable">$PWD</span>/快秀.ipa CODE_SIGN_IDENTITY=<span class="string">"iPhone Distribution: Beijing RuiDongTianDi Information Tech. LTD (K8UMEY246Y)"</span></div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2015/11/16/记录一下吧，好久没有坚持写博客了。/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -644,6 +650,150 @@
         
           
             <p>long long to see,好久好久没更新博客了，回顾以前，工作之余，总会抽一点时间记录一点点滴在blog上。最近几个月很忙，忙外包忙结婚忙工作等等。<br>2015年马上就要过去了，这里回顾一下2015年收获吧。首先，说下今年最为难忘的事吧，结婚啦！也算了解一件人生大事吧。结个婚真心不容易，求婚、照婚纱照、看项链戒指、买结婚需要用的鞋子和衣服、定酒席、发请柬、邀请兄弟帮忙抢新娘、向公司请婚假、蜜月旅行等等。其次，结婚后不久老婆也怀孕了，今天是老婆怀孕20周，已经怀孕5个月了，宝贝期待你的诞生哦。现在宝宝有胎动，只是听老婆大人讲，自己却还没有感受到过。在自己的生活上，虽然结婚比较忙，抽空之余也终于拿到了驾照，暂时不能买车，为了咋家宝宝值得。最后谈谈工作上，今年2015年在工作上也算有一些技术上的一些收获吧，巩固了自己前面的一些知识，自己私下为了结婚也干过一段时间外包，艰辛的回忆！<br>    这一年感觉自己肩上的担子重了，也相信自己会在后面的日子里，让家里人感到幸福快乐!</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2015/11/16/iOS xcodebuild 打包/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="74Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="74Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/11/16/iOS xcodebuild 打包/" itemprop="url">iOS xcodebuild 打包</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-11-16T16:40:00+08:00">
+                2015-11-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/11/16/iOS xcodebuild 打包/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/16/iOS xcodebuild 打包/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>xcodebuild 用命令行直接打包工程文件。以下是自己的工程打包代码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Remove archive and ipa file</span></div><div class="line">rm -rf <span class="variable">$PWD</span>/xpkUISdk.xcarchive</div><div class="line">rm -rf <span class="variable">$PWD</span>/xpkUISdk.ipa</div><div class="line"></div><div class="line"><span class="comment"># Create an archive</span></div><div class="line">xcodebuild -project ./xpkUISdk.xcodeproj -configuration Release CODE_SIGN_IDENTITY=<span class="string">"iPhone Distribution: Beijing RuiDongTianDi Information Tech. LTD (K8UMEY246Y)"</span> PROVISIONING_PROFILE=<span class="string">"68673951-0f6d-4ebe-9c07-fff0cb23aa91"</span> -scheme xpkUISdk -archivePath <span class="variable">$PWD</span>/xpkUISdk.xcarchive archive</div><div class="line"></div><div class="line"><span class="comment"># Create the IPA file from the archive</span></div><div class="line">xcodebuild -exportProvisioningProfile <span class="string">"56show_all_dis"</span> -exportArchive -exportFormat IPA -archivePath <span class="variable">$PWD</span>/xpkUISdk.xcarchive -exportPath <span class="variable">$PWD</span>/xpkUISdk.ipa CODE_SIGN_IDENTITY=<span class="string">"iPhone Distribution: Beijing RuiDongTianDi Information Tech. LTD (K8UMEY246Y)"</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># Remove archive and ipa file</span></div><div class="line">rm -rf <span class="variable">$PWD</span>/快秀.xcarchive</div><div class="line">rm -rf <span class="variable">$PWD</span>/快秀.ipa</div><div class="line"><span class="comment"># Create an archive</span></div><div class="line">xcodebuild -project ./快秀/快秀.xcodeproj -configuration Release CODE_SIGN_IDENTITY=<span class="string">"iPhone Distribution: Beijing RuiDongTianDi Information Tech. LTD (K8UMEY246Y)"</span> PROVISIONING_PROFILE=<span class="string">"7f2263b2-97d4-431b-b647-f3bac08822ec"</span> -scheme 快秀 -archivePath <span class="variable">$PWD</span>/快秀.xcarchive archive</div><div class="line"></div><div class="line"><span class="comment"># Create the IPA file from the archive</span></div><div class="line">xcodebuild -exportProvisioningProfile <span class="string">"DIstribution_KX_APNS"</span> -exportArchive -exportFormat IPA -archivePath <span class="variable">$PWD</span>/快秀.xcarchive -exportPath <span class="variable">$PWD</span>/快秀.ipa CODE_SIGN_IDENTITY=<span class="string">"iPhone Distribution: Beijing RuiDongTianDi Information Tech. LTD (K8UMEY246Y)"</span></div></pre></td></tr></table></figure></p>
 
           
         
@@ -1342,168 +1492,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2015/04/29/Linux Ubuntu 服务器安装、配置 apache php mysql ftp配置/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="74Lee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="74Lee">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/04/29/Linux Ubuntu 服务器安装、配置 apache php mysql ftp配置/" itemprop="url">Linux Ubuntu 服务器安装、配置 apache php mysql ftp配置 svn配置</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-04-29T13:48:36+08:00">
-                2015-04-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2015/04/29/Linux Ubuntu 服务器安装、配置 apache php mysql ftp配置/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/04/29/Linux Ubuntu 服务器安装、配置 apache php mysql ftp配置/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Linux Ubuntu 服务器安装、配置 apache php mysql ftp配置</p>
-<h2 id="Ubuntu-Server"><a href="#Ubuntu-Server" class="headerlink" title="Ubuntu Server"></a>Ubuntu Server</h2><p>下载Ubuntu Server版 <a href="http://www.ubuntu.com/download/server" target="_blank" rel="external">http://www.ubuntu.com/download/server</a> </p>
-<h2 id="win32diskimager-U盘"><a href="#win32diskimager-U盘" class="headerlink" title="win32diskimager U盘"></a>win32diskimager U盘</h2><p>下载好镜像文件后,在windows下用win32diskimager 写入u盘(ps:这里用其他工具可能会出现安装过程中报错，我已经吃过这样的亏了)。然后U盘启动安装，我这里安装没有走EFI,安装过程中注意的是:中间磁盘分区,本人是一块硬盘直接分区的。最后就是安装引导,这里没有安装在第一个盘里面的。</p>
-<h2 id="进入系统-环境配置"><a href="#进入系统-环境配置" class="headerlink" title="进入系统 环境配置"></a>进入系统 环境配置</h2><p>安装完成，进入ubuntu,输入用户名密码进入系统</p>
-<h3 id="php-环境"><a href="#php-环境" class="headerlink" title="php 环境"></a>php 环境</h3><p>php 环境一键配置 sudo apt-get install apache2 php5-mysql libapache2-mod-php5 mysql-server phpmyadmin<br>配置完成后，其中phpmyadmin需要修改目录 sudo ln -s /usr/share/phpmyadmin/ /var/www/html</p>
-<h2 id="ftp-安装"><a href="#ftp-安装" class="headerlink" title="ftp 安装"></a>ftp 安装</h2><p>配置ftp apt-get install vsftpd  启动 sudo service vsftpd restart</p>
-<h2 id="svn-安装"><a href="#svn-安装" class="headerlink" title="svn 安装"></a>svn 安装</h2><p>1.安装包<br>$ sudo apt-get install subversion<br>2.添加svn管理用户及subversion组<br>$ sudo adduser svnuser<br>$ sudo addgroup subversion<br>$ sudo addgroup svnuser subversion<br>3.创建项目目录<br>$ sudo mkdir /home/svn<br>$ cd /home/svn<br>$ sudo mkdir repos<br>$ sudo chown -R root:subversion repos<br>$ sudo chmod -R g+rws repos<br>4.创建SVN文件仓库<br>$ sudo svnadmin create /home/svn/repos<br>5.访问权限设置<br>修改 /home/svn/repos目录下：<br>svnserve.conf 、passwd 、authz三个文件,行最前端不允许有空格</p>
-<p>编辑svnserve.conf文件,把如下两行取消注释<br>password-db = password<br>authz-db = authz<br>//补充说明<br>[general]<br>anon-access = read<br>auth-access = write<br>password-db = passwd<br>其中 anon-access 和 auth-access 分别为匿名和有权限用户的权限，默认给匿名用户只读的权限,但如果想拒绝匿<br>名用户的访问，只需把 read 改成 none 就能达到目的。<br>//–<br>编辑passwd 如下:<br>[users]<br>mirze = 123456<br>test1 = 123456<br>test2 = 123456<br>//–<br>编辑authz如下<br>[groups]<br>admin = mirze,test1<br>test = test2<br>[/]<br>@admin=rw<br>*=r<br>这里设置了三个用户mirze,test1,test2密码都是123456<br>其中mirze和test1属于admin组，有读和写的权限,test2属于test组只有读的权限</p>
-<p>6.启动SVN服务</p>
-<p>svnserve -d  –listen-post 3690 -r /home/svn/repos<br>描述说明：<br>-d 表示svnserver以“守护”进程模式运行<br>-r 指定文件系统的根位置（版本库repos的根目录），这样客户端不用输入全路径，就可以访问版本库</p>
-<p>二。服务开机启动：</p>
-<p>在init.d目录建立一个脚本文件svnd.sh<br>cd /etc/init.d<br>vim svnd.sh<br>输入svnd.sh内容如下（/var/svn 为svn安装目录）：</p>
-<p>!/bin/bash<br>svnserve startup<br>svnserve -d  –listen-post 3690 -r /home/svn/repos</p>
-<p>然后执行：<br>update-rc.d svnd.sh defaults<br>chmod 777 svnd.sh</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1548,7 +1541,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">128</span>
+                <span class="site-state-item-count">129</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

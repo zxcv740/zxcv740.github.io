@@ -251,6 +251,150 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2014/07/25/XAMPP Aceess Issue/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="74Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="74Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/07/25/XAMPP Aceess Issue/" itemprop="url">XAMPP Access Issue</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-07-25T11:59:36+08:00">
+                2014-07-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/XAMPP/" itemprop="url" rel="index">
+                    <span itemprop="name">XAMPP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/07/25/XAMPP Aceess Issue/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/07/25/XAMPP Aceess Issue/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>修改httpd-xampp.conf 文件代码如下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># New XAMPP security concept</span></div><div class="line"><span class="comment">#</span></div><div class="line">&lt;LocationMatch <span class="string">"^/(?i:(?:xampp|security|licenses|phpmyadmin|webalizer|server-status|server-info))"</span>&gt;</div><div class="line">Order deny,allow</div><div class="line"><span class="comment">#Deny from all</span></div><div class="line">Allow from 127.0.0.0/8</div><div class="line"><span class="comment">#Require local</span></div><div class="line">ErrorDocument 403 /error/XAMPP_FORBIDDEN.html.var</div><div class="line">&lt;/LocationMatch&gt;</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2014/06/09/MAC 系统的启动过程和系统启动时运行shell 脚本/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1316,160 +1460,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2014/03/17/iOS7 NavigationController 手势问题 /">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="74Lee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="74Lee">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/03/17/iOS7 NavigationController 手势问题 /" itemprop="url">iOS7 NavigationController 手势问题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-03-17T23:06:00+08:00">
-                2014-03-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2014/03/17/iOS7 NavigationController 手势问题 /#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/03/17/iOS7 NavigationController 手势问题 /" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>  在iOS7中，如果使用了UINavigationController，那么系统自带的附加了一个从屏幕左边缘开始滑动可以实现pop的手势。但是，如果自定义了NavigationItem的leftBarButtonItem，那么这个手势就会失效。解决方法有很多种</p>
-<h2 id="重新设置手势的delegate"><a href="#重新设置手势的delegate" class="headerlink" title="重新设置手势的delegate"></a>重新设置手势的delegate</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">self.navigationController.interactivePopGestureRecognizer.delegate = (id&lt;UIGestureRecognizerDelegate&gt;)self;</div></pre></td></tr></table></figure>
-<h2 id="当然你也可以自己响应这个手势的事件"><a href="#当然你也可以自己响应这个手势的事件" class="headerlink" title="当然你也可以自己响应这个手势的事件"></a>当然你也可以自己响应这个手势的事件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[self.navigationController.interactivePopGestureRecognizer addTarget:self action:@selector(handleGesture:)];</div></pre></td></tr></table></figure>
-<h2 id="我使用了第一种方案，继承UINavigationController写了一个子类，直接设置delegate到self。最初的版本我是让这个gesture始终可以begin"><a href="#我使用了第一种方案，继承UINavigationController写了一个子类，直接设置delegate到self。最初的版本我是让这个gesture始终可以begin" class="headerlink" title="我使用了第一种方案，继承UINavigationController写了一个子类，直接设置delegate到self。最初的版本我是让这个gesture始终可以begin"></a>我使用了第一种方案，继承UINavigationController写了一个子类，直接设置delegate到self。最初的版本我是让这个gesture始终可以begin</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">-(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer</div><div class="line">&#123;</div><div class="line">    <span class="built_in">return</span> YES;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="但是出现很多问题，比如说在rootViewController的时候这个手势也可以响应，导致整个程序页面不响应；如果在push的同时我触发这个手势，那么会导致navigationBar错乱，甚至crash；push了多层后，快速的触发两次手势，也会错乱。尝试了种种方案后我的解决方案是加个判断，代码如下，这次运行良好了"><a href="#但是出现很多问题，比如说在rootViewController的时候这个手势也可以响应，导致整个程序页面不响应；如果在push的同时我触发这个手势，那么会导致navigationBar错乱，甚至crash；push了多层后，快速的触发两次手势，也会错乱。尝试了种种方案后我的解决方案是加个判断，代码如下，这次运行良好了" class="headerlink" title="但是出现很多问题，比如说在rootViewController的时候这个手势也可以响应，导致整个程序页面不响应；如果在push的同时我触发这个手势，那么会导致navigationBar错乱，甚至crash；push了多层后，快速的触发两次手势，也会错乱。尝试了种种方案后我的解决方案是加个判断，代码如下，这次运行良好了"></a>但是出现很多问题，比如说在rootViewController的时候这个手势也可以响应，导致整个程序页面不响应；如果在push的同时我触发这个手势，那么会导致navigationBar错乱，甚至crash；push了多层后，快速的触发两次手势，也会错乱。尝试了种种方案后我的解决方案是加个判断，代码如下，这次运行良好了</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">//-------------------------------------</div><div class="line"></div><div class="line">@interface NavRootViewController : UINavigationController&lt;UIGestureRecognizerDelegate,UINavigationControllerDelegate&gt;</div><div class="line"></div><div class="line">@property(nonatomic,weak) UIViewController* currentShowVC;</div><div class="line"></div><div class="line">@end</div><div class="line"></div><div class="line">//-------------------------------------</div><div class="line"></div><div class="line">@implementation NavRootViewController</div><div class="line"></div><div class="line">-(id)initWithRootViewController:(UIViewController *)rootViewController</div><div class="line">&#123;</div><div class="line">    NavRootViewController* nvc = [super initWithRootViewController:rootViewController];</div><div class="line">    self.interactivePopGestureRecognizer.delegate = self;</div><div class="line">    nvc.delegate = self;</div><div class="line">    <span class="built_in">return</span> nvc;</div><div class="line">&#125;</div><div class="line"></div><div class="line">-(void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated</div><div class="line">&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">-(void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated</div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (navigationController.viewControllers.count == 1)</div><div class="line">        self.currentShowVC = Nil;</div><div class="line">    <span class="keyword">else</span></div><div class="line">        self.currentShowVC = viewController;</div><div class="line">&#125;</div><div class="line"></div><div class="line">-(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer</div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (gestureRecognizer == self.interactivePopGestureRecognizer) &#123;</div><div class="line">        <span class="built_in">return</span> (self.currentShowVC == self.topViewController);</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">return</span> YES;</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
-<h2 id="正当窃喜的时候，发现了另一个更高端的解决方案，就是参考2。使用backBarButtonItem"><a href="#正当窃喜的时候，发现了另一个更高端的解决方案，就是参考2。使用backBarButtonItem" class="headerlink" title="正当窃喜的时候，发现了另一个更高端的解决方案，就是参考2。使用backBarButtonItem"></a>正当窃喜的时候，发现了另一个更高端的解决方案，就是参考2。使用backBarButtonItem</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">// 统一替换 back item 的图片</div><div class="line">[self.navigationController.navigationBar <span class="built_in">set</span>BackIndicatorImage:</div><div class="line">[UIImage imageNamed:@<span class="string">"CustomerBackImage"</span>]];</div><div class="line">[self.navigationController.navigationBar <span class="built_in">set</span>BackIndicatorTransitionMaskImage:</div><div class="line">[UIImage imageNamed:@<span class="string">"CustomerBackImage"</span>]];</div><div class="line"></div><div class="line">// back item的标题 是 被将要返回的页面 所控制的，所以如果要改变当前的back item的标题，要在上一个viewcontroller里面设置</div><div class="line">self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]</div><div class="line">initWithTitle:@<span class="string">""</span></div><div class="line">style:UIBarButtonItemStylePlain</div><div class="line">target:nil</div><div class="line">action:nil];</div></pre></td></tr></table></figure>
-<h2 id="不过这种方案的缺点是如果你要设置-leftBarButtonItems-来更多的自定义左边的-items时，手势又会失效-或者有其他方案我还不知道—-。所以最后我又选择了自己的方法。"><a href="#不过这种方案的缺点是如果你要设置-leftBarButtonItems-来更多的自定义左边的-items时，手势又会失效-或者有其他方案我还不知道—-。所以最后我又选择了自己的方法。" class="headerlink" title="不过这种方案的缺点是如果你要设置 leftBarButtonItems 来更多的自定义左边的 items时，手势又会失效(或者有其他方案我还不知道—)。所以最后我又选择了自己的方法。"></a>不过这种方案的缺点是如果你要设置 leftBarButtonItems 来更多的自定义左边的 items时，手势又会失效(或者有其他方案我还不知道<em>—</em>)。所以最后我又选择了自己的方法。</h2>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1514,7 +1509,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">128</span>
+                <span class="site-state-item-count">129</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
