@@ -2,10 +2,8 @@
 
 
 
-  
 
-
-<html class="theme-next pisces use-motion" lang="en">
+<html class="theme-next pisces" lang="en">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -32,10 +30,6 @@
 
 
 
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -105,8 +99,8 @@
     root: '/',
     scheme: 'Pisces',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
-    fancybox: true,
-    motion: true,
+    fancybox: false,
+    motion: false,
     duoshuo: {
       userId: '0',
       author: 'Author'
@@ -251,7 +245,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2014/10/13/10.10懒人版镜像U盘引导的制作/">
+    <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2014/10/13/iOS Convert UIImage to CVImageBufferRef/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="74Lee">
@@ -270,7 +264,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2014/10/13/10.10懒人版镜像U盘引导的制作/" itemprop="url">10.10懒人版镜像U盘引导的制作</a></h1>
+                <a class="post-title-link" href="/2014/10/13/iOS Convert UIImage to CVImageBufferRef/" itemprop="url">iOS Convert UIImage to CVImageBufferRef</a></h1>
         
 
         <div class="post-meta">
@@ -305,8 +299,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hackintosh/" itemprop="url" rel="index">
-                    <span itemprop="name">Hackintosh</span>
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
                   </a>
                 </span>
 
@@ -323,8 +317,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2014/10/13/10.10懒人版镜像U盘引导的制作/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/13/10.10懒人版镜像U盘引导的制作/" itemprop="commentCount"></span>
+                <a href="/2014/10/13/iOS Convert UIImage to CVImageBufferRef/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/13/iOS Convert UIImage to CVImageBufferRef/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -351,17 +345,8 @@
       
         
           
-            <p>1.准备8G以上U盘，打开磁盘工具 U盘–&gt;分区–&gt;一个分区–&gt;选项–&gt;主引导记录–&gt;应用<br><img src="http://hexo-zxcv740.qiniudn.com/Hackintosh_10.101.png" alt="图片"><br>2.下载原版镜像,鼠标右击显示包内容–&gt;Contents–&gt;SharedSupport</p>
-<p>终端开启显示隐藏文件defaults write com.apple.finder AppleShowAllFiles YES<br><img src="http://hexo-zxcv740.qiniudn.com/Hackintosh_10.102.png" alt="图片"></p>
-<p><img src="http://hexo-zxcv740.qiniudn.com/Hackintosh_10.103.png" alt="图片"></p>
-<p><img src="http://hexo-zxcv740.qiniudn.com/Hackintosh_10.104.png" alt="图片"></p>
-<p>3.双击打开,右击打开BaseSystem.dmg<br><img src="http://hexo-zxcv740.qiniudn.com/Hackintosh_10.105.png" alt="图片"><br><img src="http://hexo-zxcv740.qiniudn.com/Hackintosh_10.106.png" alt="图片"></p>
-<p>4.回到磁盘工具,操作如图,点击恢复<br><img src="http://hexo-zxcv740.qiniudn.com/Hackintosh_10.107.png" alt="图片"><br>等待几分钟…<br><img src="http://hexo-zxcv740.qiniudn.com/Hackintosh_10.108.png" alt="图片"></p>
-<p>5.恢复完成后,打开恢复的OX X Base System 修改名字Mac 10.10和图标<br><img src="http://hexo-zxcv740.qiniudn.com/Hackintosh_10.109.png" alt="图片"><br>到U盘那目录(即Mac 10.10)/System/Installation/下面有个Packages的替身（快捷方式），删除！<br><img src="http://hexo-zxcv740.qiniudn.com/Hackintosh_10.1010.png" alt="图片"></p>
-<p>6.打开OS X Install ESD 找到Packages复制到刚刚删除的目录,同时拷贝BaseSystem.chunklist和BaseSystem.dmg到Mac 10.10下<br><img src="http://hexo-zxcv740.qiniudn.com/Hackintosh_10.1011.png" alt="图片"><br><img src="http://hexo-zxcv740.qiniudn.com/Hackintosh_10.1012.png" alt="图片"><br><img src="http://hexo-zxcv740.qiniudn.com/Hackintosh_10.1013.png" alt="图片"></p>
-<p>7.加入extra文件夹,这样就制作完成了。结构图如下<br><img src="http://hexo-zxcv740.qiniudn.com/Hackintosh_10.1014.png" alt="图片"></p>
-<p>8.下载MBR破解补丁，在OS X系统下解压缩。<br>MBR破解补丁<a href="http://hexo-zxcv740.qiniudn.com/Hackintosh_10.10MBR.zip" target="_blank" rel="external">下载</a></p>
-<p>将 OSInstall.mpkg 替换到 /System/Installation/Packages/OSInstall.mpkg<br>将 OSInstaller 替换到 /System/Library/PrivateFrameworks/OSInstaller.framework/Versions/A/OSInstaller</p>
+            <p>1、Sample<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">UIImage* myImage=[UIImage imageNamed:@<span class="string">"test.png"</span>];</div><div class="line">CVImageBufferRef pixelBuffer = [self pixelBufferFromCGImage:myImage.CGImage];</div></pre></td></tr></table></figure></p>
+<p>2、Method<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">+ (CVPixelBufferRef) pixelBufferFromCGImage: (CGImageRef) image</div><div class="line">&#123;</div><div class="line"></div><div class="line">CGSize frameSize = CGSizeMake(CGImageGetWidth(image), CGImageGetHeight(image));</div><div class="line">NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:</div><div class="line">[NSNumber numberWithBool:NO], kCVPixelBufferCGImageCompatibilityKey,</div><div class="line">[NSNumber numberWithBool:NO], kCVPixelBufferCGBitmapContextCompatibilityKey,</div><div class="line">nil];</div><div class="line">CVPixelBufferRef pxbuffer = NULL;</div><div class="line">CVReturn status = CVPixelBufferCreate(kCFAllocatorDefault, frameSize.width,</div><div class="line">frameSize.height,  kCVPixelFormatType_32ARGB, (CFDictionaryRef) options,</div><div class="line">&amp;pxbuffer);</div><div class="line">NSParameterAssert(status == kCVReturnSuccess &amp;&amp; pxbuffer != NULL);</div><div class="line"></div><div class="line">CVPixelBufferLockBaseAddress(pxbuffer, 0);</div><div class="line">void *pxdata = CVPixelBufferGetBaseAddress(pxbuffer);</div><div class="line"></div><div class="line"></div><div class="line">CGColorSpaceRef rgbColorSpace = CGColorSpaceCreateDeviceRGB();</div><div class="line">CGContextRef context = CGBitmapContextCreate(pxdata, frameSize.width,</div><div class="line">frameSize.height, 8, 4*frameSize.width, rgbColorSpace,</div><div class="line">kCGImageAlphaNoneSkipLast);</div><div class="line"></div><div class="line">CGContextDrawImage(context, CGRectMake(0, 0, CGImageGetWidth(image),</div><div class="line">CGImageGetHeight(image)), image);</div><div class="line">CGColorSpaceRelease(rgbColorSpace);</div><div class="line">CGContextRelease(context);</div><div class="line"></div><div class="line">CVPixelBufferUnlockBaseAddress(pxbuffer, 0);</div><div class="line"></div><div class="line"><span class="built_in">return</span> pxbuffer;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
           
         
@@ -1621,12 +1606,6 @@
 
 
 
-  
-
-
-  
-  <script type="text/javascript"
-color="225,15,245" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
 
 
 
@@ -1652,12 +1631,6 @@ color="225,15,245" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/c
 
   
   <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-  
-  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
 
 
   

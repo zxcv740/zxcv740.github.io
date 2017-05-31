@@ -2,10 +2,8 @@
 
 
 
-  
 
-
-<html class="theme-next pisces use-motion" lang="en">
+<html class="theme-next pisces" lang="en">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -32,10 +30,6 @@
 
 
 
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -105,8 +99,8 @@
     root: '/',
     scheme: 'Pisces',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
-    fancybox: true,
-    motion: true,
+    fancybox: false,
+    motion: false,
     duoshuo: {
       userId: '0',
       author: 'Author'
@@ -549,150 +543,6 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2015/11/16/iOS xcodebuild 打包/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="74Lee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="74Lee">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/11/16/iOS xcodebuild 打包/" itemprop="url">iOS xcodebuild 打包</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-11-16T16:40:00+08:00">
-                2015-11-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2015/11/16/iOS xcodebuild 打包/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/16/iOS xcodebuild 打包/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>xcodebuild 用命令行直接打包工程文件。以下是自己的工程打包代码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Remove archive and ipa file</span></div><div class="line">rm -rf <span class="variable">$PWD</span>/xpkUISdk.xcarchive</div><div class="line">rm -rf <span class="variable">$PWD</span>/xpkUISdk.ipa</div><div class="line"></div><div class="line"><span class="comment"># Create an archive</span></div><div class="line">xcodebuild -project ./xpkUISdk.xcodeproj -configuration Release CODE_SIGN_IDENTITY=<span class="string">"iPhone Distribution: Beijing RuiDongTianDi Information Tech. LTD (K8UMEY246Y)"</span> PROVISIONING_PROFILE=<span class="string">"68673951-0f6d-4ebe-9c07-fff0cb23aa91"</span> -scheme xpkUISdk -archivePath <span class="variable">$PWD</span>/xpkUISdk.xcarchive archive</div><div class="line"></div><div class="line"><span class="comment"># Create the IPA file from the archive</span></div><div class="line">xcodebuild -exportProvisioningProfile <span class="string">"56show_all_dis"</span> -exportArchive -exportFormat IPA -archivePath <span class="variable">$PWD</span>/xpkUISdk.xcarchive -exportPath <span class="variable">$PWD</span>/xpkUISdk.ipa CODE_SIGN_IDENTITY=<span class="string">"iPhone Distribution: Beijing RuiDongTianDi Information Tech. LTD (K8UMEY246Y)"</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># Remove archive and ipa file</span></div><div class="line">rm -rf <span class="variable">$PWD</span>/快秀.xcarchive</div><div class="line">rm -rf <span class="variable">$PWD</span>/快秀.ipa</div><div class="line"><span class="comment"># Create an archive</span></div><div class="line">xcodebuild -project ./快秀/快秀.xcodeproj -configuration Release CODE_SIGN_IDENTITY=<span class="string">"iPhone Distribution: Beijing RuiDongTianDi Information Tech. LTD (K8UMEY246Y)"</span> PROVISIONING_PROFILE=<span class="string">"7f2263b2-97d4-431b-b647-f3bac08822ec"</span> -scheme 快秀 -archivePath <span class="variable">$PWD</span>/快秀.xcarchive archive</div><div class="line"></div><div class="line"><span class="comment"># Create the IPA file from the archive</span></div><div class="line">xcodebuild -exportProvisioningProfile <span class="string">"DIstribution_KX_APNS"</span> -exportArchive -exportFormat IPA -archivePath <span class="variable">$PWD</span>/快秀.xcarchive -exportPath <span class="variable">$PWD</span>/快秀.ipa CODE_SIGN_IDENTITY=<span class="string">"iPhone Distribution: Beijing RuiDongTianDi Information Tech. LTD (K8UMEY246Y)"</span></div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2015/11/16/记录一下吧，好久没有坚持写博客了。/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -794,6 +644,150 @@
         
           
             <p>long long to see,好久好久没更新博客了，回顾以前，工作之余，总会抽一点时间记录一点点滴在blog上。最近几个月很忙，忙外包忙结婚忙工作等等。<br>2015年马上就要过去了，这里回顾一下2015年收获吧。首先，说下今年最为难忘的事吧，结婚啦！也算了解一件人生大事吧。结个婚真心不容易，求婚、照婚纱照、看项链戒指、买结婚需要用的鞋子和衣服、定酒席、发请柬、邀请兄弟帮忙抢新娘、向公司请婚假、蜜月旅行等等。其次，结婚后不久老婆也怀孕了，今天是老婆怀孕20周，已经怀孕5个月了，宝贝期待你的诞生哦。现在宝宝有胎动，只是听老婆大人讲，自己却还没有感受到过。在自己的生活上，虽然结婚比较忙，抽空之余也终于拿到了驾照，暂时不能买车，为了咋家宝宝值得。最后谈谈工作上，今年2015年在工作上也算有一些技术上的一些收获吧，巩固了自己前面的一些知识，自己私下为了结婚也干过一段时间外包，艰辛的回忆！<br>    这一年感觉自己肩上的担子重了，也相信自己会在后面的日子里，让家里人感到幸福快乐!</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2015/11/16/iOS xcodebuild 打包/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="74Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="74Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/11/16/iOS xcodebuild 打包/" itemprop="url">iOS xcodebuild 打包</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-11-16T16:40:00+08:00">
+                2015-11-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/11/16/iOS xcodebuild 打包/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/16/iOS xcodebuild 打包/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>xcodebuild 用命令行直接打包工程文件。以下是自己的工程打包代码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Remove archive and ipa file</span></div><div class="line">rm -rf <span class="variable">$PWD</span>/xpkUISdk.xcarchive</div><div class="line">rm -rf <span class="variable">$PWD</span>/xpkUISdk.ipa</div><div class="line"></div><div class="line"><span class="comment"># Create an archive</span></div><div class="line">xcodebuild -project ./xpkUISdk.xcodeproj -configuration Release CODE_SIGN_IDENTITY=<span class="string">"iPhone Distribution: Beijing RuiDongTianDi Information Tech. LTD (K8UMEY246Y)"</span> PROVISIONING_PROFILE=<span class="string">"68673951-0f6d-4ebe-9c07-fff0cb23aa91"</span> -scheme xpkUISdk -archivePath <span class="variable">$PWD</span>/xpkUISdk.xcarchive archive</div><div class="line"></div><div class="line"><span class="comment"># Create the IPA file from the archive</span></div><div class="line">xcodebuild -exportProvisioningProfile <span class="string">"56show_all_dis"</span> -exportArchive -exportFormat IPA -archivePath <span class="variable">$PWD</span>/xpkUISdk.xcarchive -exportPath <span class="variable">$PWD</span>/xpkUISdk.ipa CODE_SIGN_IDENTITY=<span class="string">"iPhone Distribution: Beijing RuiDongTianDi Information Tech. LTD (K8UMEY246Y)"</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># Remove archive and ipa file</span></div><div class="line">rm -rf <span class="variable">$PWD</span>/快秀.xcarchive</div><div class="line">rm -rf <span class="variable">$PWD</span>/快秀.ipa</div><div class="line"><span class="comment"># Create an archive</span></div><div class="line">xcodebuild -project ./快秀/快秀.xcodeproj -configuration Release CODE_SIGN_IDENTITY=<span class="string">"iPhone Distribution: Beijing RuiDongTianDi Information Tech. LTD (K8UMEY246Y)"</span> PROVISIONING_PROFILE=<span class="string">"7f2263b2-97d4-431b-b647-f3bac08822ec"</span> -scheme 快秀 -archivePath <span class="variable">$PWD</span>/快秀.xcarchive archive</div><div class="line"></div><div class="line"><span class="comment"># Create the IPA file from the archive</span></div><div class="line">xcodebuild -exportProvisioningProfile <span class="string">"DIstribution_KX_APNS"</span> -exportArchive -exportFormat IPA -archivePath <span class="variable">$PWD</span>/快秀.xcarchive -exportPath <span class="variable">$PWD</span>/快秀.ipa CODE_SIGN_IDENTITY=<span class="string">"iPhone Distribution: Beijing RuiDongTianDi Information Tech. LTD (K8UMEY246Y)"</span></div></pre></td></tr></table></figure></p>
 
           
         
@@ -1686,12 +1680,6 @@
 
 
 
-  
-
-
-  
-  <script type="text/javascript"
-color="225,15,245" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
 
 
 
@@ -1717,12 +1705,6 @@ color="225,15,245" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/c
 
   
   <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-  
-  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
 
 
   
