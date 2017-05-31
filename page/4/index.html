@@ -1013,152 +1013,6 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2014/10/30/iOS 编译lame m4a转mp3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="74Lee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="74Lee">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/10/30/iOS 编译lame m4a转mp3/" itemprop="url">iOS 编译lame m4a转mp3</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-30T08:38:00+08:00">
-                2014-10-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2014/10/30/iOS 编译lame m4a转mp3/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/30/iOS 编译lame m4a转mp3/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>今天在m4a转mp3上遇见了问题，需要用到lame,于是到官网下载<a href="http://lame.sourceforge.net/" target="_blank" rel="external">Lame</a>。<br>1.下载下来后放到桌面.<br>2.下载编译iOS的脚本<a href="https://github.com/kewlbear/lame-ios-build" target="_blank" rel="external">编译脚本下载</a><br>3.下载完成后,把脚本文件sh放入lame文件目录下。<br>4.修改脚本如下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/sh</span></div><div class="line"></div><div class="line">CONFIGURE_FLAGS=<span class="string">"--disable-shared --disable-frontend"</span></div><div class="line"></div><div class="line">ARCHS=<span class="string">"arm64 armv7s x86_64 i386 armv7"</span></div><div class="line"></div><div class="line"><span class="comment"># directories</span></div><div class="line">SOURCE=<span class="string">""</span></div><div class="line">FAT=<span class="string">"fat-lame"</span></div><div class="line"></div><div class="line">SCRATCH=<span class="string">"scratch-lame"</span></div><div class="line"><span class="comment"># must be an absolute path</span></div><div class="line">THIN=`<span class="built_in">pwd</span>`/<span class="string">"thin-lame"</span></div><div class="line"></div><div class="line">COMPILE=<span class="string">"y"</span></div><div class="line">LIPO=<span class="string">"y"</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> [ <span class="string">"$*"</span> ]</div><div class="line"><span class="keyword">then</span></div><div class="line">	<span class="keyword">if</span> [ <span class="string">"$*"</span> = <span class="string">"lipo"</span> ]</div><div class="line">	<span class="keyword">then</span></div><div class="line">		<span class="comment"># skip compile</span></div><div class="line">		COMPILE=</div><div class="line">	<span class="keyword">else</span></div><div class="line">		ARCHS=<span class="string">"$*"</span></div><div class="line">		<span class="keyword">if</span> [ <span class="variable">$#</span> <span class="_">-eq</span> 1 ]</div><div class="line">		<span class="keyword">then</span></div><div class="line">			<span class="comment"># skip lipo</span></div><div class="line">			LIPO=</div><div class="line">		<span class="keyword">fi</span></div><div class="line">	<span class="keyword">fi</span></div><div class="line"><span class="keyword">fi</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$COMPILE</span>"</span> ]</div><div class="line"><span class="keyword">then</span></div><div class="line">	CWD=`<span class="built_in">pwd</span>`</div><div class="line">	<span class="keyword">for</span> ARCH <span class="keyword">in</span> <span class="variable">$ARCHS</span></div><div class="line">	<span class="keyword">do</span></div><div class="line">		<span class="built_in">echo</span> <span class="string">"building <span class="variable">$ARCH</span>..."</span></div><div class="line">		mkdir -p <span class="string">"<span class="variable">$SCRATCH</span>/<span class="variable">$ARCH</span>"</span></div><div class="line">		<span class="built_in">cd</span> <span class="string">"<span class="variable">$SCRATCH</span>/<span class="variable">$ARCH</span>"</span></div><div class="line"></div><div class="line">		<span class="keyword">if</span> [ <span class="string">"<span class="variable">$ARCH</span>"</span> = <span class="string">"i386"</span> -o <span class="string">"<span class="variable">$ARCH</span>"</span> = <span class="string">"x86_64"</span> ]</div><div class="line">		<span class="keyword">then</span></div><div class="line">		    PLATFORM=<span class="string">"iPhoneSimulator"</span></div><div class="line">		    <span class="keyword">if</span> [ <span class="string">"<span class="variable">$ARCH</span>"</span> = <span class="string">"x86_64"</span> ]</div><div class="line">		    <span class="keyword">then</span></div><div class="line">		    	SIMULATOR=<span class="string">"-mios-simulator-version-min=7.0"</span></div><div class="line">                        HOST=x86_64-apple-darwin</div><div class="line">		    <span class="keyword">else</span></div><div class="line">		    	SIMULATOR=<span class="string">"-mios-simulator-version-min=5.0"</span></div><div class="line">                        HOST=i386-apple-darwin</div><div class="line">		    <span class="keyword">fi</span></div><div class="line">		<span class="keyword">else</span></div><div class="line">		    PLATFORM=<span class="string">"iPhoneOS"</span></div><div class="line">		    SIMULATOR=</div><div class="line">                    HOST=arm-apple-darwin</div><div class="line">		<span class="keyword">fi</span></div><div class="line"></div><div class="line">		XCRUN_SDK=`<span class="built_in">echo</span> <span class="variable">$PLATFORM</span> | tr <span class="string">'[:upper:]'</span> <span class="string">'[:lower:]'</span>`</div><div class="line">		CC=<span class="string">"xcrun -sdk <span class="variable">$XCRUN_SDK</span> clang -arch <span class="variable">$ARCH</span>"</span></div><div class="line">		<span class="comment">#AS="$CWD/$SOURCE/extras/gas-preprocessor.pl $CC"</span></div><div class="line">		CFLAGS=<span class="string">"-arch <span class="variable">$ARCH</span> <span class="variable">$SIMULATOR</span>"</span></div><div class="line">		CXXFLAGS=<span class="string">"<span class="variable">$CFLAGS</span>"</span></div><div class="line">		LDFLAGS=<span class="string">"<span class="variable">$CFLAGS</span>"</span></div><div class="line"></div><div class="line">		CC=<span class="variable">$CC</span> <span class="variable">$CWD</span>/<span class="variable">$SOURCE</span>/configure \</div><div class="line">		    <span class="variable">$CONFIGURE_FLAGS</span> \</div><div class="line">                    --host=<span class="variable">$HOST</span> \</div><div class="line">		    --prefix=<span class="string">"<span class="variable">$THIN</span>/<span class="variable">$ARCH</span>"</span> \</div><div class="line">                    CC=<span class="string">"<span class="variable">$CC</span>"</span> CFLAGS=<span class="string">"<span class="variable">$CFLAGS</span>"</span> LDFLAGS=<span class="string">"<span class="variable">$LDFLAGS</span>"</span></div><div class="line"></div><div class="line">		make -j3 install</div><div class="line">		<span class="built_in">cd</span> <span class="variable">$CWD</span></div><div class="line">	<span class="keyword">done</span></div><div class="line"><span class="keyword">fi</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$LIPO</span>"</span> ]</div><div class="line"><span class="keyword">then</span></div><div class="line">	<span class="built_in">echo</span> <span class="string">"building fat binaries..."</span></div><div class="line">	mkdir -p <span class="variable">$FAT</span>/lib</div><div class="line">	<span class="built_in">set</span> - <span class="variable">$ARCHS</span></div><div class="line">	CWD=`<span class="built_in">pwd</span>`</div><div class="line">	<span class="built_in">cd</span> <span class="variable">$THIN</span>/<span class="variable">$1</span>/lib</div><div class="line">	<span class="keyword">for</span> LIB <span class="keyword">in</span> *.a</div><div class="line">	<span class="keyword">do</span></div><div class="line">		<span class="built_in">cd</span> <span class="variable">$CWD</span></div><div class="line">		lipo -create `find <span class="variable">$THIN</span> -name <span class="variable">$LIB</span>` -output <span class="variable">$FAT</span>/lib/<span class="variable">$LIB</span></div><div class="line">	<span class="keyword">done</span></div><div class="line"></div><div class="line">	<span class="built_in">cd</span> <span class="variable">$CWD</span></div><div class="line">	cp -rf <span class="variable">$THIN</span>/<span class="variable">$1</span>/include <span class="variable">$FAT</span></div><div class="line"><span class="keyword">fi</span></div></pre></td></tr></table></figure></p>
-<p>5.终端开始编译<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// 1.CD lame目录</div><div class="line"><span class="built_in">cd</span> /Users/Austin/Desktop/lame </div><div class="line">// 2.开启脚本权限 </div><div class="line">chmod 777 build-lame.sh</div><div class="line">// 3.root权限</div><div class="line">sudo <span class="_">-s</span></div><div class="line">// 4.开始编译</div><div class="line">./build-lame.sh</div></pre></td></tr></table></figure></p>
-<p>6.操作如下<br><img src="http://hexo-zxcv740.qiniudn.com/lame7.gif" alt="操作步骤"></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2014/10/30/iOS CADisplayLink 滑动UIScrollView的时候失效/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1264,6 +1118,152 @@
 </code></pre><p>改成为NSRunLoopCommonModes</p>
 <pre><code>[displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
 </code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2014/10/30/iOS 编译lame m4a转mp3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="74Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="74Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/10/30/iOS 编译lame m4a转mp3/" itemprop="url">iOS 编译lame m4a转mp3</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-30T08:38:00+08:00">
+                2014-10-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/10/30/iOS 编译lame m4a转mp3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/30/iOS 编译lame m4a转mp3/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天在m4a转mp3上遇见了问题，需要用到lame,于是到官网下载<a href="http://lame.sourceforge.net/" target="_blank" rel="external">Lame</a>。<br>1.下载下来后放到桌面.<br>2.下载编译iOS的脚本<a href="https://github.com/kewlbear/lame-ios-build" target="_blank" rel="external">编译脚本下载</a><br>3.下载完成后,把脚本文件sh放入lame文件目录下。<br>4.修改脚本如下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/sh</span></div><div class="line"></div><div class="line">CONFIGURE_FLAGS=<span class="string">"--disable-shared --disable-frontend"</span></div><div class="line"></div><div class="line">ARCHS=<span class="string">"arm64 armv7s x86_64 i386 armv7"</span></div><div class="line"></div><div class="line"><span class="comment"># directories</span></div><div class="line">SOURCE=<span class="string">""</span></div><div class="line">FAT=<span class="string">"fat-lame"</span></div><div class="line"></div><div class="line">SCRATCH=<span class="string">"scratch-lame"</span></div><div class="line"><span class="comment"># must be an absolute path</span></div><div class="line">THIN=`<span class="built_in">pwd</span>`/<span class="string">"thin-lame"</span></div><div class="line"></div><div class="line">COMPILE=<span class="string">"y"</span></div><div class="line">LIPO=<span class="string">"y"</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> [ <span class="string">"$*"</span> ]</div><div class="line"><span class="keyword">then</span></div><div class="line">	<span class="keyword">if</span> [ <span class="string">"$*"</span> = <span class="string">"lipo"</span> ]</div><div class="line">	<span class="keyword">then</span></div><div class="line">		<span class="comment"># skip compile</span></div><div class="line">		COMPILE=</div><div class="line">	<span class="keyword">else</span></div><div class="line">		ARCHS=<span class="string">"$*"</span></div><div class="line">		<span class="keyword">if</span> [ <span class="variable">$#</span> <span class="_">-eq</span> 1 ]</div><div class="line">		<span class="keyword">then</span></div><div class="line">			<span class="comment"># skip lipo</span></div><div class="line">			LIPO=</div><div class="line">		<span class="keyword">fi</span></div><div class="line">	<span class="keyword">fi</span></div><div class="line"><span class="keyword">fi</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$COMPILE</span>"</span> ]</div><div class="line"><span class="keyword">then</span></div><div class="line">	CWD=`<span class="built_in">pwd</span>`</div><div class="line">	<span class="keyword">for</span> ARCH <span class="keyword">in</span> <span class="variable">$ARCHS</span></div><div class="line">	<span class="keyword">do</span></div><div class="line">		<span class="built_in">echo</span> <span class="string">"building <span class="variable">$ARCH</span>..."</span></div><div class="line">		mkdir -p <span class="string">"<span class="variable">$SCRATCH</span>/<span class="variable">$ARCH</span>"</span></div><div class="line">		<span class="built_in">cd</span> <span class="string">"<span class="variable">$SCRATCH</span>/<span class="variable">$ARCH</span>"</span></div><div class="line"></div><div class="line">		<span class="keyword">if</span> [ <span class="string">"<span class="variable">$ARCH</span>"</span> = <span class="string">"i386"</span> -o <span class="string">"<span class="variable">$ARCH</span>"</span> = <span class="string">"x86_64"</span> ]</div><div class="line">		<span class="keyword">then</span></div><div class="line">		    PLATFORM=<span class="string">"iPhoneSimulator"</span></div><div class="line">		    <span class="keyword">if</span> [ <span class="string">"<span class="variable">$ARCH</span>"</span> = <span class="string">"x86_64"</span> ]</div><div class="line">		    <span class="keyword">then</span></div><div class="line">		    	SIMULATOR=<span class="string">"-mios-simulator-version-min=7.0"</span></div><div class="line">                        HOST=x86_64-apple-darwin</div><div class="line">		    <span class="keyword">else</span></div><div class="line">		    	SIMULATOR=<span class="string">"-mios-simulator-version-min=5.0"</span></div><div class="line">                        HOST=i386-apple-darwin</div><div class="line">		    <span class="keyword">fi</span></div><div class="line">		<span class="keyword">else</span></div><div class="line">		    PLATFORM=<span class="string">"iPhoneOS"</span></div><div class="line">		    SIMULATOR=</div><div class="line">                    HOST=arm-apple-darwin</div><div class="line">		<span class="keyword">fi</span></div><div class="line"></div><div class="line">		XCRUN_SDK=`<span class="built_in">echo</span> <span class="variable">$PLATFORM</span> | tr <span class="string">'[:upper:]'</span> <span class="string">'[:lower:]'</span>`</div><div class="line">		CC=<span class="string">"xcrun -sdk <span class="variable">$XCRUN_SDK</span> clang -arch <span class="variable">$ARCH</span>"</span></div><div class="line">		<span class="comment">#AS="$CWD/$SOURCE/extras/gas-preprocessor.pl $CC"</span></div><div class="line">		CFLAGS=<span class="string">"-arch <span class="variable">$ARCH</span> <span class="variable">$SIMULATOR</span>"</span></div><div class="line">		CXXFLAGS=<span class="string">"<span class="variable">$CFLAGS</span>"</span></div><div class="line">		LDFLAGS=<span class="string">"<span class="variable">$CFLAGS</span>"</span></div><div class="line"></div><div class="line">		CC=<span class="variable">$CC</span> <span class="variable">$CWD</span>/<span class="variable">$SOURCE</span>/configure \</div><div class="line">		    <span class="variable">$CONFIGURE_FLAGS</span> \</div><div class="line">                    --host=<span class="variable">$HOST</span> \</div><div class="line">		    --prefix=<span class="string">"<span class="variable">$THIN</span>/<span class="variable">$ARCH</span>"</span> \</div><div class="line">                    CC=<span class="string">"<span class="variable">$CC</span>"</span> CFLAGS=<span class="string">"<span class="variable">$CFLAGS</span>"</span> LDFLAGS=<span class="string">"<span class="variable">$LDFLAGS</span>"</span></div><div class="line"></div><div class="line">		make -j3 install</div><div class="line">		<span class="built_in">cd</span> <span class="variable">$CWD</span></div><div class="line">	<span class="keyword">done</span></div><div class="line"><span class="keyword">fi</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$LIPO</span>"</span> ]</div><div class="line"><span class="keyword">then</span></div><div class="line">	<span class="built_in">echo</span> <span class="string">"building fat binaries..."</span></div><div class="line">	mkdir -p <span class="variable">$FAT</span>/lib</div><div class="line">	<span class="built_in">set</span> - <span class="variable">$ARCHS</span></div><div class="line">	CWD=`<span class="built_in">pwd</span>`</div><div class="line">	<span class="built_in">cd</span> <span class="variable">$THIN</span>/<span class="variable">$1</span>/lib</div><div class="line">	<span class="keyword">for</span> LIB <span class="keyword">in</span> *.a</div><div class="line">	<span class="keyword">do</span></div><div class="line">		<span class="built_in">cd</span> <span class="variable">$CWD</span></div><div class="line">		lipo -create `find <span class="variable">$THIN</span> -name <span class="variable">$LIB</span>` -output <span class="variable">$FAT</span>/lib/<span class="variable">$LIB</span></div><div class="line">	<span class="keyword">done</span></div><div class="line"></div><div class="line">	<span class="built_in">cd</span> <span class="variable">$CWD</span></div><div class="line">	cp -rf <span class="variable">$THIN</span>/<span class="variable">$1</span>/include <span class="variable">$FAT</span></div><div class="line"><span class="keyword">fi</span></div></pre></td></tr></table></figure></p>
+<p>5.终端开始编译<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// 1.CD lame目录</div><div class="line"><span class="built_in">cd</span> /Users/Austin/Desktop/lame </div><div class="line">// 2.开启脚本权限 </div><div class="line">chmod 777 build-lame.sh</div><div class="line">// 3.root权限</div><div class="line">sudo <span class="_">-s</span></div><div class="line">// 4.开始编译</div><div class="line">./build-lame.sh</div></pre></td></tr></table></figure></p>
+<p>6.操作如下<br><img src="http://hexo-zxcv740.qiniudn.com/lame7.gif" alt="操作步骤"></p>
+
           
         
       
