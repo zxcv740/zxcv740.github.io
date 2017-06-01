@@ -245,6 +245,150 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2013/09/22/iOS 提取IPA中的图片/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="74Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="74Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2013/09/22/iOS 提取IPA中的图片/" itemprop="url">iOS 提取IPA中的图片</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2013-09-22T11:59:36+08:00">
+                2013-09-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2013/09/22/iOS 提取IPA中的图片/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/09/22/iOS 提取IPA中的图片/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>脚本代码:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">pngcrush = <span class="string">'/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/pngcrush'</span></div><div class="line"></div><div class="line">destination = File.join(ENV[<span class="string">'HOME'</span>], <span class="string">'Desktop'</span>)</div><div class="line"></div><div class="line">ARGV.each <span class="keyword">do</span> |ipa|</div><div class="line"><span class="keyword">if</span> File.extname(ipa) == <span class="string">'.ipa'</span></div><div class="line"><span class="comment"># Get the app name by stripping out the extension from the file name</span></div><div class="line">app_name = File.basename(ipa, <span class="string">".*"</span>)</div><div class="line"></div><div class="line"><span class="comment"># Get the expanded dir by stripping out the extension from the file path</span></div><div class="line">expanded_dir = ipa.sub(File.extname(ipa), <span class="string">''</span>)</div><div class="line"></div><div class="line"><span class="comment"># In case the dir is already there, try and remove it</span></div><div class="line">system <span class="string">"rm -drf '#&#123;expanded_dir&#125;'"</span></div><div class="line"></div><div class="line"><span class="comment"># Extract .ipa zip file</span></div><div class="line">system <span class="string">"unzip -q '#&#123;ipa&#125;' -d '#&#123;expanded_dir&#125;'"</span></div><div class="line"></div><div class="line">images_dir_path = File.join(destination, <span class="string">"#&#123;app_name&#125; Images"</span>)</div><div class="line"></div><div class="line"><span class="comment"># In case the destination directory is already there, try and remove it</span></div><div class="line">system <span class="string">"rm -drf '#&#123;images_dir_path&#125;'"</span></div><div class="line"></div><div class="line"><span class="comment"># Create the destination directory</span></div><div class="line">Dir.mkdir(images_dir_path)</div><div class="line"></div><div class="line"><span class="comment"># Iterate through all png images</span></div><div class="line">Dir.glob(File.join(expanded_dir, <span class="string">'Payload'</span>, <span class="string">"*.app"</span>, <span class="string">'*.png'</span>)).each <span class="keyword">do</span> |png_file|</div><div class="line"><span class="comment"># and revert the iphone optimizations</span></div><div class="line">system <span class="string">"#&#123;pngcrush&#125; -q -revert-iphone-optimizations -d '#&#123;images_dir_path&#125;' '#&#123;png_file&#125;'"</span></div><div class="line">end</div><div class="line"></div><div class="line"><span class="comment"># Iterate through all jpg images</span></div><div class="line">Dir.glob(File.join(expanded_dir, <span class="string">'Payload'</span>, <span class="string">"*.app"</span>, <span class="string">'*.jpg'</span>)).each <span class="keyword">do</span> |jpg_file|</div><div class="line"><span class="comment"># and move each to the destination directory</span></div><div class="line">system <span class="string">"mv '#&#123;jpg_file&#125;' '#&#123;images_dir_path&#125;'"</span></div><div class="line">end</div><div class="line"></div><div class="line"><span class="comment"># Cleanup. Delete the expanded dir</span></div><div class="line">system <span class="string">"rm -drf '#&#123;expanded_dir&#125;'"</span></div><div class="line">end</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2013/06/07/Mac OS X 常用命令/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1262,150 +1406,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2008/09/21/没耍的/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="74Lee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="74Lee">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2008/09/21/没耍的/" itemprop="url">没耍的</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2008-09-21T13:29:00+08:00">
-                2008-09-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Lifes/" itemprop="url" rel="index">
-                    <span itemprop="name">Lifes</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2008/09/21/没耍的/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2008/09/21/没耍的/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>来学校一个星期多了，感觉什么都没做，第一个星期就逃了3讲，天天上网，上课真<em>*</em>长。早上还要起床做早操，学校除了网吧没什么好耍的了，峨眉山，没来时很想看，来了后天天看，觉得没什么好耍的。我们班的同学可真好，个个热情活跃。我们班男女比例2:1听说有的班是9:1或8:1。想想我们班还真不错。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1455,7 +1455,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">129</span>
+                <span class="site-state-item-count">130</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

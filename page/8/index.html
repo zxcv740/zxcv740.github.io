@@ -245,6 +245,150 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2014/09/22/iOS Date Compare/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="74Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="74Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/09/22/iOS Date Compare/" itemprop="url">iOS Date Compare</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-09-22T14:13:00+08:00">
+                2014-09-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/09/22/iOS Date Compare/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/09/22/iOS Date Compare/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>##iOS 时间比较<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">NSDate *nowDate=[NSDate date];</div><div class="line">NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];</div><div class="line"></div><div class="line">NSString *dateStr=@<span class="string">"2015-01-01 00:00:00"</span>;</div><div class="line">NSDate *compareDate=[dateFormatter dateFromString:dateStr];</div><div class="line"></div><div class="line">switch ([nowDate compare:compareDate]) &#123;</div><div class="line"><span class="keyword">case</span> NSOrderedSame:</div><div class="line">NSLog(@<span class="string">"一样"</span>);</div><div class="line"><span class="built_in">break</span>;</div><div class="line"><span class="keyword">case</span> NSOrderedAscending:</div><div class="line">NSLog(@<span class="string">"现在时间小于比较时间"</span>);</div><div class="line"><span class="built_in">break</span>;</div><div class="line"><span class="keyword">case</span> NSOrderedDescending:</div><div class="line">NSLog(@<span class="string">"现在时间大于比较时间"</span>);</div><div class="line"><span class="built_in">break</span>;</div><div class="line">default:</div><div class="line">NSLog(@<span class="string">"错误"</span>);</div><div class="line"><span class="built_in">break</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2014/09/22/PHP-56网通过vid获取视频信息/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1279,154 +1423,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2014/08/11/U3D 安装 破解/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="74Lee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="74Lee">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/08/11/U3D 安装 破解/" itemprop="url">U3D 安装 破解</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-08-11T16:03:00+08:00">
-                2014-08-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/U3D/" itemprop="url" rel="index">
-                    <span itemprop="name">U3D</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2014/08/11/U3D 安装 破解/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/08/11/U3D 安装 破解/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>1.首先下载<a href="http://download.unity3d.com/download_unity/unity-4.2.2.dmg" target="_blank" rel="external">Unity3D</a></p>
-<p>2.下载破解文件<a href="http://pan.baidu.com/s/1tGO0A" target="_blank" rel="external">下载</a></p>
-<p>3、使用破解文件中的 Unity 替换 /Applications/Unity/Unity.app/Contents/MacOS 下的 Unity 文件</p>
-<p>4、使用破解文件中的 Unity_v4.x.ulf 放到 /Library/Application Support/Unity 路径下</p>
-<p>破解好了，可以使用 Unity3D 了！</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1476,7 +1472,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">129</span>
+                <span class="site-state-item-count">130</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

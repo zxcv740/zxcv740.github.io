@@ -245,6 +245,154 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2014/10/28/Mac OS x 搭建svn服务器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="74Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="74Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/10/28/Mac OS x 搭建svn服务器/" itemprop="url">Mac OS x 搭建svn服务器</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-28T08:38:00+08:00">
+                2014-10-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/10/28/Mac OS x 搭建svn服务器/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/28/Mac OS x 搭建svn服务器/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>1.Mac系统自带svn,打开终端,确定系统已经安装了svnserve<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">bogon:~ Austin$ svnserve --version</div><div class="line">svnserve, version 1.7.17 (r1591372)</div><div class="line">   compiled Aug  7 2014, 17:03:25</div><div class="line"></div><div class="line">Copyright (C) 2014 The Apache Software Foundation.</div><div class="line">This software consists of contributions made by many people; see the NOTICE</div><div class="line">file <span class="keyword">for</span> more information.</div><div class="line">Subversion is open <span class="built_in">source</span> software, see http://subversion.apache.org/</div><div class="line"></div><div class="line">The following repository back-end (FS) modules are available:</div><div class="line"></div><div class="line">* fs_fs : Module <span class="keyword">for</span> working with a plain file (FSFS) repository.</div></pre></td></tr></table></figure></p>
+<p>2.创建仓库<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">bogon:~ Austin$ sudo mkdir -p /Users/Austin/Desktop/svn </div><div class="line">bogon:~ Austin$ sudo svnadmin create /Users/Austin/Desktop/svn </div><div class="line">//创建完成</div><div class="line">bogon:svn Austin$ <span class="built_in">cd</span> /Users/Austin/Desktop/svn </div><div class="line">bogon:svn Austin$ ls</div><div class="line">README.txt	db		hooks</div><div class="line">conf		format		locks</div></pre></td></tr></table></figure></p>
+<p>3.修改配置<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">//修改conf文件夹下的passwd文件</div><div class="line">//添加了两个用户，并分别设置了密码</div><div class="line">user1 = user1</div><div class="line">user2 = user2</div><div class="line">//修改conf下的authz文件，设置权限</div><div class="line"></div><div class="line">[groups]</div><div class="line">user1 = user1</div><div class="line">user2 = user2</div><div class="line">[/]</div><div class="line">@user1 = rw</div><div class="line">@user2 = r</div><div class="line">[<span class="built_in">local</span>:/]</div><div class="line">@user1 = rw</div><div class="line">@user2 = r</div></pre></td></tr></table></figure></p>
+<p>4.启动SVN<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo svnserve <span class="_">-d</span> -r /Users/Austin/Desktop/svn</div></pre></td></tr></table></figure></p>
+<p>5.解决提交.a 文件不到svn的问题<br>前往文件夹中输入~/.subverison 打开config,找到# global-ignores = <em>.o </em>.lo <em>.la </em>.al .libs <em>.so </em>.so.[0-9]<em> </em>.a <em>.pyc </em>.pyo<br>在下面添加一行,global-ignores = build <em>~.nib </em>.so <em>.pbxuser </em>.mode <em>.perspective</em>,修改后结构如下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">### '*' matches leading dots, e.g. '*.rej' matches '.foo.rej'.</span></div><div class="line"><span class="comment"># global-ignores = *.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo</span></div><div class="line"><span class="comment"># add begin ............</span></div><div class="line">global-ignores = build *~.nib *.so *.pbxuser *.mode *.perspective*</div><div class="line"><span class="comment"># add end ............</span></div><div class="line"><span class="comment">#   *.rej *~ #*# .#* .*.swp .DS_Store</span></div><div class="line"><span class="comment">### Set log-encoding to the default encoding for log messages</span></div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2014/10/27/iOS 从视频文件提取sps和pps/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -510,6 +658,153 @@
 <p>2.申明<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">GLuint _renderBuffer;</div><div class="line">GLuint _shaderProgram;</div><div class="line">GLuint _vbo;</div><div class="line">GLuint _fbo;</div><div class="line">GLuint _vao;</div><div class="line">GLuint _matrixPos;</div><div class="line">    </div><div class="line">int _currentBuffer;</div><div class="line">    </div><div class="line">CVPixelBufferRef _currentRef[2];</div><div class="line">CVOpenGLESTextureCacheRef _cache;</div><div class="line">CVOpenGLESTextureRef _texture[2];</div><div class="line"></div><div class="line">@property (nonatomic, strong) EAGLContext* context;//上下文</div><div class="line"></div><div class="line">@property (nonatomic) CAEAGLLayer* glLayer;//openGL 层</div></pre></td></tr></table></figure></p>
 <p>3.初始化<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">  //初始化</div><div class="line">self.glLayer = (CAEAGLLayer*)self.layer;</div><div class="line">self.glLayer.opaque = YES;</div><div class="line">//设置drawableProperties属性,</div><div class="line">//kEAGLDrawablePropertyRetainedBacking 意思是告诉coreAnimation是否保留任何以前绘制的图像作为以后重用</div><div class="line">//kEAGLDrawablePropertyColorFormat 意思是告诉coreAnimation用8位来保存层内的每一个像素的每一个颜色元素的值</div><div class="line">self.glLayer.drawableProperties = [NSDictionary dictionaryWithObjectsAndKeys:[</div><div class="line">                                                                              NSNumber numberWithBool:YES],kEAGLDrawablePropertyRetainedBacking,</div><div class="line">                                   kEAGLColorFormatRGBA8, kEAGLDrawablePropertyColorFormat, nil];</div><div class="line"></div><div class="line">NSLog(@<span class="string">"Creating context"</span>);</div><div class="line">_context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];</div><div class="line"></div><div class="line"><span class="keyword">if</span>(!self.context) &#123;</div><div class="line">    NSLog(@<span class="string">"Context creation failed"</span>);</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    NSLog(@<span class="string">"Context creation succeeded"</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line">self.contentMode = UIViewContentModeScaleAspectFit;</div><div class="line">self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleBottomMargin;</div><div class="line"></div><div class="line"> _currentRef [0] = _currentRef[1] = nil;</div><div class="line">_texture[0] = _texture[1] = nil;</div><div class="line">_shaderProgram = 0;</div><div class="line">_renderBuffer = 0;</div><div class="line">_currentBuffer = 1;</div><div class="line"></div><div class="line">[self generateGLESBuffers];</div><div class="line">[bSelf setupGLES];</div></pre></td></tr></table></figure></p>
 <p>4.生成FBO<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#pragma mark - Private Methods</span></div><div class="line"></div><div class="line">- (void) generateGLESBuffers</div><div class="line">&#123;</div><div class="line">    </div><div class="line">    EAGLContext* current = [EAGLContext currentContext];</div><div class="line">    [EAGLContext <span class="built_in">set</span>CurrentContext:self.context];</div><div class="line">    </div><div class="line">    <span class="keyword">if</span>(_renderBuffer) &#123;</div><div class="line">        glDeleteRenderbuffers(1, &amp;_renderBuffer);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>(_fbo) &#123;</div><div class="line">        glDeleteFramebuffers(1, &amp;_fbo);</div><div class="line">    &#125;</div><div class="line">    //创建渲染buffer~~~~~~~~~~~~~~~~~~~~~~~~~~~~</div><div class="line">    </div><div class="line">    glGenRenderbuffers(1, &amp;_renderBuffer);</div><div class="line">    glBindRenderbuffer(GL_RENDERBUFFER, _renderBuffer);</div><div class="line">    [self.context renderbufferStorage:GL_RENDERBUFFER fromDrawable:(CAEAGLLayer*)self.glLayer];</div><div class="line">    </div><div class="line">    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</div><div class="line">    </div><div class="line">    </div><div class="line">    GL_ERRORS(__LINE__)</div><div class="line">    </div><div class="line">    //创建帧buffer *****************************</div><div class="line">    </div><div class="line">    glGenFramebuffers(1, &amp;_fbo);</div><div class="line">    glBindFramebuffer(GL_FRAMEBUFFER, _fbo);</div><div class="line">    </div><div class="line">    int width, height;</div><div class="line">    glGetRenderbufferParameteriv(GL_RENDERBUFFER, GL_RENDERBUFFER_WIDTH, &amp;width);</div><div class="line">    glGetRenderbufferParameteriv(GL_RENDERBUFFER, GL_RENDERBUFFER_HEIGHT, &amp;height);</div><div class="line">    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, _renderBuffer);</div><div class="line">    </div><div class="line">    //*****************************************</div><div class="line">    </div><div class="line">    GL_ERRORS(__LINE__)</div><div class="line">    </div><div class="line">    GLenum err = 0;</div><div class="line">    err = glCheckFramebufferStatus(GL_FRAMEBUFFER);</div><div class="line">    <span class="keyword">if</span> (err != GL_FRAMEBUFFER_COMPLETE) &#123;</div><div class="line">        NSLog(@<span class="string">"Error: Could not generate frame buffer: %d"</span>, err);</div><div class="line">    &#125;<span class="keyword">else</span></div><div class="line">        NSLog(@<span class="string">"generate frame buffer: %d"</span>, err);</div><div class="line">    </div><div class="line">    glViewport(0, 0, self.glLayer.bounds.size.width, self.glLayer.bounds.size.height);</div><div class="line">    </div><div class="line">    glEnable(GL_BLEND);  //AUSTIN ADD</div><div class="line">    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);</div><div class="line">    </div><div class="line">    [EAGLContext <span class="built_in">set</span>CurrentContext:current];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void) setupGLES</div><div class="line">&#123;</div><div class="line">    EAGLContext* current = [EAGLContext currentContext];</div><div class="line">    [EAGLContext <span class="built_in">set</span>CurrentContext:self.context];</div><div class="line">    CVOpenGLESTextureCacheCreate(kCFAllocatorDefault, NULL, self.context, NULL, &amp;_cache);</div><div class="line">    </div><div class="line">    glGenVertexArraysOES(1, &amp;_vao);</div><div class="line">    glBindVertexArrayOES(_vao);</div><div class="line">    </div><div class="line">    glGenBuffers(1, &amp;_vbo);//1.生成数量;2.返回指针</div><div class="line">    glBindBuffer(GL_ARRAY_BUFFER, _vbo);//1.那种类型的缓存;2.绑定的指针</div><div class="line">    glBufferData(GL_ARRAY_BUFFER, sizeof(s_vbo), s_vbo, GL_STATIC_DRAW);//1.那种类型的缓存; 2.要复制进这个缓存的字节的数量; 3.要复制的字节池的地址; 4.提示缓存在未来的运算中要怎么使用</div><div class="line">    //GL_STATIC_DRAW 提示会告诉上下文,缓存中的内容适合复制到GPU控制的内存,因为很少对其进行修改。这个信息可以帮助</div><div class="line">    </div><div class="line">    _shaderProgram = build_program(s_vs_mat, s_fs);</div><div class="line">    glUseProgram(_shaderProgram);</div><div class="line">    </div><div class="line">    int attrpos = glGetAttribLocation(_shaderProgram, <span class="string">"aPos"</span>);</div><div class="line">    int attrtex = glGetAttribLocation(_shaderProgram, <span class="string">"aCoord"</span>);</div><div class="line">    int unitex = glGetUniformLocation(_shaderProgram, <span class="string">"uTex0"</span>);</div><div class="line">    </div><div class="line">    _matrixPos = glGetUniformLocation(_shaderProgram, <span class="string">"uMat"</span>);</div><div class="line">    </div><div class="line">    glUniform1i(unitex, 0);</div><div class="line">    </div><div class="line">    glEnableVertexAttribArray(attrpos);</div><div class="line">    glEnableVertexAttribArray(attrtex);</div><div class="line">    glVertexAttribPointer(attrpos, 2, GL_FLOAT, GL_FALSE, sizeof(<span class="built_in">float</span>) * 4, BUFFER_OFFSET(0));</div><div class="line">    glVertexAttribPointer(attrtex, 2, GL_FLOAT, GL_FALSE, sizeof(<span class="built_in">float</span>) * 4, BUFFER_OFFSET(8));</div><div class="line"></div><div class="line">    [EAGLContext <span class="built_in">set</span>CurrentContext:current];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2014/10/22/iOS Copy 和mutableCopy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="74Lee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="74Lee">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/10/22/iOS Copy 和mutableCopy/" itemprop="url">iOS Copy 和mutableCopy</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-22T08:38:00+08:00">
+                2014-10-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/10/22/iOS Copy 和mutableCopy/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/22/iOS Copy 和mutableCopy/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天在使用copy和mutableCopy出现了错误。<br>    在ios中并不是所有的对象都支持copy，mutableCopy，遵守NSCopying协议的类可以发送copy消息，遵守NSMutableCopying 协议的类才<br>可以发送mutableCopy消息。<br>    假如发送了一个没有遵守上诉两协议而发送copy或者 mutableCopy,那么就会发生异常。但是默认的ios类并没有遵<br>守这两个协议。<br>    如果想自定义一下copy 那么就必须遵守NSCopying,并且实现 copyWithZone: 方法，如果想自定义一下mutableCopy 那么就必须遵守NSMutableCopying,并且实现 mutableCopyWithZone: 方法。</p>
+<p>一、在需要的地放遵守NSCopying和NSMutableCopying协议,才能调用copy</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">//首先在类里面遵守&lt;NSCopying,NSMutableCopying&gt; 协议</div><div class="line"></div><div class="line">@interface ColorPlane : NSObject&lt;NSCopying,NSMutableCopying&gt;</div><div class="line"></div><div class="line">///Frame<span class="string">'s color data size</span></div><div class="line">@property (nonatomic, assign) int size;</div><div class="line"></div><div class="line">///Frame's color data</div><div class="line">@property (nonatomic, assign) UInt8 *data;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>二、在ColorPlane.m文件里面实现协议<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">@implementation ColorPlane</div><div class="line"></div><div class="line">- (id)init &#123;</div><div class="line">    self = [super init];</div><div class="line">    <span class="built_in">return</span> self;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (id)copyWithZone:(NSZone *)zone</div><div class="line">&#123;</div><div class="line">    ColorPlane *copy = [[[self class] allocWithZone:zone] init];</div><div class="line"></div><div class="line">    copy.size=self.size;</div><div class="line">    copy.data =self.data;</div><div class="line">    <span class="built_in">return</span> copy;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (id)mutableCopyWithZone:(NSZone *)zone</div><div class="line">&#123;</div><div class="line">    ColorPlane *copy = [[[self class] allocWithZone:zone] init];</div><div class="line">    copy.size=self.size;</div><div class="line">    copy.data =self.data;</div><div class="line">    <span class="built_in">return</span> copy;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">- (void)dealloc &#123;</div><div class="line">    <span class="keyword">if</span> (_data &amp;&amp; _size) &#123;</div><div class="line">        free(_data);</div><div class="line">        _data = NULL;</div><div class="line">    &#125;</div><div class="line">    [super dealloc];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
           
         
@@ -848,7 +1143,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2014/10/22/iOS Copy 和mutableCopy/">
+    <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2014/10/15/黑苹果安装10.10 DP5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="74Lee">
@@ -867,7 +1162,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2014/10/22/iOS Copy 和mutableCopy/" itemprop="url">iOS Copy 和mutableCopy</a></h1>
+                <a class="post-title-link" href="/2014/10/15/黑苹果安装10.10 DP5/" itemprop="url">黑苹果安装10.10 DP5</a></h1>
         
 
         <div class="post-meta">
@@ -879,8 +1174,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-22T08:38:00+08:00">
-                2014-10-22
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-15T08:38:00+08:00">
+                2014-10-15
               </time>
             
 
@@ -902,8 +1197,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
+                  <a href="/categories/Hackintosh/" itemprop="url" rel="index">
+                    <span itemprop="name">Hackintosh</span>
                   </a>
                 </span>
 
@@ -920,8 +1215,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2014/10/22/iOS Copy 和mutableCopy/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/22/iOS Copy 和mutableCopy/" itemprop="commentCount"></span>
+                <a href="/2014/10/15/黑苹果安装10.10 DP5/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/15/黑苹果安装10.10 DP5/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -948,10 +1243,19 @@
       
         
           
-            <p>今天在使用copy和mutableCopy出现了错误。<br>    在ios中并不是所有的对象都支持copy，mutableCopy，遵守NSCopying协议的类可以发送copy消息，遵守NSMutableCopying 协议的类才<br>可以发送mutableCopy消息。<br>    假如发送了一个没有遵守上诉两协议而发送copy或者 mutableCopy,那么就会发生异常。但是默认的ios类并没有遵<br>守这两个协议。<br>    如果想自定义一下copy 那么就必须遵守NSCopying,并且实现 copyWithZone: 方法，如果想自定义一下mutableCopy 那么就必须遵守NSMutableCopying,并且实现 mutableCopyWithZone: 方法。</p>
-<p>一、在需要的地放遵守NSCopying和NSMutableCopying协议,才能调用copy</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">//首先在类里面遵守&lt;NSCopying,NSMutableCopying&gt; 协议</div><div class="line"></div><div class="line">@interface ColorPlane : NSObject&lt;NSCopying,NSMutableCopying&gt;</div><div class="line"></div><div class="line">///Frame<span class="string">'s color data size</span></div><div class="line">@property (nonatomic, assign) int size;</div><div class="line"></div><div class="line">///Frame's color data</div><div class="line">@property (nonatomic, assign) UInt8 *data;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
-<p>二、在ColorPlane.m文件里面实现协议<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">@implementation ColorPlane</div><div class="line"></div><div class="line">- (id)init &#123;</div><div class="line">    self = [super init];</div><div class="line">    <span class="built_in">return</span> self;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (id)copyWithZone:(NSZone *)zone</div><div class="line">&#123;</div><div class="line">    ColorPlane *copy = [[[self class] allocWithZone:zone] init];</div><div class="line"></div><div class="line">    copy.size=self.size;</div><div class="line">    copy.data =self.data;</div><div class="line">    <span class="built_in">return</span> copy;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (id)mutableCopyWithZone:(NSZone *)zone</div><div class="line">&#123;</div><div class="line">    ColorPlane *copy = [[[self class] allocWithZone:zone] init];</div><div class="line">    copy.size=self.size;</div><div class="line">    copy.data =self.data;</div><div class="line">    <span class="built_in">return</span> copy;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">- (void)dealloc &#123;</div><div class="line">    <span class="keyword">if</span> (_data &amp;&amp; _size) &#123;</div><div class="line">        free(_data);</div><div class="line">        _data = NULL;</div><div class="line">    &#125;</div><div class="line">    [super dealloc];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+            <p>1.下载10.10 Yosemite DP 5 <a href="http://pan.baidu.com/s/1c0AJwbe" target="_blank" rel="external">链接</a> 密码：hkka</p>
+<p>2.下载支持Yosemite的变色龙引导,r2391 和r2403版本都支持</p>
+<p>3.制作U盘安装Yosemite,用硬盘写入工具写入</p>
+<p>4.进入变色龙引导开始安装Yosemite,我的cpu是E3,显卡GTX650,主板华硕b75,声卡是alc887,网卡用的是无线网卡,输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="_">-f</span> -v kext -dev -mode=1 npci=0x2000 dart=0</div></pre></td></tr></table></figure></p>
+<p>成功进入安装界面,安装成功后,重新进入一个系统,把安装盘中的Extra放入装好的系统,再次进入系统一样输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="_">-f</span> -v kext -dev -mode=1 npci=0x2000 dart=0</div></pre></td></tr></table></figure></p>
+<p>5.声卡</p>
+<p>用MultiBeast工具选择Audio–&gt;realtek alcxxx–&gt;without dsdt<br><img src="http://hexo-zxcv740.qiniudn.com/yosemite1.png" alt="图片"></p>
+<p>6.显卡</p>
+<p>显卡系统自动就驱动成功了。<br><img src="http://hexo-zxcv740.qiniudn.com/yosemite2.png" alt="图片"></p>
+<p>7.网卡</p>
+<p>无线网卡,用工具把这4个驱动装进系统,成功驱动</p>
+<p><img src="http://hexo-zxcv740.qiniudn.com/yosemite3.png" alt="图片"><br>8.usb3.0</p>
+<p>用MultiBeast工具<br><img src="http://hexo-zxcv740.qiniudn.com/yosemite4.png" alt="图片"></p>
 
           
         
@@ -1139,306 +1443,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2014/10/15/黑苹果安装10.10 DP5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="74Lee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="74Lee">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/10/15/黑苹果安装10.10 DP5/" itemprop="url">黑苹果安装10.10 DP5</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-15T08:38:00+08:00">
-                2014-10-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hackintosh/" itemprop="url" rel="index">
-                    <span itemprop="name">Hackintosh</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2014/10/15/黑苹果安装10.10 DP5/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/15/黑苹果安装10.10 DP5/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>1.下载10.10 Yosemite DP 5 <a href="http://pan.baidu.com/s/1c0AJwbe" target="_blank" rel="external">链接</a> 密码：hkka</p>
-<p>2.下载支持Yosemite的变色龙引导,r2391 和r2403版本都支持</p>
-<p>3.制作U盘安装Yosemite,用硬盘写入工具写入</p>
-<p>4.进入变色龙引导开始安装Yosemite,我的cpu是E3,显卡GTX650,主板华硕b75,声卡是alc887,网卡用的是无线网卡,输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="_">-f</span> -v kext -dev -mode=1 npci=0x2000 dart=0</div></pre></td></tr></table></figure></p>
-<p>成功进入安装界面,安装成功后,重新进入一个系统,把安装盘中的Extra放入装好的系统,再次进入系统一样输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="_">-f</span> -v kext -dev -mode=1 npci=0x2000 dart=0</div></pre></td></tr></table></figure></p>
-<p>5.声卡</p>
-<p>用MultiBeast工具选择Audio–&gt;realtek alcxxx–&gt;without dsdt<br><img src="http://hexo-zxcv740.qiniudn.com/yosemite1.png" alt="图片"></p>
-<p>6.显卡</p>
-<p>显卡系统自动就驱动成功了。<br><img src="http://hexo-zxcv740.qiniudn.com/yosemite2.png" alt="图片"></p>
-<p>7.网卡</p>
-<p>无线网卡,用工具把这4个驱动装进系统,成功驱动</p>
-<p><img src="http://hexo-zxcv740.qiniudn.com/yosemite3.png" alt="图片"><br>8.usb3.0</p>
-<p>用MultiBeast工具<br><img src="http://hexo-zxcv740.qiniudn.com/yosemite4.png" alt="图片"></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://blog.74lee.com/2014/10/14/ 高等数学笔记（扫描版）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="74Lee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="74Lee">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/10/14/ 高等数学笔记（扫描版）/" itemprop="url">高等数学笔记（扫描版）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-14T08:38:00+08:00">
-                2014-10-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Math/" itemprop="url" rel="index">
-                    <span itemprop="name">Math</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2014/10/14/ 高等数学笔记（扫描版）/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/14/ 高等数学笔记（扫描版）/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue1.jpeg" alt="1"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue2.jpeg" alt="2"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue3.jpeg" alt="3"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue4.jpeg" alt="4"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue5.jpeg" alt="5"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue6.jpeg" alt="6"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue7.jpeg" alt="7"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue8.jpeg" alt="8"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue9.jpeg" alt="9"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue10.jpeg" alt="10"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue11.jpeg" alt="11"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue12.jpeg" alt="12"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue13.jpeg" alt="13"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue14.jpeg" alt="14"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue15.jpeg" alt="15"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue16.jpeg" alt="16"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue17.jpeg" alt="17"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue18.jpeg" alt="18"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue19.jpeg" alt="19"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue20.jpeg" alt="20"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue21.jpeg" alt="21"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue22.jpeg" alt="22"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue23.jpeg" alt="23"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue24.jpeg" alt="24"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue25.jpeg" alt="25"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue26.jpeg" alt="26"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue27.jpeg" alt="27"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue28.jpeg" alt="28"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue29.jpeg" alt="29"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue30.jpeg" alt="30"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue31.jpeg" alt="31"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue32.jpeg" alt="32"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue33.jpeg" alt="33"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue34.jpeg" alt="34"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue35.jpeg" alt="35"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue36.jpeg" alt="36"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue37.jpeg" alt="37"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue38.jpeg" alt="38"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue39.jpeg" alt="39"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue40.jpeg" alt="40"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue41.jpeg" alt="41"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue42.jpeg" alt="42"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue43.jpeg" alt="43"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue44.jpeg" alt="44"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue45.jpeg" alt="45"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue46.jpeg" alt="46"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue47.jpeg" alt="47"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue48.jpeg" alt="48"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue49.jpeg" alt="49"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue50.jpeg" alt="50"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue51.jpeg" alt="51"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue52.jpeg" alt="52"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue53.jpeg" alt="53"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue54.jpeg" alt="54"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue55.jpeg" alt="55"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue56.jpeg" alt="56"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue57.jpeg" alt="57"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue58.jpeg" alt="58"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue59.jpeg" alt="59"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue60.jpeg" alt="60"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue61.jpeg" alt="61"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue62.jpeg" alt="62"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue63.jpeg" alt="63"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue64.jpeg" alt="64"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue65.jpeg" alt="65"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue66.jpeg" alt="66"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue67.jpeg" alt="67"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue68.jpeg" alt="68"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue69.jpeg" alt="69"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue70.jpeg" alt="70"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue71.jpeg" alt="71"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue72.jpeg" alt="72"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue73.jpeg" alt="73"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue74.jpeg" alt="74"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue75.jpeg" alt="75"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue76.jpeg" alt="76"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue77.jpeg" alt="77"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue78.jpeg" alt="78"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue79.jpeg" alt="79"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue80.jpeg" alt="80"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue81.jpeg" alt="81"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue82.jpeg" alt="82"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue83.jpeg" alt="83"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue84.jpeg" alt="84"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue85.jpeg" alt="85"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue86.jpeg" alt="86"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue87.jpeg" alt="87"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue88.jpeg" alt="88"><br><img src="http://hexo-zxcv740.qiniudn.com/gaodengshuxue89.jpeg" alt="89"><br><a href="http://user.qzone.qq.com/1069113250/blog/1413188782" target="_blank" rel="external">来自QQ空间好友转载</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1488,7 +1492,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">129</span>
+                <span class="site-state-item-count">130</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
